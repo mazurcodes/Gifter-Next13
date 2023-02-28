@@ -1,10 +1,12 @@
-import styles from './page.module.css'
-
+import SearchForm from "./components/SearchForm";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <p>HELLO mthfkr</p>
-    </main>
-  )
+    <>
+    
+      <main className="flex-auto flex justify-center items-center">
+        <SearchForm />
+      </main>
+    </>
+  );
 }
