@@ -7,7 +7,7 @@ const NavBarMain = () => {
     <nav className="flex justify-end items-center p-3 text-orange-100">
       <ul className="flex items-center">
         <li className="p-2">
-          <Link href="/profile">
+          <Link href="/profile" data-testid='NavBar'>
             <Image src={profileIcon} alt="profile icon" width={40} height={40}/>
           </Link>
         </li>

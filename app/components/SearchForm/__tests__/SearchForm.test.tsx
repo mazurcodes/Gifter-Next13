@@ -1,8 +1,9 @@
 import { expect, describe, it } from 'vitest';
-import { render, screen, within } from '@testing-library/react';
+import { render, screen, waitFor, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import SearchForm from '..';
 
-describe('NavBar component', () => {
+describe('SearchForm component', () => {
   render(<SearchForm />);
   const form = within(screen.getByRole('form'));
   const input = within(form.getByLabelText(/search/i));
@@ -23,5 +24,15 @@ describe('NavBar component', () => {
 
   it('should have image', () => {
     expect(form.getByRole('img')).toBeDefined();
+  });
+
+  it('should change the input value', async () => {
+    const text = 'hello mthrfkr';
+    const user = userEvent.setup();
+
+    await user.type(form.getByLabelText(/search/i), text);
+    await waitFor(() => {
+      expect(form.getByDisplayValue(text)).toBeDefined();
+    });
   });
 });
