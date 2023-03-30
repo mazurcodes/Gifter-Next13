@@ -14,15 +14,15 @@ const SearchForm = () => {
   }
   return (
     <form className="flex flex-col" onSubmit={handleSubmit}>
-        <h2 className=" text-3xl">Things that your friends want</h2>
+      <h1 className="logo font-black text-9xl text-center">Gifter</h1>
       <label className="text-center">
         <p className="p-4">Find your friend’s wish list by email</p>
         <input
-          className=" w-96 border p-1"
+          className=" w-96 border p-1 px-5 relative"
           type="email"
           value={search}
           onChange={handleChange}
-          placeholder="Podaj email..."
+          placeholder="Friend's email"
         />
       </label>
     </form>
