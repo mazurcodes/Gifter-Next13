@@ -9,7 +9,7 @@ const NavBarLogo = () => {
       <h2 className="logo font-black text-4xl">Gifter</h2>
       <ul className="flex items-center">
         <li className="p-2">
-          <Link href="/" data-testid='navbar main'>
+          <Link href="/" data-testid='navbar search'>
             <Image src={searchIcon} alt="search icon" width={40} height={40}/>
           </Link>
         </li>

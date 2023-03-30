@@ -9,7 +9,7 @@ describe('NavBar component on main page', () => {
     expect(screen.getByRole('navigation')).toBeDefined();
   });
   it('should not render link to the main page', () => {
-    expect(screen.getByTestId('navbar main')).toBeDefined();
+    expect(screen.getByTestId('navbar search')).toBeDefined();
   });
 
   it('should render link to the profile page', () => {
