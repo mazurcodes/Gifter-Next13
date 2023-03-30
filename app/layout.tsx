@@ -4,7 +4,7 @@ import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
 
 const inter = Inter({
-  weight: ['400', '900'],
+  weight: ['300', '400', '900'],
   subsets: ['latin'],
 });
 

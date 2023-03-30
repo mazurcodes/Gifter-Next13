@@ -20,7 +20,7 @@ const SearchForm = () => {
         Gifter
       </h1>
       <label className="text-center flex flex-col" htmlFor="search">
-        <p className="p-4">Find your friend’s wishlist by email</p>
+        <p className="p-4 font-light">Search for a wishlist by email</p>
         <div className="relative">
           <Image
             className="absolute top-2 left-2 z-10 opacity-50"
@@ -32,11 +32,11 @@ const SearchForm = () => {
           <input
             id="search"
             name="search"
-            className=" w-96 border rounded-md p-1 px-10 relative focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
+            className=" w-96 border rounded-md p-1 pl-10 relative focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
             type="email"
             value={search}
             onChange={handleChange}
-            placeholder="Friend's email"
+            placeholder="Email"
           />
         </div>
       </label>
