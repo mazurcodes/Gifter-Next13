@@ -1,6 +1,8 @@
 'use client';
 
+import Image from 'next/image';
 import { ChangeEvent, useState } from 'react';
+import searchIcon from '@/assets/SearchIcon.svg';
 
 const SearchForm = () => {
   const [search, setSearch] = useState<string>('');
@@ -13,19 +15,30 @@ const SearchForm = () => {
     event.preventDefault();
   };
   return (
-    <form className="flex flex-col" onSubmit={handleSubmit}>
-      <h1 className="logo font-black text-9xl text-center">Gifter</h1>
-      <label className="text-center" htmlFor="search">
+    <form className="flex flex-col items-center" onSubmit={handleSubmit}>
+      <h1 className="logo font-black text-9xl text-center text-orange-500">
+        Gifter
+      </h1>
+      <label className="text-center flex flex-col" htmlFor="search">
         <p className="p-4">Find your friend’s wishlist by email</p>
-        <input
-          id="search"
-          name="search"
-          className=" w-96 border p-1 px-5 relative"
-          type="email"
-          value={search}
-          onChange={handleChange}
-          placeholder="Friend's email"
-        />
+        <div className="relative">
+          <Image
+            className="absolute top-2 left-2 z-10 opacity-50"
+            src={searchIcon}
+            alt=""
+            width={18}
+            height={18}
+          />
+          <input
+            id="search"
+            name="search"
+            className=" w-96 border rounded-md p-1 px-10 relative focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
+            type="email"
+            value={search}
+            onChange={handleChange}
+            placeholder="Friend's email"
+          />
+        </div>
       </label>
     </form>
   );
