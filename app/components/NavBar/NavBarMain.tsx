@@ -8,7 +8,7 @@ const NavBarMain = () => {
       <ul className="flex items-center">
         <li className="p-2">
           <Link href="/profile">
-            <Image src={profileIcon} alt="profile icon" />
+            <Image src={profileIcon} alt="profile icon" width={40} height={40}/>
           </Link>
         </li>
       </ul>
