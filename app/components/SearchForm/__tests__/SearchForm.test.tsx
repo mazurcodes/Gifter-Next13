@@ -7,6 +7,8 @@ describe('SearchForm component', () => {
   render(<SearchForm />);
   const form = within(screen.getByRole('form'));
   const input = within(form.getByLabelText(/search/i));
+  const user = userEvent.setup();
+
 
   it('should render form', () => {
     expect(form).toBeDefined();
@@ -28,7 +30,6 @@ describe('SearchForm component', () => {
 
   it('should change the input value', async () => {
     const text = 'hello mthrfkr';
-    const user = userEvent.setup();
 
     await user.type(form.getByLabelText(/search/i), text);
     await waitFor(() => {

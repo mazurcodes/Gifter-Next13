@@ -2,6 +2,7 @@ import '@/styles/globals.css';
 import { Inter } from 'next/font/google';
 import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
+import TopMenu from './components/TopMenu';
 
 const inter = Inter({
   weight: ['300', '400', '900'],
@@ -22,7 +23,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="main-wrapper flex flex-col min-h-screen">
-          <NavBar />
+          {/* <NavBar /> */}
+          <TopMenu />
           {children}
           <Footer />
         </div>

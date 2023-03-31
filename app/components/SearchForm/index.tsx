@@ -14,8 +14,13 @@ const SearchForm = () => {
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
   };
+  
   return (
-    <form role="form" className="flex flex-col items-center" onSubmit={handleSubmit}>
+    <form
+      role="form"
+      className="flex flex-col items-center"
+      onSubmit={handleSubmit}
+    >
       <h1 className="logo font-black text-9xl text-center text-orange-500">
         Gifter
       </h1>
