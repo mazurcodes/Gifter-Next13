@@ -1,7 +1,7 @@
 import { expect, describe, it } from 'vitest';
 import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import UserButton from '..';
+import UserButton from '@/components/TopMenu/UserButton';
 
 describe('SearchForm component', () => {
   render(<UserButton />);
@@ -9,7 +9,7 @@ describe('SearchForm component', () => {
   const button = within(wrapper.getByRole('menuitem'));
   const user = userEvent.setup();
 
-  it('should render form', () => {
+  it('should render button', () => {
     expect(button).toBeDefined();
   });
 
