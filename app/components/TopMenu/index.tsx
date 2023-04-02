@@ -1,5 +1,3 @@
-"use client"
-
 import UserButton from "./UserButton";
 
 const TopMenu = () => {

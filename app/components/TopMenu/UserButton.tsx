@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image';
 import profileIcon from '@/assets/ProfileIcon.svg';
 import { useEffect, useRef, useState } from 'react';
