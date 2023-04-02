@@ -1,21 +1,14 @@
-export type GiftsDataType = {
-  id: number;
-  name: string;
-  price: string;
-  date: string;
-  links:
-    | {
-        id: number;
-        seller: string;
-        linkUrl: string;
-      }[]
-    | [];
-};
+import { Category, GiftsDataType, Occasion, Priority, Status } from '@/types';
 
 export const gifts: GiftsDataType[] = [
   {
     id: 1,
+    status: Status.available,
     name: 'OstroVit Erytrytol 1 kg ERYTROL NATURALNY SŁODZIK',
+    priority: Priority.high,
+    occasion: Occasion.none,
+    category: Category.food,
+    notes: '',
     price: '1690',
     date: '01.01.2023',
     links: [
@@ -41,7 +34,12 @@ export const gifts: GiftsDataType[] = [
   },
   {
     id: 2,
+    status: Status.reserved,
     name: 'ROGELLI EXPLORE koszulka rowerowa męska M',
+    priority: Priority.medium,
+    occasion: Occasion.bithday,
+    category: Category.clothing,
+    notes: '',
     price: '15900',
     date: '03.02.2023',
     links: [
@@ -57,28 +55,48 @@ export const gifts: GiftsDataType[] = [
   },
   {
     id: 3,
+    status: Status.bought,
     name: 'Termoaktywny bezrękawnik Brubeck Base Layer',
+    priority: Priority.low,
+    occasion: Occasion.bithday,
+    category: Category.clothing,
+    notes: '',
     price: '7499',
     date: '04.04.2023',
     links: [],
   },
   {
     id: 4,
+    status: Status.available,
     name: 'OstroVit Erytrytol 1 kg ERYTROL NATURALNY SŁODZIK',
+    priority: Priority.high,
+    occasion: Occasion.none,
+    category: Category.food,
+    notes: '',
     price: '1690',
     date: '01.01.2023',
     links: [],
   },
   {
     id: 5,
+    status: Status.available,
     name: 'OstroVit Erytrytol 1 kg ERYTROL NATURALNY SŁODZIK',
+    priority: Priority.low,
+    occasion: Occasion.none,
+    category: Category.food,
+    notes: '',
     price: '1690',
     date: '01.01.2023',
     links: [],
   },
   {
     id: 6,
+    status: Status.available,
     name: 'OstroVit Erytrytol 1 kg ERYTROL NATURALNY SŁODZIK',
+    priority: Priority.medium,
+    occasion: Occasion.none,
+    category: Category.food,
+    notes: '',
     price: '1690',
     date: '01.01.2023',
     links: [],
