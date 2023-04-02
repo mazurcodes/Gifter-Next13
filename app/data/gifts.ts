@@ -3,6 +3,7 @@ import { Category, GiftsDataType, Occasion, Priority, Status } from '@/types';
 export const gifts: GiftsDataType[] = [
   {
     id: 1,
+    ownerEmail: 'some@example.com',
     status: Status.available,
     name: 'OstroVit Erytrytol 1 kg ERYTROL NATURALNY SŁODZIK',
     priority: Priority.high,
@@ -34,6 +35,7 @@ export const gifts: GiftsDataType[] = [
   },
   {
     id: 2,
+    ownerEmail: 'some@example.com',
     status: Status.reserved,
     name: 'ROGELLI EXPLORE koszulka rowerowa męska M',
     priority: Priority.medium,
@@ -55,6 +57,7 @@ export const gifts: GiftsDataType[] = [
   },
   {
     id: 3,
+    ownerEmail: 'some@example.com',
     status: Status.bought,
     name: 'Termoaktywny bezrękawnik Brubeck Base Layer',
     priority: Priority.low,
@@ -67,6 +70,7 @@ export const gifts: GiftsDataType[] = [
   },
   {
     id: 4,
+    ownerEmail: 'some@example.com',
     status: Status.available,
     name: 'OstroVit Erytrytol 1 kg ERYTROL NATURALNY SŁODZIK',
     priority: Priority.high,
@@ -79,6 +83,7 @@ export const gifts: GiftsDataType[] = [
   },
   {
     id: 5,
+    ownerEmail: 'some@example.com',
     status: Status.available,
     name: 'OstroVit Erytrytol 1 kg ERYTROL NATURALNY SŁODZIK',
     priority: Priority.low,
@@ -91,6 +96,7 @@ export const gifts: GiftsDataType[] = [
   },
   {
     id: 6,
+    ownerEmail: 'some@example.com',
     status: Status.available,
     name: 'OstroVit Erytrytol 1 kg ERYTROL NATURALNY SŁODZIK',
     priority: Priority.medium,
