@@ -1,12 +1,21 @@
 import { expect, describe, it } from 'vitest';
-import { render, screen, within } from '@testing-library/react';
+import { cleanup, render, screen, within } from '@testing-library/react';
 import TopMenu from '..';
 
 describe('TopMenu component', () => {
-  render(<TopMenu />);
-  const wrapper = within(screen.getByRole('menubar'));
-
-  it('should render UserButton component', () => {
+  it('should render Basic TopMenu with UserButton component', () => {
+    render(<TopMenu />);
+    const wrapper = within(screen.getByRole('menubar'));
     expect(wrapper.queryByRole('menuitem')).toBeDefined();
+    cleanup();
   });
+
+  it('should render Extended TopMenu with Logo and UserButton component', () => {
+    render(<TopMenu extended/>);
+    const wrapper = within(screen.getByRole('menubar'));
+    expect(wrapper.queryByRole('heading', {level: 2, name: /gifter/i})).toBeDefined();
+    expect(wrapper.queryByRole('menuitem')).toBeDefined();
+    cleanup();
+  });
+
 });
