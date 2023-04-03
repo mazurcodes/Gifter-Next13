@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 // import TopMenu from './components/TopMenu';
 
 const inter = Inter({
-  weight: ['300', '400', '900'],
+  weight: ['300', '400', '600', '900'],
   subsets: ['latin'],
 });
 

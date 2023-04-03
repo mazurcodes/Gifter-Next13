@@ -1,17 +1,11 @@
-import Gift from "../Gift";
+import Gift from '../Gift';
+import { giftsData } from '@/data/giftsData';
 
 const GiftList = () => {
-    return (
-        <div>
-            <Gift />
-            <Gift />
-            <Gift />
-            <Gift />
-            <Gift />
-            <Gift />
-            <Gift />
-        </div>
-    );
-}
+  const giftListWithData = giftsData.map((gift) => (
+    <Gift key={gift.id} data={gift} />
+  ));
+  return <div>{giftListWithData}</div>;
+};
 
 export default GiftList;
