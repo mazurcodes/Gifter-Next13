@@ -7,36 +7,36 @@ export type SellerType = {
 
 // gifts
 export enum Occasion {
-  bithday = 'BIRTHDAY',
-  nameday = 'NAMEDAY',
-  holidays = 'HOLIDAYS',
-  thanks = 'THANKS',
-  other = 'OTHER',
-  none = 'NONE',
+  BITHDAY = 'Birthday',
+  NAMEDAY = 'Nameday',
+  HOLIDAYS = 'Holidays',
+  THANKS = 'Thanks',
+  OTHER = 'Other',
+  NONE = 'None',
 }
 
 export enum Category {
-  books = 'BOOKS',
-  electronics = 'ELECTRONICS',
-  clothing = 'CLOTHING',
-  home = 'HOME',
-  beauty = 'BEAUTY',
-  gadgets = 'GADGETS',
-  food = 'FOOD',
-  other = 'OTHER',
-  none = 'NONE',
+  BOOKS = 'Books',
+  ELECTRONICS = 'Electronics',
+  CLOTHING = 'Clothing',
+  HOME = 'Home',
+  BEAUTY = 'Beauty',
+  GADGETS = 'Gadgets',
+  FOOD = 'Food',
+  OTHER = 'Other',
+  NONE = 'None',
 }
 
 export enum Priority {
-    high = 'HIGH',
-    medium = 'MEDIUM',
-    low = 'LOW',
+  HIGH = 'High',
+  MEDIUM = 'Medium',
+  LOW = 'Low',
 }
 
 export enum Status {
-    available = 'AVAILABLE',
-    reserved = 'RESERVED',
-    bought = 'BOUGHT',
+  AVAILABLE = 'Available',
+  RESERVED = 'Reserved',
+  BOUGHT = 'Bought',
 }
 
 export type GiftsDataType = {
