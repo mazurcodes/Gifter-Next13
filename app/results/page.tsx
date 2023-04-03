@@ -11,7 +11,7 @@ const ResultsPage = () => {
   return (
     <>
       <TopMenu extended />
-      <main className="flex-1">
+      <main className="flex-1 p-10">
         <h2 className="text-center">
           Result for bartek@bartekmazur.dev
         </h2>
