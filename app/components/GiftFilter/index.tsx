@@ -12,12 +12,10 @@ type GiftFilterProps = {
 const GiftFilter = ({ statusFn, data }: GiftFilterProps) => {
   const [filter, setFilter] = useState<Status | ''>('');
 
-  
-  
   useEffect(() => {
     const filtered = filterGiftsByStatus(data, filter);
     statusFn(filtered);
-  });
+  }, [data, statusFn, filter]);
   return (
     <div className="filter-bar my-4 text-sm font-semibold text-gray-500">
       <button
