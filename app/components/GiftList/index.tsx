@@ -26,7 +26,7 @@ const GiftList = ({ data }: GiftListProps) => {
           <p className='lg:hidden'>Occasion</p>
           <p className='lg:hidden'>Category</p>
           <p className='sm:hidden'>Price</p>
-          <p className='sm:hidden'>Date</p>
+          <p className='lg:hidden'>Date</p>
           <p className='lg:hidden'>Notes</p>
         </div>
         <div className="table-data">{giftListWithData}</div>
