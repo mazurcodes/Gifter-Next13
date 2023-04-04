@@ -1,5 +1,5 @@
 import { GiftsDataType } from '@/types';
-import { priorityColor, shortNotes, statusColor } from '@/utils';
+import { priorityColor, shortNotes, statusColor } from '@/utils/server';
 
 type GiftProps = {
   data: GiftsDataType;
