@@ -1,4 +1,4 @@
-import { Priority, Status } from '@/types';
+import { GiftsDataType, Priority, Status } from '@/types';
 
 export const statusColor = (status: Status) => {
   if (status === Status.AVAILABLE) return 'text-green-600';
@@ -18,4 +18,11 @@ export const shortNotes = (note: string, maxChars = 20) => {
     short = note.substring(0, maxChars - 1) + '...';
   }
   return short;
+};
+
+export const filterGiftsByStatus = (
+  data: GiftsDataType[],
+  status: Status | '' = ''
+) => {
+  return status === '' ? data : data.filter((gift) => gift.status === status);
 };
