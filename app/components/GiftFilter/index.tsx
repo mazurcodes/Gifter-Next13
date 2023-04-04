@@ -25,19 +25,19 @@ const GiftFilter = ({ statusFn, data }: GiftFilterProps) => {
         All
       </button>
       <button
-        className={`filter-button border rounded-md w-28 mr-2 ${filter === Status.AVAILABLE && 'border-4 border-dashed border-green-500'}`}
+        className={`filter-button border rounded-md w-24 mr-2 ${filter === Status.AVAILABLE && 'border-4 border-dashed border-green-500'}`}
         onClick={() => setFilter(Status.AVAILABLE)}
       >
-        Aviable
+        Available
       </button>
       <button
-        className={`filter-button border rounded-md w-28 mr-2 ${filter === Status.RESERVED && 'border-4 border-dashed border-orange-300'}`}
+        className={`filter-button border rounded-md w-24 mr-2 ${filter === Status.RESERVED && 'border-4 border-dashed border-orange-300'}`}
         onClick={() => setFilter(Status.RESERVED)}
       >
         Reserved
       </button>
       <button
-        className={`filter-button border rounded-md w-28 mr-2 ${filter === Status.BOUGHT && 'border-4 border-dashed border-red-500'}`}
+        className={`filter-button border rounded-md w-24 mr-2 ${filter === Status.BOUGHT && 'border-4 border-dashed border-red-500'}`}
         onClick={() => setFilter(Status.BOUGHT)}
       >
         Bought
