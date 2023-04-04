@@ -19,15 +19,15 @@ const GiftList = ({ data }: GiftListProps) => {
     <>
       <GiftFilter statusFn={setGifts} data={data} />
       <div className="table border rounded-md w-full">
-        <div className="table-head grid gap-2 grid-cols-[2fr_10fr_repeat(5,_2fr)_3fr] items-center border-b p-4 text-xs text-gray-400">
+        <div className="table-head grid gap-2 grid-cols-[2fr_10fr_repeat(5,_2fr)_3fr] lg:grid-cols-[2fr_10fr_repeat(2,_2fr)] sm:grid-cols-[2fr_5fr] items-center border-b p-4 text-xs text-gray-400">
           <p>Status</p>
           <p>Gift Name</p>
-          <p>Priority</p>
-          <p>Occasion</p>
-          <p>Category</p>
-          <p>Price</p>
-          <p>Date</p>
-          <p>Notes</p>
+          <p className='sm:hidden'>Priority</p>
+          <p className='lg:hidden'>Occasion</p>
+          <p className='lg:hidden'>Category</p>
+          <p className='sm:hidden'>Price</p>
+          <p className='sm:hidden'>Date</p>
+          <p className='lg:hidden'>Notes</p>
         </div>
         <div className="table-data">{giftListWithData}</div>
       </div>
