@@ -1,4 +1,5 @@
-import { Category, GiftsDataType, Occasion, Priority, Status } from '@/types';
+import { GiftsDataType } from '@/types';
+import { Category, Occasion, Priority, Status } from '@/constants';
 
 export const giftsData: GiftsDataType[] = [
   {

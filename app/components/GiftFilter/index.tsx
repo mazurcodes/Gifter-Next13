@@ -1,6 +1,7 @@
 'use client';
 
-import { GiftsDataType, Status } from '@/types';
+import { GiftsDataType } from '@/types';
+import { Status } from '@/constants';
 import { filterGiftsByStatus } from '@/utils/server';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 

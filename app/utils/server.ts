@@ -1,15 +1,16 @@
-import { GiftsDataType, Priority, Status } from '@/types';
+import { GiftsDataType } from '@/types';
+import { Priority, Status, Color } from '@/constants';
 
 export const statusColor = (status: Status) => {
-  if (status === Status.AVAILABLE) return 'text-green-600';
-  if (status === Status.RESERVED) return 'text-orange-300';
-  return 'text-red-500';
+  if (status === Status.AVAILABLE) return Color.GREEN;
+  if (status === Status.RESERVED) return Color.ORANGE;
+  return Color.RED;
 };
 
 export const priorityColor = (priority: Priority) => {
-  if (priority === Priority.HIGH) return 'text-red-500';
-  if (priority === Priority.MEDIUM) return 'text-orange-300';
-  return 'text-green-600';
+  if (priority === Priority.HIGH) return Color.RED;
+  if (priority === Priority.MEDIUM) return Color.ORANGE;
+  return Color.GREEN;
 };
 
 export const shortNotes = (note: string, maxChars = 20) => {
