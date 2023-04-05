@@ -30,7 +30,7 @@ const SearchButton = () => {
           width={30}
         />
       </button>
-      // TODO: add SearchMenu component below
+      {/* TODO: add SearchMenu component below */}
       {isOpen && null}
     </div>
   );
