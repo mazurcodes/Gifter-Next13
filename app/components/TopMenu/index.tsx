@@ -1,3 +1,4 @@
+import SearchButton from './SearchButton';
 import UserButton from './UserButton';
 
 type TopMenuProps = {
@@ -18,7 +19,8 @@ const TopMenuExtended = () => {
       <h2 className="top-menu-left logo font-black text-4xl text-orange-500">
         Gifter
       </h2>
-      <div className="top-menu-right">
+      <div className="top-menu-right flex gap-4">
+        <SearchButton/>
         <UserButton />
       </div>
     </div>
