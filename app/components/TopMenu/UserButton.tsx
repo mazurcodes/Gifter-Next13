@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import profileIcon from '@/assets/ProfileIcon.svg';
 import { useRef, useState } from 'react';
-import UserMenu from '@/components/UserMenu';
+import TopMenuUser from '@/components/TopMenuUser';
 import { useTriggerOnBlur } from '@/utils/client';
 
 const UserButton = () => {
@@ -31,7 +31,7 @@ const UserButton = () => {
           width={30}
         />
       </button>
-      {isOpen && <UserMenu />}
+      {isOpen && <TopMenuUser />}
     </div>
   );
 };

@@ -4,6 +4,7 @@ import Image from 'next/image';
 import searchIcon from '@/assets/SearchIcon.svg';
 import { useRef, useState } from 'react';
 import { useTriggerOnBlur } from '@/utils/client';
+import TopMenuSearch from '../TopMenuSearch';
 
 const SearchButton = () => {
   const [isOpen, setOpen] = useState(false);
@@ -30,8 +31,7 @@ const SearchButton = () => {
           width={30}
         />
       </button>
-      {/* TODO: add SearchMenu component below */}
-      {isOpen && null}
+      {isOpen && <TopMenuSearch/>}
     </div>
   );
 };
