@@ -26,7 +26,7 @@ const SearchButton = () => {
       <button className="search-button" role="menuitem" onClick={handleClick}>
         <Image
           src={searchIcon}
-          alt="User account icon"
+          alt="Search icon"
           height={30}
           width={30}
         />
