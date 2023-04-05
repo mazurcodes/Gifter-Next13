@@ -16,7 +16,7 @@ export const priorityColor = (priority: Priority) => {
 export const shortNotes = (note: string, maxChars = 20) => {
   let short: string = note;
   if (note.length > maxChars) {
-    short = note.substring(0, maxChars - 1) + '...';
+    short = note.substring(0, maxChars - 3) + '...';
   }
   return short;
 };
