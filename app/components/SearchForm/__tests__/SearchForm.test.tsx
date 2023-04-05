@@ -3,6 +3,8 @@ import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import SearchForm from '..';
 
+const text = 'hello world';
+
 describe('SearchForm component', () => {
   render(<SearchForm />);
   const form = within(screen.getByRole('form'));
@@ -29,11 +31,17 @@ describe('SearchForm component', () => {
   });
 
   it('should change the input value', async () => {
-    const text = 'hello mthrfkr';
-
     await user.type(form.getByLabelText(/search/i), text);
     await waitFor(() => {
       expect(form.getByDisplayValue(text)).toBeDefined();
     });
+
   });
+
+  it('should submit the form after user click enter', async () => {
+    await user.keyboard('{enter}');
+    await waitFor(() => {
+      expect(form.queryByDisplayValue(text)).toBeNull();
+    });
+  })
 });

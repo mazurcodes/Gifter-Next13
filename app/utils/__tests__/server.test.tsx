@@ -46,12 +46,18 @@ const dummyData = [
 
 describe('Utility functions for server and client side components', () => {
     it('should change tailwind text-color string to mach status', () => {
-        const color = statusColor(Status.AVAILABLE)
-        expect(color).toBe(Color.GREEN)
+        const greenColor = statusColor(Status.AVAILABLE)
+        expect(greenColor).toBe(Color.GREEN)
+        const orangeColor = statusColor(Status.RESERVED)
+        expect(orangeColor).toBe(Color.ORANGE)
+        const redColor = statusColor(Status.BOUGHT)
+        expect(redColor).toBe(Color.RED)
     });
     it('should change tailwind text-color string to mach priority', () => {
-        const color = priorityColor(Priority.HIGH)
-        expect(color).toBe(Color.RED)
+        const redColor = priorityColor(Priority.HIGH)
+        expect(redColor).toBe(Color.RED)
+        const greenColor = priorityColor(Priority.LOW)
+        expect(greenColor).toBe(Color.GREEN)
     })
     it('should shorten the note to provided max chars', () => {
         const longNote = 'Hello, this is a note that is too long';

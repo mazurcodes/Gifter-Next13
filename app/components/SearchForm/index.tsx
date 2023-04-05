@@ -13,6 +13,7 @@ const SearchForm = () => {
 
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
+    setSearch('')
   };
   
   return (
