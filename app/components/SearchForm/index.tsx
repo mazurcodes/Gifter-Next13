@@ -3,9 +3,16 @@
 import Image from 'next/image';
 import { ChangeEvent, useState } from 'react';
 import searchIcon from '@/assets/SearchIcon.svg';
+import { useRouter } from 'next/navigation';
+
+const getSearchByEmailHref = (email: string) => {
+  return '/search?email=' + encodeURIComponent(email);
+};
 
 const SearchForm = () => {
   const [search, setSearch] = useState<string>('');
+
+  const router = useRouter();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
@@ -13,9 +20,10 @@ const SearchForm = () => {
 
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    setSearch('')
+    const href = getSearchByEmailHref(search);
+    router.push(href);
   };
-  
+
   return (
     <form
       role="form"
