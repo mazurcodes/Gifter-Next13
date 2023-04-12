@@ -8,7 +8,6 @@ export type SellerType = {
 };
 
 export type GiftsDataType = {
-  id: number;
   ownerEmail: string;
   status: Status;
   name: string;
