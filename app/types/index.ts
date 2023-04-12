@@ -18,11 +18,5 @@ export type GiftsDataType = {
   notes: string;
   price: string;
   date: string;
-  links:
-    | {
-        id: number;
-        seller: string;
-        linkUrl: string;
-      }[]
-    | [];
+  links: string[] | []
 };
