@@ -1,26 +1,7 @@
 import GiftList from '@/components/GiftList';
 import TopMenu from '@/components/TopMenu';
 import { Metadata } from 'next';
-import { giftsData } from '@/data/giftsData';
-import { collection, query, where, getDocs } from 'firebase/firestore';
-import { db } from '@/firebase/clientApp';
-import { GiftsDataType } from '@/types';
-
-const fetchGiftsByEmail = async (email: string) => {
-  const q = query(collection(db, 'gifts'), where('ownerEmail', '==', email));
-  const results = await getDocs(q);
-  const gifts: GiftsDataType[] = [];
-  results.forEach((doc) => {
-    const gift = doc.data();
-    //TODO: const date = Timestamp.toDate(gift.date); //but it will be a Date object
-    // gifts.push({...gift as GiftsDataType, date});
-    gifts.push(gift as GiftsDataType);
-  });
-  return gifts;
-
-  //TODO: solve problem with Timestamp in database or switch timestamp with string date format like 'DD.MM.YYYY'
-  // https://firebase.google.com/docs/reference/js/firestore_.timestamp?hl=en&authuser=0
-};
+import { getAllGifts } from '@/firebase/crudUtils';
 
 export const metadata: Metadata = {
   title: 'Gifter | Wishlist',
@@ -36,7 +17,7 @@ type ResultsPageProps = {
 const ResultsPage = async ({ searchParams }: ResultsPageProps) => {
   const { email } = searchParams;
 
-  const gifts = await fetchGiftsByEmail(email);
+  const gifts = await getAllGifts(email);
 
   return (
     <>
@@ -46,7 +27,7 @@ const ResultsPage = async ({ searchParams }: ResultsPageProps) => {
           Wishlist for:{' '}
           <span className="font-normal text-orange-500">{email}</span>
         </h2>
-        <GiftList data={giftsData} />
+        <GiftList data={gifts} />
       </main>
     </>
   );

@@ -11,8 +11,8 @@ type GiftListProps = {
 const GiftList = ({ data }: GiftListProps) => {
   const [gifts, setGifts] = useState(data);
 
-  const giftListWithData = gifts.map((gift) => (
-    <Gift key={gift.id} data={gift} />
+  const giftListWithData = gifts.map((gift, index) => (
+    <Gift key={`gift-list-${index}`} data={gift} />
   ));
 
   return (
