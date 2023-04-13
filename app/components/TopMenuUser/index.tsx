@@ -4,7 +4,7 @@ import { auth } from '@/firebase/clientApp';
 import { useAuthState, useSignOut } from 'react-firebase-hooks/auth';
 
 const UserMenu = () => {
-  const [user, loading, error] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   const [signOut] = useSignOut(auth);
 
   if(!user) return (
