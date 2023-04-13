@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import SearchButton from './SearchButton';
 import UserButton from './UserButton';
 
@@ -16,11 +17,15 @@ const TopMenuPimary = () => {
 const TopMenuExtended = () => {
   return (
     <div className="flex justify-between items-center p-6" role="menubar">
-      <h2 className="top-menu-left logo font-black text-4xl text-orange-500">
+      <Link
+        href="/"
+        className="top-menu-left logo font-black text-4xl text-orange-500"
+        aria-roledescription="gifter logo with link to the main page"
+      >
         Gifter
-      </h2>
+      </Link>
       <div className="top-menu-right flex gap-4">
-        <SearchButton/>
+        <SearchButton />
         <UserButton />
       </div>
     </div>
