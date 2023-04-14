@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: 'Gifter | Giving made easy',
+  title: 'Gifter | Gifts made easy',
   description: 'Gifter app for those that want to receive meaningful gifts',
 };
 
