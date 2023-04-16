@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { AuthError, UserCredential, User } from 'firebase/auth';
 import AuthFormLogin from '../AuthFormLogin';
-import AuthFormSignUp from '../AuthFormSignUp';
+import AuthFormSignup from '../AuthFormSignup';
 import AuthFormCompleted from '../AuthFormCompleted';
 
 type AuthFormPresenterProps = {
@@ -9,11 +9,15 @@ type AuthFormPresenterProps = {
     user: User | null | undefined;
     loadingAuth: boolean;
     loadingLogin: boolean;
-    loadingSignup?: boolean;
+    loadingSignup: boolean;
     errorAuth: Error | undefined;
     errorLogin: AuthError | undefined;
-    errorSignup?: AuthError | undefined;
+    errorSignup: AuthError | undefined;
     loginFn: (
+      email: string,
+      password: string
+    ) => Promise<UserCredential | undefined>;
+    signupFn: (
       email: string,
       password: string
     ) => Promise<UserCredential | undefined>;
@@ -30,6 +34,7 @@ const AuthFormPresenter = ({ data }: AuthFormPresenterProps) => {
     errorLogin,
     errorSignup,
     loginFn,
+    signupFn
   } = data;
 
   const [isLoginUI, setLoginUI] = useState(false);
@@ -68,7 +73,7 @@ const AuthFormPresenter = ({ data }: AuthFormPresenterProps) => {
   if (!user && !isLoginUI)
     return (
       <>
-        <AuthFormSignUp
+        <AuthFormSignup
           signupFn={signupFn}
           loading={loadingSignup}
           error={errorSignup}

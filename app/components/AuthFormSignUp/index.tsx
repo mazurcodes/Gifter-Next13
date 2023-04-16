@@ -1,22 +1,27 @@
 'use client';
 
 import { useState } from 'react';
-import { auth } from '@/firebase/clientApp';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { AuthError, UserCredential } from 'firebase/auth';
 
-const AuthFormSignUp = () => {
+type AuthFormSignupProps = {
+  signupFn: (
+    email: string,
+    password: string
+  ) => Promise<UserCredential | undefined>;
+  loading: boolean;
+  error: AuthError | undefined;
+};
+
+const AuthFormSignup = ({ signupFn, loading, error }: AuthFormSignupProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [errorUI, setErrorUI] = useState('');
 
-  const [createUserWithEmailAndPassword, , loading, errorAuth] =
-    useCreateUserWithEmailAndPassword(auth);
-
   const handleSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     if (password === passwordConfirm) {
-      createUserWithEmailAndPassword(email, password);
+      signupFn(email, password);
     } else {
       setErrorUI("Passwords doesn't match");
     }
@@ -68,7 +73,7 @@ const AuthFormSignUp = () => {
             className="w-72 border rounded-md p-1 px-2 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed sm:w-56"
           />
           <span className="text-red-600">{errorUI}</span>
-          <span className="text-red-600">{errorAuth?.message}</span>
+          <span className="text-red-600">{error?.message}</span>
         </label>
         <input
           className="bg-orange-500 rounded-md p-2 px-6 text-white outline-orange-500 focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
@@ -80,4 +85,4 @@ const AuthFormSignUp = () => {
   );
 };
 
-export default AuthFormSignUp;
+export default AuthFormSignup;
