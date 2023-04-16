@@ -1,8 +1,16 @@
 import { expect, describe, it } from 'vitest';
 import { render, screen, within } from '@testing-library/react';
 import TopMenuUser from '@/components/TopMenuUser';
+import {
+  signInAnonymously,
+  connectAuthEmulator,
+} from 'firebase/auth';
+import { auth } from '@/firebase/clientApp';
 
-describe('SearchForm component', () => {
+connectAuthEmulator(auth, 'http://localhost:9099');
+
+describe('SearchForm component', async () => {
+  await signInAnonymously(auth);
   render(<TopMenuUser />);
   const menu = within(screen.getByRole('menu'));
 
