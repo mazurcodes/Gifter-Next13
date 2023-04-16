@@ -1,4 +1,4 @@
-import AuthForm from '@/components/AuthForm';
+import AuthFormContainer from '@/components/AuthForm';
 import TopMenu from '@/components/TopMenu';
 
 const AuthPage = () => {
@@ -6,7 +6,7 @@ const AuthPage = () => {
     <>
       <TopMenu extended />
       <main className="flex-auto flex flex-col justify-center items-center">
-        <AuthForm/>
+        <AuthFormContainer />
       </main>
     </>
   );
