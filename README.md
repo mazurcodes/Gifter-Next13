@@ -11,3 +11,15 @@ yarn dev
 # or
 pnpm dev
 ```
+
+Before running tests, you need to install firebase CLI and run Firebase emulators:
+
+```bash
+firebase emulators:start
+```
+Then tests:
+```bash
+npm run test
+# or
+npm run coverage
+```
