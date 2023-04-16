@@ -8,7 +8,7 @@ describe('AuthFormCompleted', () => {
 
     render(<AuthFormCompleted email={email} />);
 
-    expect(screen.getByText(/your are signed in as:/i)).toBeDefined();
+    expect(screen.getByText(/you are signed in as:/i)).toBeDefined();
     expect(screen.getByText(email)).toBeDefined();
   });
 });
