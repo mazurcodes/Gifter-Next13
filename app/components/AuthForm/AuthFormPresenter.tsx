@@ -34,7 +34,7 @@ const AuthFormPresenter = ({ data }: AuthFormPresenterProps) => {
     errorLogin,
     errorSignup,
     loginFn,
-    signupFn
+    signupFn,
   } = data;
 
   const [isLoginUI, setLoginUI] = useState(false);

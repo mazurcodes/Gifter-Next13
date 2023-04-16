@@ -2,12 +2,15 @@ import { useState } from 'react';
 import { AuthError, UserCredential } from 'firebase/auth';
 
 type AuthFormLoginProps = {
-  loginFn: (email: string, password: string) => Promise<UserCredential | undefined>;
+  loginFn: (
+    email: string,
+    password: string
+  ) => Promise<UserCredential | undefined>;
   loading: boolean;
   error: AuthError | undefined;
-}
+};
 
-const AuthFormLogin = ({loginFn, loading, error} : AuthFormLoginProps) => {
+const AuthFormLogin = ({ loginFn, loading, error }: AuthFormLoginProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
