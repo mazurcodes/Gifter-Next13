@@ -2,8 +2,13 @@ import { expect, describe, it } from 'vitest';
 import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import UserButton from '@/components/TopMenu/UserButton';
+import { auth } from '@/firebase/clientApp';
+import { connectAuthEmulator, signInAnonymously } from 'firebase/auth';
 
-describe('SearchForm component', () => {
+connectAuthEmulator(auth, 'http://localhost:9099');
+
+describe('UserButton component', async () => {
+  await signInAnonymously(auth);
   render(<UserButton />);
   const wrapper = within(screen.getByRole('presentation'));
   const button = within(wrapper.getByRole('menuitem'));
