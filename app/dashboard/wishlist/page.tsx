@@ -19,7 +19,7 @@ const WishlistPage = () => {
       }
     };
     fetchGifts();
-  });
+  }, [user?.email]);
 
   return (
     <div className='wrapper-whislist-page pl-10 pt-1'>
