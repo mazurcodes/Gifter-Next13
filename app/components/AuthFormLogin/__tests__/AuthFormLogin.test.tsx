@@ -14,7 +14,7 @@ const loginMockFn = vi.fn();
 
 const user = userEvent.setup();
 
-describe('AuthForm Presenter', () => {
+describe('AuthFormLogin component', () => {
   it('renders login form ', () => {
     render(
       <AuthFormLogin loginFn={loginMockFn} loading={false} error={undefined} />
