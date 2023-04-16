@@ -25,9 +25,11 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 firestore-debug.log*
+firebase-debug.log*
 ui-debug.log*
 
 # local env files
+.env
 .env*.local
 
 # vercel
