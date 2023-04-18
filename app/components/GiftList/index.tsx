@@ -1,11 +1,11 @@
 'use client';
-import { GiftsDataType } from '@/types';
+import { GiftDataType } from '@/types';
 import { useState } from 'react';
 import Gift from '../Gift';
 import GiftFilter from '../GiftFilter';
 
 type GiftListProps = {
-  data: GiftsDataType[];
+  data: GiftDataType[];
 };
 
 const GiftList = ({ data }: GiftListProps) => {
@@ -22,12 +22,12 @@ const GiftList = ({ data }: GiftListProps) => {
         <div className="table-head grid gap-2 grid-cols-[2fr_10fr_repeat(5,_2fr)_3fr] lg:grid-cols-[2fr_10fr_repeat(2,_2fr)] sm:grid-cols-[2fr_5fr] items-center border-b p-4 text-xs text-gray-400">
           <p>Status</p>
           <p>Gift Name</p>
-          <p className='sm:hidden'>Priority</p>
-          <p className='lg:hidden'>Occasion</p>
-          <p className='lg:hidden'>Category</p>
-          <p className='sm:hidden'>Price</p>
-          <p className='lg:hidden'>Date</p>
-          <p className='lg:hidden'>Notes</p>
+          <p className="sm:hidden">Priority</p>
+          <p className="lg:hidden">Occasion</p>
+          <p className="lg:hidden">Category</p>
+          <p className="sm:hidden">Price</p>
+          <p className="lg:hidden">Date</p>
+          <p className="lg:hidden">Notes</p>
         </div>
         <div className="table-data">{giftListWithData}</div>
       </div>

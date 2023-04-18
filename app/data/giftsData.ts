@@ -1,7 +1,7 @@
-import { GiftsDataType } from '@/types';
+import { GiftDataType } from '@/types';
 import { Category, Occasion, Priority, Status } from '@/constants';
 
-export const giftsData: GiftsDataType[] = [
+export const giftsData: GiftDataType[] = [
   {
     ownerEmail: 'some@example.com',
     status: Status.AVAILABLE,

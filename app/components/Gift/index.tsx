@@ -1,8 +1,8 @@
-import { GiftsDataType } from '@/types';
+import { GiftDataType } from '@/types';
 import { priorityColor, shortNotes, statusColor } from '@/utils/server';
 
 type GiftProps = {
-  data: GiftsDataType;
+  data: GiftDataType;
 };
 
 const Gift = ({ data }: GiftProps) => {
@@ -24,10 +24,18 @@ const Gift = ({ data }: GiftProps) => {
       >
         {priority}
       </div>
-      <div className={`gift-status text-xs font-semibold lg:hidden`}>{occasion}</div>
-      <div className={`gift-status text-xs font-semibold lg:hidden`}>{category}</div>
-      <div className={`gift-status text-xs font-semibold sm:hidden`}>{price}</div>
-      <div className={`gift-status text-xs font-semibold lg:hidden`}>{date}</div>
+      <div className={`gift-status text-xs font-semibold lg:hidden`}>
+        {occasion}
+      </div>
+      <div className={`gift-status text-xs font-semibold lg:hidden`}>
+        {category}
+      </div>
+      <div className={`gift-status text-xs font-semibold sm:hidden`}>
+        {price}
+      </div>
+      <div className={`gift-status text-xs font-semibold lg:hidden`}>
+        {date}
+      </div>
       <div className={`gift-status text-xs font-semibold lg:hidden`}>
         {shortNotes(notes, 10)}
       </div>

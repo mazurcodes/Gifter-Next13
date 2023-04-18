@@ -2,13 +2,13 @@
 import GiftList from '@/components/GiftList';
 import { auth } from '@/firebase/clientApp';
 import { getAllGifts } from '@/firebase/crudUtils';
-import { GiftsDataType } from '@/types';
+import { GiftDataType } from '@/types';
 import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 const WishlistPage = () => {
   const [user] = useAuthState(auth);
-  const [gifts, setGifts] = useState<GiftsDataType[] | []>([]);
+  const [gifts, setGifts] = useState<GiftDataType[] | []>([]);
 
   useEffect(() => {
     const fetchGifts = async () => {
@@ -22,7 +22,7 @@ const WishlistPage = () => {
   }, [user?.email]);
 
   return (
-    <div className='wrapper-whislist-page pl-10 pt-1'>
+    <div className="wrapper-whislist-page pl-10 pt-1">
       <h2 className="top-menu-header font-semibold text-lg">
         Wishlist for:{' '}
         <span className="font-normal text-orange-500">{user?.email}</span>

@@ -1,13 +1,13 @@
 'use client';
 
-import { GiftsDataType } from '@/types';
+import { GiftDataType } from '@/types';
 import { Status } from '@/constants';
 import { filterGiftsByStatus } from '@/utils/server';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 type GiftFilterProps = {
-  statusFn: Dispatch<SetStateAction<GiftsDataType[]>>;
-  data: GiftsDataType[];
+  statusFn: Dispatch<SetStateAction<GiftDataType[]>>;
+  data: GiftDataType[];
 };
 
 const GiftFilter = ({ statusFn, data }: GiftFilterProps) => {

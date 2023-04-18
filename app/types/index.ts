@@ -7,7 +7,7 @@ export type SellerType = {
   url: string;
 };
 
-export type GiftsDataType = {
+export type GiftDataType = {
   ownerEmail: string;
   status: Status;
   name: string;
@@ -17,5 +17,5 @@ export type GiftsDataType = {
   notes: string;
   price: string;
   date: string;
-  links: string[] | []
+  links: string[] | [];
 };
