@@ -18,4 +18,5 @@ export type GiftDataType = {
   price: string;
   date: string;
   links: string[] | [];
+  uid?: string;
 };
