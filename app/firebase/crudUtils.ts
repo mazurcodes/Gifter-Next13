@@ -3,6 +3,7 @@ import {
   collection,
   addDoc,
   getDocs,
+  getDoc,
   updateDoc,
   doc,
   deleteDoc,
@@ -24,13 +25,27 @@ export const createGift = async (giftData: GiftDataType): Promise<string> => {
   }
 };
 
+export const getGift = async (giftId: string): Promise<GiftDataType | null> => {
+  try {
+    const docSnap = await getDoc(doc(giftsCollection, giftId));
+    if (docSnap.exists()) {
+      return docSnap.data() as GiftDataType;
+    } else return null;
+  } catch (error) {
+    console.error('Error getting gift', error);
+    throw new Error('Failed to get gift');
+  }
+};
+
 export const getAllGifts = async (
   ownerEmail: string
 ): Promise<GiftDataType[]> => {
   try {
     const q = query(giftsCollection, where('ownerEmail', '==', ownerEmail));
     const snapshot = await getDocs(q);
-    return snapshot.docs.map((doc) => doc.data() as GiftDataType);
+    return snapshot.docs.map(
+      (doc) => ({ ...doc.data(), uid: doc.id } as GiftDataType)
+    );
   } catch (error) {
     console.error('Error getting gifts:', error);
     throw new Error('Failed to get gifts');
