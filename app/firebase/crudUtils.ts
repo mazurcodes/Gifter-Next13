@@ -10,7 +10,9 @@ import {
   query,
   where,
 } from 'firebase/firestore';
-import { GiftDataType } from '@/types';
+import { useDocumentOnce } from 'react-firebase-hooks/firestore';
+import type { FirestoreError } from 'firebase/firestore';
+import type { GiftDataType } from '@/types';
 
 // TODO: research how to handle Error messages whithout crashing app
 
@@ -75,4 +77,12 @@ export const deleteGift = async (giftId: string): Promise<string> => {
     console.error('Error deleting gift:', error);
     throw new Error('Failed to delete gift');
   }
+};
+
+export const useGift = (
+  giftId: string
+): [GiftDataType | undefined, boolean, FirestoreError | undefined] => {
+  const [value, loading, error] = useDocumentOnce(doc(giftsCollection, giftId));
+  const gift = value?.data();
+  return [gift as GiftDataType, loading, error];
 };
