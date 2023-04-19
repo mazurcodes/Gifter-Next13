@@ -12,6 +12,8 @@ import {
 } from 'firebase/firestore';
 import { GiftDataType } from '@/types';
 
+// TODO: research how to handle Error messages whithout crashing app
+
 // Firestore collection reference for gifts
 const giftsCollection = collection(db, 'gifts');
 
