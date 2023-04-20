@@ -12,11 +12,12 @@ export const giftsData: GiftDataType[] = [
     notes: 'This is a long comment to piss me off',
     price: '1690',
     date: '01.01.2023',
-    links: [
+    linkOne:
       'https://www.google.com/search?q=ostrovit+erytrytol&sxsrf=APwXEdcyXoigtvHD4J15bMcHnRSgtqpK5w:1680281706785&source=lnms&tbm=shop&sa=X&ved=2ahUKEwinooWS0Yb-AhUx_CoKHSBhD48Q_AUoAXoECAEQAw&biw=2560&bih=1304&dpr=1',
+    linkTwo:
       'https://www.amazon.pl/dp/B081H643L8?ref_=cm_sw_r_cp_ud_dp_HFEQ8GQKMJYNZCHR3GK0',
+    linkThree:
       'https://allegro.pl/oferta/ostrovit-erytrytol-1-kg-erytrol-naturalny-slodzik-12310882890',
-    ],
   },
   {
     ownerEmail: 'some@example.com',
@@ -28,7 +29,9 @@ export const giftsData: GiftDataType[] = [
     notes: 'Red color',
     price: '159,00zł',
     date: '03.01.2023',
-    links: [],
+    linkOne: '',
+    linkTwo: '',
+    linkThree: '',
   },
   {
     ownerEmail: 'some@example.com',

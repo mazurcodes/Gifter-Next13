@@ -27,7 +27,9 @@ const GiftDetails = ({ data }: GiftDetailsProps) => {
     date,
     notes,
     ownerEmail,
-    links,
+    linkOne,
+    linkTwo,
+    linkThree,
   } = data;
 
   return (
@@ -58,9 +60,9 @@ const GiftDetails = ({ data }: GiftDetailsProps) => {
         <p className="gift-status text-xs font-semibold border rounded-md p-3">
           Date: <span>{date}</span>
         </p>
-        {links.map((link, index) => (
-          <GiftLink key={`gift-link-${index}`} link={link} />
-        ))}
+        {linkOne && <GiftLink link={linkOne} />}
+        {linkTwo && <GiftLink link={linkTwo} />}
+        {linkThree && <GiftLink link={linkThree} />}
       </div>
       <p
         className={`gift-status col-span-2 text-xs font-semibold border rounded-md p-4`}

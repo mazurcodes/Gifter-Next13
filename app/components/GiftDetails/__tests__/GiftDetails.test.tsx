@@ -1,8 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import Gift from '@/components/Gift';
 import { Category, Occasion, Priority, Status } from '@/constants';
-import GiftDetails from '..';
+import GiftDetails from '@/components/GiftDetails';
 
 const dummyName = 'The Dummy Name';
 const dummyNotes = 'dummy note';
@@ -21,7 +20,9 @@ const dummyGift = {
   notes: dummyNotes,
   price: dummyPrice,
   date: dummyDate,
-  links: [],
+  linkOne: 'http://exampleOne.com',
+  linkTwo: 'http://exampleTwo.com',
+  linkThree: 'http://exampleThree.com',
 };
 
 describe('Gift component', () => {
@@ -36,5 +37,8 @@ describe('Gift component', () => {
     expect(screen.getByText(dummyNotes)).toBeDefined();
     expect(screen.getByText(dummyPrice)).toBeDefined();
     expect(screen.getByText(dummyDate)).toBeDefined();
+    expect(
+      screen.getByRole('link', { name: 'http://exampleThree.com' })
+    ).toBeDefined();
   });
 });
