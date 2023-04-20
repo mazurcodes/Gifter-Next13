@@ -1,13 +1,15 @@
 'use client';
 import { Category, Occasion, Priority, Status } from '@/constants';
+import { updateGift } from '@/firebase/crudUtils';
 import { GiftDataType } from '@/types';
 import { useForm } from 'react-hook-form';
 
-type GiftDetailsProps = {
+type GiftEditProps = {
   data: GiftDataType;
+  id: string;
 };
 
-const GiftEdit = ({ data }: GiftDetailsProps) => {
+const GiftEdit = ({ data, id }: GiftEditProps) => {
   const {
     status,
     name,
@@ -24,16 +26,16 @@ const GiftEdit = ({ data }: GiftDetailsProps) => {
   } = data;
 
   const formDefaultValues = {
-    status,
-    name,
-    priority,
-    category,
-    occasion,
-    price,
+    status: status || Status.AVAILABLE,
+    name: name || '',
+    priority: priority || Priority.HIGH,
+    category: category || Category.NONE,
+    occasion: occasion || Occasion.NONE,
+    price: price || '',
     linkOne: linkOne || '',
     linkTwo: linkTwo || '',
     linkThree: linkThree || '',
-    notes,
+    notes: notes || '',
   };
 
   const {
@@ -45,9 +47,12 @@ const GiftEdit = ({ data }: GiftDetailsProps) => {
     defaultValues: formDefaultValues,
   });
 
-  const onSubmit = (data: typeof formDefaultValues) => {
+  const onSubmit = async (data: typeof formDefaultValues) => {
     console.log(data);
+    await updateGift(id, data);
   };
+
+  //TODO: handle form and CRUD errors
 
   return (
     <form
@@ -57,12 +62,15 @@ const GiftEdit = ({ data }: GiftDetailsProps) => {
       <p className="text-orange-500 col-span-2">{`${ownerEmail} want's this:`}</p>
       <label htmlFor="name" className="text-sm text-gray-400">
         Gift name:
+        <input
+          className={`gift-name text-sm text-gray-70 border rounded-md col-span-2 p-4 w-full mt-3 ${
+            errors.name && 'bg-red-200'
+          }`}
+          {...register('name', { required: true })}
+          id="name"
+        />
       </label>
-      <input
-        className={`gift-name text-sm text-gray-70 border rounded-md col-span-2 p-4`}
-        {...register('name', { required: true })}
-        id="name"
-      />
+
       <div className="gift-attributes-wrapper grid grid-cols-2 gap-5 ">
         <label htmlFor="status" className="text-sm text-gray-400">
           Status:{' '}

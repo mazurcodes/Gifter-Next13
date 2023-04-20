@@ -25,7 +25,7 @@ const GiftPage = ({ searchParams }: GiftPageProps) => {
       <TopMenu extended />
       <main className="flex-1 p-10 flex flex-col justify-center items-center sm:p-2">
         {gift && !isOwner && <GiftDetails data={gift} />}
-        {gift && isOwner && <GiftEdit data={gift} />}
+        {gift && isOwner && <GiftEdit data={gift} id={id} />}
         {(!loading || error) && !gift && <GiftError />}
       </main>
     </>
