@@ -33,27 +33,33 @@ const SearchForm = () => {
       <h1 className="logo font-black text-9xl text-center text-orange-500">
         Gifter
       </h1>
-      <label className="text-center flex flex-col" htmlFor="search">
-        <p className="p-4 font-light">Search for a wishlist by email</p>
-        <div className="relative">
-          <Image
-            className="absolute top-2 left-2 z-10 opacity-50"
-            src={searchIcon}
-            alt=""
-            width={18}
-            height={18}
-          />
-          <input
-            id="search"
-            name="search"
-            className=" w-96 border rounded-md p-1 pl-10 relative focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
-            type="email"
-            value={search}
-            onChange={handleChange}
-            placeholder="Email"
-          />
-        </div>
-      </label>
+      <p className="p-4 font-light">Search for a wishlist by email</p>
+      <div className="relative flex">
+        <Image
+          className="absolute top-2 left-2 z-10 opacity-50"
+          src={searchIcon}
+          alt="magnifying glass incon"
+          width={18}
+          height={18}
+        />
+        <input
+          id="search"
+          name="search"
+          className=" w-96 border rounded-md p-1 pl-10 relative focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
+          type="email"
+          value={search}
+          onChange={handleChange}
+          placeholder="Email"
+          autoFocus
+          required
+        />
+        <button
+          type="submit"
+          className="ml-3 px-3 text-center bg-orange-500 rounded-md text-white text-base"
+        >
+          Search
+        </button>
+      </div>
     </form>
   );
 };
