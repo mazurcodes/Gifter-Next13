@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 
 type GiftEditProps = {
   data: GiftDataType;
-  id: string;
+  id?: string;
 };
 
 const GiftEdit = ({ data, id }: GiftEditProps) => {
@@ -48,14 +48,16 @@ const GiftEdit = ({ data, id }: GiftEditProps) => {
   });
 
   const onSubmit = async (data: typeof formDefaultValues) => {
-    console.log(data);
-    await updateGift(id, data);
+    if (id) {
+      await updateGift(id, data);
+    }
   };
 
   //TODO: handle form and CRUD errors
 
   return (
     <form
+      role="form"
       className="gift-wrapper flex flex-col gap-3"
       onSubmit={handleSubmit(onSubmit)}
     >
