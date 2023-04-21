@@ -11,7 +11,8 @@ vi.mock('next/navigation', () => require('next-router-mock'));
 describe('SearchForm component', () => {
   render(<SearchForm />);
   const form = within(screen.getByRole('form'));
-  const input = within(form.getByLabelText(/search/i));
+  const input = form.getByRole('textbox');
+  const searchBtn = form.getByRole('button', { name: 'Search' });
   const user = userEvent.setup();
 
   it('should render form', () => {
@@ -24,16 +25,27 @@ describe('SearchForm component', () => {
     ).toBeDefined();
   });
 
-  it('should have a label with "Search" text', () => {
-    expect(input).toBeDefined();
-  });
-
   it('should have image', () => {
     expect(form.getByRole('img')).toBeDefined();
   });
 
-  it('should change the input value', async () => {
-    await user.type(form.getByLabelText(/search/i), text);
+  it('should have search button', () => {
+    expect(searchBtn).toBeDefined();
+  });
+
+  it('should have autofocused main input element', () => {
+    expect(input).toBe(document.activeElement);
+  });
+
+  it('should show error when nothing is typed in the input element', async () => {
+    await user.keyboard('{enter}');
+    await waitFor(() => {
+      expect(input).toBe(document.querySelector('input:invalid'));
+    });
+  });
+
+  it('should change the input value when user types', async () => {
+    await user.type(input, text);
     await waitFor(() => {
       expect(form.getByDisplayValue(text)).toBeDefined();
     });
@@ -41,6 +53,18 @@ describe('SearchForm component', () => {
 
   it('should submit the form after user click enter and redirect to search page with query', async () => {
     await user.keyboard('{enter}');
+    await waitFor(() => {
+      expect(mockRouter).toMatchObject({
+        asPath: `/search?email=${encodeURIComponent(text)}`,
+        pathname: '/search',
+        query: { email: text },
+      });
+    });
+  });
+
+  it('should submit the form after user click search button and redirect to search page with query', async () => {
+    await mockRouter.push('/');
+    await user.click(searchBtn);
     await waitFor(() => {
       expect(mockRouter).toMatchObject({
         asPath: `/search?email=${encodeURIComponent(text)}`,
