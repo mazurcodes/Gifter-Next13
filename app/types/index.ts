@@ -17,8 +17,10 @@ export type GiftDataType = {
   notes: string;
   price: string;
   date: string;
-  linkOne?: string | undefined;
-  linkTwo?: string | undefined;
-  linkThree?: string | undefined;
+  linkOne?: string;
+  linkTwo?: string;
+  linkThree?: string;
   uid?: string;
 };
+
+//TODO: uid not conditional
