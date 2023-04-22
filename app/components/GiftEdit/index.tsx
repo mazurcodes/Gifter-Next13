@@ -3,6 +3,8 @@ import { Category, Occasion, Priority, Status } from '@/constants';
 import { auth } from '@/firebase/clientApp';
 import { createGift, updateGift } from '@/firebase/crudUtils';
 import { GiftDataType } from '@/types';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 
@@ -14,6 +16,7 @@ type GiftEditProps = {
 
 const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
   const [user, loading, error] = useAuthState(auth);
+  const router = useRouter();
 
   const formDefaultValues = {
     status: data?.status || Status.AVAILABLE,
@@ -38,8 +41,9 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
 
   const onSubmit = async (data: typeof formDefaultValues) => {
     if (id) {
-      await updateGift(id, data);
       //TODO: check if current user is authenticated and is the owner of the updated gift
+      await updateGift(id, data);
+      router.back();
     }
     if (newGift && user?.email) {
       const isoDate = new Date().toISOString();
@@ -47,8 +51,8 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
       //TODO: make above function in utils and send here the full ISO date string for sorting functionality
 
       const giftData = { ...data, date: currentDate, ownerEmail: user.email };
-      console.log(giftData);
       await createGift(giftData);
+      router.back();
     }
   };
 
@@ -63,6 +67,7 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
     );
 
   //TODO: handle form and CRUD errors
+  //TODO: Go option on the left side of the link when in edit mode so the owner can visit items page
 
   if (user)
     return (
@@ -205,7 +210,14 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
       </form>
     );
 
-  return <div>You are here by mistake...</div>;
+  return (
+    <>
+      <h2>You are here by mistake...</h2>
+      <p>
+        Please <Link href={'/auth'}>Login or Signup</Link>
+      </p>
+    </>
+  );
   // TODO: Wrong page component when user goes to the wrong page or cliks back in browser and is not logged in
 };
 
