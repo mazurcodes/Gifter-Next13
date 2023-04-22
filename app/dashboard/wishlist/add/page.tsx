@@ -1,6 +1,4 @@
-'use client';
 import GiftEdit from '@/components/GiftEdit';
-import TopMenu from '@/components/TopMenu';
 
 const AddGiftPage = () => {
   return (
