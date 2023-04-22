@@ -76,7 +76,20 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
         className="gift-wrapper flex flex-col gap-3"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <p className="text-orange-500 col-span-2">{`${data?.ownerEmail} want's this:`}</p>
+        {data?.ownerEmail && data?.ownerEmail !== user.email && (
+          <p className="text-orange-500 col-span-2">{`${data?.ownerEmail} want's this:`}</p>
+        )}
+        {data?.ownerEmail && data?.ownerEmail === user.email && (
+          <p className="text-orange-500 col-span-2">
+            {"It's your item, edit what you want:"}
+          </p>
+        )}
+        {!data?.ownerEmail && (
+          <p className="col-span-2">
+            New item for <span className="text-orange-500">{user.email}</span>:
+          </p>
+        )}
+
         <label htmlFor="name" className="text-sm text-gray-400">
           Gift name:
           <input
@@ -205,7 +218,7 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
           type="submit"
           className="block p-2 text-center bg-orange-500 rounded-md text-white text-base"
         >
-          Save
+          {newGift ? 'Create' : 'Save'}
         </button>
       </form>
     );
