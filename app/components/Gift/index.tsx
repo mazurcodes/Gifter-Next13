@@ -9,6 +9,8 @@ const Gift = ({ data }: GiftProps) => {
   const { status, name, priority, occasion, category, price, date, notes } =
     data;
 
+  //TODO: date will be in the ISO string format, use utility function to convert.
+
   return (
     <div className="gift-wrapper grid gap-2 grid-cols-[2fr_10fr_repeat(5,_2fr)_3fr] lg:grid-cols-[2fr_10fr_repeat(2,_2fr)] sm:grid-cols-[2fr_5fr] items-center border-b p-4 hover:bg-gray-100">
       <div
