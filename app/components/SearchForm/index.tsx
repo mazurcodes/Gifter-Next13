@@ -4,10 +4,7 @@ import Image from 'next/image';
 import { ChangeEvent, useState } from 'react';
 import searchIcon from '@/assets/SearchIcon.svg';
 import { useRouter } from 'next/navigation';
-
-const getSearchByEmailHref = (email: string) => {
-  return '/search?email=' + encodeURIComponent(email);
-};
+import { getSearchByEmailHref } from '@/utils/server';
 
 const SearchForm = () => {
   const [search, setSearch] = useState<string>('');

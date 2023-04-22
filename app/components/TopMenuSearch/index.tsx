@@ -1,15 +1,21 @@
 'use client';
 
 import { ChangeEvent, useState } from 'react';
+import { getSearchByEmailHref } from '@/utils/server';
+import { useRouter } from 'next/navigation';
 
 const TopMenuSearch = () => {
   const [search, setSearch] = useState('');
+  const router = useRouter();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
   };
 
-  //TODO: write search function for the search button
+  const handleClick = () => {
+    const href = getSearchByEmailHref(search);
+    router.push(href);
+  };
 
   return (
     <div
@@ -32,7 +38,10 @@ const TopMenuSearch = () => {
           onChange={handleChange}
           placeholder="Email"
         />
-        <button className="search-button mt-3 p-2 bg-orange-500 text-white rounded-lg ">
+        <button
+          onClick={handleClick}
+          className="search-button mt-3 p-2 bg-orange-500 text-white rounded-lg "
+        >
           Search
         </button>
       </div>
