@@ -27,3 +27,11 @@ export const filterGiftsByStatus = (
 ) => {
   return status === '' ? data : data.filter((gift) => gift.status === status);
 };
+
+export const convertISOToGiftDate = (isoDate: string) => {
+  return isoDate.split('T')[0].split('-').reverse().join('.');
+};
+
+export const getSearchByEmailHref = (email: string) => {
+  return '/search?email=' + encodeURIComponent(email);
+};
