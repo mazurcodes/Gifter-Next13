@@ -1,5 +1,10 @@
 import { GiftDataType } from '@/types';
-import { priorityColor, shortNotes, statusColor } from '@/utils/server';
+import {
+  convertISOToGiftDate,
+  priorityColor,
+  shortNotes,
+  statusColor,
+} from '@/utils/server';
 import { useRouter } from 'next/navigation';
 
 type GiftProps = {
@@ -21,7 +26,7 @@ const Gift = ({ data }: GiftProps) => {
 
   const router = useRouter();
 
-  //TODO: date will be in the ISO string format, use utility function to convert.
+  const dateCreated = convertISOToGiftDate(date);
 
   const handleClick = () => {
     const href = uid && '/gift?id=' + encodeURIComponent(uid);
@@ -56,7 +61,7 @@ const Gift = ({ data }: GiftProps) => {
         {price}
       </div>
       <div className={`gift-status text-xs font-semibold lg:hidden`}>
-        {date}
+        {dateCreated}
       </div>
       <div className={`gift-status text-xs font-semibold lg:hidden`}>
         {shortNotes(notes, 10)}

@@ -3,6 +3,7 @@ import { Category, Occasion, Priority, Status } from '@/constants';
 import { auth } from '@/firebase/clientApp';
 import { createGift, updateGift } from '@/firebase/crudUtils';
 import { GiftDataType } from '@/types';
+import { convertISOToGiftDate } from '@/utils/server';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -17,6 +18,10 @@ type GiftEditProps = {
 const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
   const [user, loading, error] = useAuthState(auth);
   const router = useRouter();
+
+  const date = !data?.date
+    ? convertISOToGiftDate(new Date().toISOString())
+    : data.date;
 
   const formDefaultValues = {
     status: data?.status || Status.AVAILABLE,
@@ -46,11 +51,7 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
       router.back();
     }
     if (newGift && user?.email) {
-      const isoDate = new Date().toISOString();
-      const currentDate = isoDate.split('T')[0].split('-').reverse().join('.');
-      //TODO: make above function in utils and send here the full ISO date string for sorting functionality
-
-      const giftData = { ...data, date: currentDate, ownerEmail: user.email };
+      const giftData = { ...data, date, ownerEmail: user.email };
       await createGift(giftData);
       router.back();
     }
@@ -177,7 +178,7 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
           <p className="gift-date text-sm text-gray-400">
             Date:{' '}
             <span className="block text-xs font-semibold border rounded-md p-3 w-full mt-3 text-right text-black">
-              {data?.date}
+              {date}
             </span>
           </p>
         </div>
