@@ -44,14 +44,13 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
     defaultValues: formDefaultValues,
   });
 
-  const onSubmit = async (data: typeof formDefaultValues) => {
-    if (id) {
-      //TODO: check if current user is authenticated and is the owner of the updated gift
-      await updateGift(id, data);
+  const onSubmit = async (formData: typeof formDefaultValues) => {
+    if (id && user?.email === data?.ownerEmail) {
+      await updateGift(id, formData);
       router.back();
     }
     if (newGift && user?.email) {
-      const giftData = { ...data, date, ownerEmail: user.email };
+      const giftData = { ...formData, date, ownerEmail: user.email };
       await createGift(giftData);
       router.back();
     }

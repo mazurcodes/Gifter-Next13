@@ -15,7 +15,7 @@ const user = userEvent.setup();
 const dummyName = 'The Dummy Name';
 const dummyNotes = 'dummy note';
 const dummyPrice = '1934';
-const dummyDate = '01.01.2023';
+const dummyDate = '23.04.2023';
 const dummyEmail = 'some@example.com';
 const dummyId = 'abc';
 
@@ -29,7 +29,7 @@ const dummyGift = {
   category: Category.FOOD,
   notes: dummyNotes,
   price: dummyPrice,
-  date: dummyDate,
+  date: '2023-04-23T09:12:17.792Z',
   linkOne: 'http://exampleOne.com',
   linkTwo: 'http://exampleTwo.com',
   linkThree: 'http://exampleThree.com',
@@ -79,7 +79,7 @@ describe('GiftEdit component', () => {
 
   it('form should have default values from dummy data', () => {
     expect(form.getByText(new RegExp(dummyGift.ownerEmail))).toBeDefined();
-    expect(form.getByText(dummyGift.date)).toBeDefined();
+    expect(form.getByText(dummyDate)).toBeDefined();
     expect(form.getByDisplayValue(dummyGift.name)).toBeDefined();
     expect(form.getByDisplayValue(dummyGift.status)).toBeDefined();
     expect(form.getByDisplayValue(dummyGift.priority)).toBeDefined();
