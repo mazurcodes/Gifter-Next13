@@ -243,6 +243,7 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
         </label>
         <div className="btn-wrapper flex justify-between gap-10">
           <button
+            onClick={() => router.back()}
             type="button"
             tabIndex={12}
             className=" p-2 px-5 text-center bg-red-500 rounded-md text-white text-base  focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
