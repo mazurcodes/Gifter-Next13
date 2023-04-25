@@ -92,11 +92,11 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
             New item for <span className="text-orange-500">{user.email}</span>:
           </p>
         )}
-
         <label htmlFor="name" className="text-sm text-gray-400">
           Gift name:
           <input
-            className={`gift-name text-sm text-gray-70 border rounded-md col-span-2 p-4 w-full mt-3 mb-1 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed ${
+            tabIndex={1}
+            className={`gift-name text-sm text-gray-700 border rounded-md col-span-2 p-4 w-full mt-3 mb-1 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed ${
               errors.name && 'bg-red-200'
             }`}
             {...register('name', { required: true })}
@@ -104,11 +104,11 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
           />
           {errors.name && <InputError fieldName="Gift name" />}
         </label>
-
         <div className="gift-attributes-wrapper grid grid-cols-2 gap-5 ">
           <label htmlFor="status" className="text-sm text-gray-400">
             Status:{' '}
             <select
+              tabIndex={2}
               id="status"
               className={`gift-status text-xs font-semibold border rounded-md p-3 text-violet-400 w-full mt-3 mb-1 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed ${
                 errors.status && 'bg-red-200'
@@ -125,6 +125,7 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
           <label htmlFor="priority" className="text-sm text-gray-400">
             Priority:{' '}
             <select
+              tabIndex={3}
               id="priority"
               className={`gift-priority text-xs font-semibold border rounded-md p-3 text-orange-500 w-full mt-3 mb-1  focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed ${
                 errors.priority && 'bg-red-200'
@@ -141,6 +142,7 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
           <label htmlFor="occasion" className="text-sm text-gray-400">
             Occasion:{' '}
             <select
+              tabIndex={4}
               id="occasion"
               className={`gift-occasion text-xs font-semibold border rounded-md p-3 text-green-500 w-full mt-3 mb-1  focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed ${
                 errors.occasion && 'bg-red-200'
@@ -160,6 +162,7 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
           <label htmlFor="category" className="text-sm text-gray-400">
             Category:{' '}
             <select
+              tabIndex={5}
               id="category"
               className={`gift-category text-xs font-semibold border rounded-md p-3 text-blue-500 w-full mt-3 mb-1  focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed ${
                 errors.category && 'bg-red-200'
@@ -184,8 +187,9 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
           <label htmlFor="price" className="text-sm text-gray-400">
             Price:{' '}
             <input
+              tabIndex={6}
               id="price"
-              className={`gift-price text-xs font-semibold border rounded-md p-3 text-black w-full mt-3 mb-1 text-right focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed ${
+              className={`gift-price text-xs font-semibold border rounded-md p-3 text-gray-700 w-full mt-3 mb-1 text-right focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed ${
                 errors.price && 'bg-red-200'
               }`}
               {...register('price', { required: true })}
@@ -195,7 +199,7 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
 
           <p className="gift-date text-sm text-gray-400">
             Created:{' '}
-            <span className="block text-xs font-semibold border rounded-md p-3 w-full mt-3 mb-1 text-right text-black  focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed">
+            <span className="block text-xs font-semibold border rounded-md p-3 w-full mt-3 mb-1 text-right text-gray-700  focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed">
               {date}
             </span>
           </p>
@@ -203,6 +207,7 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
         <label htmlFor="linkOne" className="text-sm text-gray-400">
           Link 1:
           <input
+            tabIndex={7}
             className="gift-link text-xs border rounded-md p-3 text-black w-full mt-3 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
             {...register('linkOne')}
             id="linkOne"
@@ -211,6 +216,7 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
         <label htmlFor="linkTwo" className="text-sm text-gray-400">
           Link 2:
           <input
+            tabIndex={8}
             className="gift-link text-xs border rounded-md p-3 text-black w-full mt-3 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
             {...register('linkTwo')}
             id="linkTwo"
@@ -219,6 +225,7 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
         <label htmlFor="linkThree" className="text-sm text-gray-400">
           Link 3:
           <input
+            tabIndex={9}
             className="gift-link text-xs border rounded-md p-3 text-black w-full mt-3 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
             {...register('linkThree')}
             id="linkThree"
@@ -227,18 +234,29 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
         <label htmlFor="notes" className="text-sm text-gray-400">
           Notes:
           <textarea
+            tabIndex={10}
             className={`gift-notes border rounded-md p-3 text-black w-full mt-3 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed`}
             {...register('notes')}
             id="notes"
             rows={3}
           />
         </label>
-        <button
-          type="submit"
-          className="block p-2 text-center bg-orange-500 rounded-md text-white text-base  focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
-        >
-          {newGift ? 'Create' : 'Save'}
-        </button>
+        <div className="btn-wrapper flex justify-between gap-10">
+          <button
+            type="button"
+            tabIndex={12}
+            className=" p-2 px-5 text-center bg-red-500 rounded-md text-white text-base  focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
+          >
+            Cancel
+          </button>
+          <button
+            tabIndex={11}
+            type="submit"
+            className="flex-1 p-2 text-center bg-green-600 rounded-md text-white text-base  focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
+          >
+            {newGift ? 'Create' : 'Save'}
+          </button>
+        </div>
       </form>
     );
 
