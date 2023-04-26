@@ -18,7 +18,7 @@ const GiftList = ({ data }: GiftListProps) => {
   return (
     <>
       <GiftFilter statusFn={setGifts} data={data} />
-      <div className="table border rounded-md w-full">
+      <div className="table border-t border-x rounded-t-md w-full">
         <div className="table-head grid gap-2 grid-cols-[2fr_10fr_repeat(5,_2fr)_3fr] lg:grid-cols-[2fr_10fr_repeat(2,_2fr)] sm:grid-cols-[2fr_5fr] items-center border-b p-4 text-xs text-gray-400">
           <p>Status</p>
           <p>Gift Name</p>

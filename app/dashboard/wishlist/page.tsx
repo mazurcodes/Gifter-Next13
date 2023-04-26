@@ -3,6 +3,7 @@ import GiftList from '@/components/GiftList';
 import { auth } from '@/firebase/clientApp';
 import { getAllGifts } from '@/firebase/crudUtils';
 import { GiftDataType } from '@/types';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
@@ -28,6 +29,15 @@ const WishlistPage = () => {
         <span className="font-normal text-orange-500">{user?.email}</span>
       </h2>
       <GiftList data={gifts} />
+      <div className="table-add text-right my-3">
+        <Link
+          href={'/dashboard/wishlist/add'}
+          target="_blank"
+          className="p-2 text-center bg-orange-500 rounded-md text-white text-base  focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
+        >
+          Add new item
+        </Link>
+      </div>
     </div>
   );
 };
