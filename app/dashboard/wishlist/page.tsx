@@ -15,7 +15,6 @@ const WishlistPage = () => {
     const fetchGifts = async () => {
       if (user?.email) {
         const gifts = await getAllGifts(user.email);
-        console.log(gifts);
         setGifts(gifts);
       }
     };
