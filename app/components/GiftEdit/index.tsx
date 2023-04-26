@@ -4,12 +4,11 @@ import { auth } from '@/firebase/clientApp';
 import { createGift, updateGift } from '@/firebase/crudUtils';
 import { GiftDataType } from '@/types';
 import { convertISOToGiftDate } from '@/utils/server';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import GiftDelete from '../GiftDelete';
+import Unauthenticated from '../Unautheticated';
 
 type GiftEditProps = {
   newGift?: boolean;
@@ -265,15 +264,7 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
       </form>
     );
 
-  return (
-    <>
-      <h2>You are here by mistake...</h2>
-      <p>
-        Please <Link href={'/auth'}>Login or Signup</Link>
-      </p>
-    </>
-  );
-  // TODO: Wrong page component when user goes to the wrong page or cliks back in browser and is not logged in
+  return <Unauthenticated />;
 };
 
 export default GiftEdit;
