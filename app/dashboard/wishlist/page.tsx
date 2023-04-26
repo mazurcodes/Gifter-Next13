@@ -23,16 +23,15 @@ const WishlistPage = () => {
   }, [user?.email]);
 
   return (
-    <div className="wrapper-whislist-page pl-10 pt-1">
+    <div className="wrapper-whislist-page pl-10 pt-1 flex-1">
       <h2 className="top-menu-header font-semibold text-lg">
         Wishlist for:{' '}
         <span className="font-normal text-orange-500">{user?.email}</span>
       </h2>
       <GiftList data={gifts} />
-      <div className="table-add text-right my-3">
+      <div className="table-add my-3">
         <Link
           href={'/dashboard/wishlist/add'}
-          target="_blank"
           className="p-2 text-center bg-orange-500 rounded-md text-white text-base  focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
         >
           Add new item

@@ -20,7 +20,7 @@ const GiftFilter = ({ statusFn, data }: GiftFilterProps) => {
 
   return (
     <div
-      className="filter-bar my-4 text-sm font-semibold text-gray-500"
+      className="filter-bar mt-4 text-sm font-semibold text-gray-500"
       role="toolbar"
     >
       <button
