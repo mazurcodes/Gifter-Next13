@@ -24,3 +24,16 @@ export type GiftDataType = {
 };
 
 //TODO: uid not conditional
+
+export type FormDataType = {
+  status: Status;
+  name: string;
+  priority: Priority;
+  category: Category;
+  occasion: Occasion;
+  price: string;
+  linkOne: string;
+  linkTwo: string;
+  linkThree: string;
+  notes: string;
+};
