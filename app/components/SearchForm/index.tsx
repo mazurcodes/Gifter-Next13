@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { ChangeEvent, useState } from 'react';
-import searchIcon from '@/assets/SearchIcon.svg';
+import searchMiniIcon from '@/assets/SearchMiniIcon.svg';
 import { useRouter } from 'next/navigation';
 import { getSearchByEmailHref } from '@/utils/server';
 
@@ -34,7 +34,7 @@ const SearchForm = () => {
       <div className="relative flex">
         <Image
           className="absolute top-2 left-2 z-10 opacity-50"
-          src={searchIcon}
+          src={searchMiniIcon}
           alt="magnifying glass incon"
           width={18}
           height={18}
