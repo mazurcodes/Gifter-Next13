@@ -14,11 +14,10 @@ export const priorityColor = (priority: Priority) => {
 };
 
 export const shortNotes = (note = '', maxChars = 20) => {
-  let short: string = note;
   if (note.length > maxChars) {
-    short = note.substring(0, maxChars - 3) + '...';
+    return note.substring(0, maxChars - 3) + '...';
   }
-  return short;
+  return note;
 };
 
 export const filterGiftsByStatus = (
