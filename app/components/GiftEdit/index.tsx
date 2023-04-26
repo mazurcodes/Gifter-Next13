@@ -2,8 +2,8 @@
 import { Category, Occasion, Priority, Status } from '@/constants';
 import { auth } from '@/firebase/clientApp';
 import { createGift, updateGift } from '@/firebase/crudUtils';
-import { GiftDataType } from '@/types';
-import { convertISOToGiftDate } from '@/utils/server';
+import { FormDataType, GiftDataType } from '@/types';
+import { convertISOToGiftDate, prepareFormData } from '@/utils/server';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -53,13 +53,16 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
     defaultValues: formDefaultValues,
   });
 
-  const onSubmit = async (formData: typeof formDefaultValues) => {
+  const onSubmit = async (formData: FormDataType) => {
+    const preparedData = prepareFormData(formData);
+
     if (id && user?.email === data?.ownerEmail) {
-      await updateGift(id, formData);
+      await updateGift(id, preparedData);
       router.back();
     }
+
     if (newGift && user?.email) {
-      const giftData = { ...formData, date, ownerEmail: user.email };
+      const giftData = { ...preparedData, date, ownerEmail: user.email };
       await createGift(giftData);
       router.back();
     }
