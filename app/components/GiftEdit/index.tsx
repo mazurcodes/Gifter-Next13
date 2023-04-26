@@ -4,11 +4,14 @@ import { auth } from '@/firebase/clientApp';
 import { createGift, updateGift } from '@/firebase/crudUtils';
 import { GiftDataType } from '@/types';
 import { convertISOToGiftDate } from '@/utils/server';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import GiftDelete from '../GiftDelete';
 import Unauthenticated from '../Unautheticated';
+import LinkIcon from '@/assets/LinkIcon.svg';
+import Image from 'next/image';
 
 type GiftEditProps = {
   newGift?: boolean;
@@ -44,6 +47,7 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm({
     defaultValues: formDefaultValues,
@@ -70,8 +74,6 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
         <div>Try to login again...</div>)
       </>
     );
-
-  //TODO: Go option on the left side of the link when in edit mode so the owner can visit items page
 
   if (user)
     return (
@@ -208,30 +210,57 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
         </div>
         <label htmlFor="linkOne" className="text-sm text-gray-400">
           Link 1:
-          <input
-            tabIndex={7}
-            className="gift-link text-xs border rounded-md p-3 text-black w-full mt-3 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
-            {...register('linkOne')}
-            id="linkOne"
-          />
+          <div className="link-wrapper flex items-center">
+            <input
+              tabIndex={7}
+              className="gift-link flex-1 text-xs border-y border-l rounded-l-md p-3 text-black w-full mt-3 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
+              {...register('linkOne')}
+              id="linkOne"
+            />
+            <Link
+              href={watch('linkOne')}
+              target="_blank"
+              className="mt-3 p-3 border rounded-r-md"
+            >
+              <Image src={LinkIcon} alt="link icon" width={16} height={16} />
+            </Link>
+          </div>
         </label>
         <label htmlFor="linkTwo" className="text-sm text-gray-400">
           Link 2:
-          <input
-            tabIndex={8}
-            className="gift-link text-xs border rounded-md p-3 text-black w-full mt-3 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
-            {...register('linkTwo')}
-            id="linkTwo"
-          />
+          <div className="link-wrapper flex items-center">
+            <input
+              tabIndex={8}
+              className="gift-link flex-1 text-xs border-y border-l rounded-l-md p-3 text-black w-full mt-3 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
+              {...register('linkTwo')}
+              id="linkTwo"
+            />
+            <Link
+              href={watch('linkTwo')}
+              target="_blank"
+              className="mt-3 p-3 border rounded-r-md"
+            >
+              <Image src={LinkIcon} alt="link icon" width={16} height={16} />
+            </Link>
+          </div>
         </label>
         <label htmlFor="linkThree" className="text-sm text-gray-400">
           Link 3:
-          <input
-            tabIndex={9}
-            className="gift-link text-xs border rounded-md p-3 text-black w-full mt-3 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
-            {...register('linkThree')}
-            id="linkThree"
-          />
+          <div className="link-wrapper flex items-center">
+            <input
+              tabIndex={9}
+              className="gift-link flex-1 text-xs border-y border-l rounded-l-md p-3 text-black w-full mt-3 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
+              {...register('linkThree')}
+              id="linkThree"
+            />
+            <Link
+              href={watch('linkThree')}
+              target="_blank"
+              className="mt-3 p-3 border rounded-r-md"
+            >
+              <Image src={LinkIcon} alt="link icon" width={16} height={16} />
+            </Link>
+          </div>
         </label>
         <label htmlFor="notes" className="text-sm text-gray-400">
           Notes:
