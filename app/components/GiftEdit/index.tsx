@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
+import GiftDelete from '../GiftDelete';
 
 type GiftEditProps = {
   newGift?: boolean;
@@ -23,7 +24,6 @@ const InputError = ({ fieldName }: { fieldName: string }) => {
 const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
   const [user, loading, error] = useAuthState(auth);
   const router = useRouter();
-  const [isDelete, setDelete] = useState(false);
 
   const date = !data?.date
     ? convertISOToGiftDate(new Date().toISOString())
@@ -97,6 +97,7 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
         <label htmlFor="name" className="text-sm text-gray-400">
           Gift name:
           <input
+            autoFocus
             tabIndex={1}
             className={`gift-name text-sm text-gray-700 border rounded-md col-span-2 p-4 w-full mt-3 mb-1 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed ${
               errors.name && 'bg-red-200'
@@ -260,32 +261,7 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
             {newGift ? 'Create' : 'Save'}
           </button>
         </div>
-        <span className="mt-10">Delete your item:</span>
-        <div
-          className={`delete-wrapper flex justify-between gap-10 border border-red-700 rounded-md p-4 ${
-            newGift && 'hidden'
-          }`}
-        >
-          <button
-            type="button"
-            tabIndex={12}
-            onClick={() => setDelete(!isDelete)}
-            className={`p-1 px-3 text-center ${
-              isDelete ? 'bg-green-600' : 'bg-red-500'
-            } rounded-md text-white text-base  focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed`}
-          >
-            {isDelete ? 'No!' : 'Delete'}
-          </button>
-          <button
-            type="button"
-            tabIndex={12}
-            className={`p-1 px-3 text-center bg-red-500 rounded-md text-white text-base  focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed ${
-              !isDelete && 'hidden'
-            }`}
-          >
-            I&apos;m sure. Delete!
-          </button>
-        </div>
+        {!newGift && id && <GiftDelete id={id} />}
       </form>
     );
 
