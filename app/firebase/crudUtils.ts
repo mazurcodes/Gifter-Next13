@@ -13,21 +13,22 @@ import {
 import { useDocumentOnce } from 'react-firebase-hooks/firestore';
 import type { FirestoreError } from 'firebase/firestore';
 import type { GiftDataType } from '@/types';
+import { toast } from 'react-toastify';
 
 // TODO: research how to handle Error messages whithout crashing app
 
 // Firestore collection reference for gifts
 const giftsCollection = collection(db, 'gifts');
 
-export const createGift = async (
-  giftData: GiftDataType
-): Promise<string | undefined> => {
+export const createGift = async (giftData: GiftDataType): Promise<string> => {
   try {
     const docRef = await addDoc(giftsCollection, giftData);
+    toast.success('Gift created successfully!');
     return docRef.id;
   } catch (error) {
-    console.error('Error creating gift:', error);
-    // throw new Error('Failed to create gift');
+    toast.error(`Failed to create gift: ${error}`);
+    console.error('Failed to create gift:', error);
+    throw new Error('Failed to create gift');
   }
 };
 
@@ -38,6 +39,7 @@ export const getGift = async (giftId: string): Promise<GiftDataType | null> => {
       return docSnap.data() as GiftDataType;
     } else return null;
   } catch (error) {
+    toast.error(`Error getting gift: ${error}`);
     console.error('Error getting gift', error);
     throw new Error('Failed to get gift');
   }
@@ -45,7 +47,7 @@ export const getGift = async (giftId: string): Promise<GiftDataType | null> => {
 
 export const getAllGifts = async (
   ownerEmail: string
-): Promise<GiftDataType[] | undefined> => {
+): Promise<GiftDataType[]> => {
   try {
     const q = query(giftsCollection, where('ownerEmail', '==', ownerEmail));
     const snapshot = await getDocs(q);
@@ -54,32 +56,35 @@ export const getAllGifts = async (
     );
   } catch (error) {
     console.error('Error getting gifts:', error);
-    // throw new Error('Failed to get gifts');
+    toast.error(`Error getting gift: ${error}`);
+    throw new Error('Failed to get gifts');
   }
 };
 
 export const updateGift = async (
   giftId: string,
   giftData: Partial<GiftDataType>
-): Promise<string | undefined> => {
+): Promise<string> => {
   try {
     await updateDoc(doc(giftsCollection, giftId), giftData);
+    toast.success('Gift updated successfully!');
     return giftId;
   } catch (error) {
     console.error('Error updating gift:', error);
-    // throw new Error('Failed to update gift');
+    toast.error(`Error updating gift: ${error}`);
+    throw new Error('Failed to update gift');
   }
 };
 
-export const deleteGift = async (
-  giftId: string
-): Promise<string | undefined> => {
+export const deleteGift = async (giftId: string): Promise<string> => {
   try {
     await deleteDoc(doc(giftsCollection, giftId));
+    toast.success('Gift deleted successfully!');
     return giftId;
   } catch (error) {
     console.error('Error deleting gift:', error);
-    // throw new Error('Failed to delete gift');
+    toast.error(`Error deleting gift: ${error}`);
+    throw new Error('Failed to delete gift');
   }
 };
 
