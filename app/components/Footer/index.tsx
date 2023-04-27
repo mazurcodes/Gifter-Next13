@@ -1,12 +1,11 @@
-import Link from 'next/link';
-
 const Footer = () => {
   return (
     <footer className="flex justify-between text-sm border-t border-gray-100 p-4 text-gray-400 ">
-      <div>© {new Date().getFullYear()} Gifter</div>
+      <p>© {new Date().getFullYear()} Gifter | All rights reserved.</p>
       <a target="_blank" href="https://bartekmazur.dev">
         bartekmazur.dev
       </a>
+      <p>No cookies</p>
     </footer>
   );
 };
