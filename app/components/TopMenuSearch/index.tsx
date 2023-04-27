@@ -4,7 +4,11 @@ import { ChangeEvent, useState } from 'react';
 import { getSearchByEmailHref } from '@/utils/server';
 import { useRouter } from 'next/navigation';
 
-const TopMenuSearch = () => {
+type TopMenuSearchProps = {
+  close: () => void;
+};
+
+const TopMenuSearch = ({ close }: TopMenuSearchProps) => {
   const [search, setSearch] = useState('');
   const router = useRouter();
 
@@ -15,6 +19,7 @@ const TopMenuSearch = () => {
   const handleClick = () => {
     const href = getSearchByEmailHref(search);
     router.push(href);
+    close();
   };
 
   return (

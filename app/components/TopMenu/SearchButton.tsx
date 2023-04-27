@@ -24,14 +24,9 @@ const SearchButton = () => {
       ref={wrapperRef}
     >
       <button className="search-button" role="menuitem" onClick={handleClick}>
-        <Image
-          src={searchIcon}
-          alt="Search icon"
-          height={30}
-          width={30}
-        />
+        <Image src={searchIcon} alt="Search icon" height={30} width={30} />
       </button>
-      {isOpen && <TopMenuSearch/>}
+      {isOpen && <TopMenuSearch close={() => setOpen(false)} />}
     </div>
   );
 };
