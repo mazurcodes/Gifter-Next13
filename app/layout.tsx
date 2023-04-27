@@ -1,7 +1,7 @@
 import '@/styles/globals.css';
 import { Inter } from 'next/font/google';
 import Footer from '@/components/Footer';
-// import TopMenu from './components/TopMenu';
+import Toastify from './components/Toastify';
 
 const inter = Inter({
   weight: ['300', '400', '600', '900'],
@@ -24,6 +24,7 @@ export default function RootLayout({
         <div className="main-wrapper flex flex-col min-h-screen max-w-7xl mx-auto">
           {children}
           <Footer />
+          <Toastify />
         </div>
       </body>
     </html>
