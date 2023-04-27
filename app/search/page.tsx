@@ -1,12 +1,5 @@
 import GiftList from '@/components/GiftList';
-import TopMenu from '@/components/TopMenu';
-import { Metadata } from 'next';
 import { getAllGifts } from '@/firebase/crudUtils';
-
-export const metadata: Metadata = {
-  title: 'Gifter | Wishlist',
-  description: 'Wishlist for user',
-};
 
 type ResultsPageProps = {
   searchParams: {
@@ -21,7 +14,6 @@ const ResultsPage = async ({ searchParams }: ResultsPageProps) => {
 
   return (
     <>
-      <TopMenu extended />
       <main className="flex-1 p-10">
         <h2 className="top-menu-header font-semibold text-lg">
           Wishlist for:{' '}
