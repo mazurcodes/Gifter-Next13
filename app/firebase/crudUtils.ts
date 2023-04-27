@@ -19,13 +19,15 @@ import type { GiftDataType } from '@/types';
 // Firestore collection reference for gifts
 const giftsCollection = collection(db, 'gifts');
 
-export const createGift = async (giftData: GiftDataType): Promise<string> => {
+export const createGift = async (
+  giftData: GiftDataType
+): Promise<string | undefined> => {
   try {
     const docRef = await addDoc(giftsCollection, giftData);
     return docRef.id;
   } catch (error) {
     console.error('Error creating gift:', error);
-    throw new Error('Failed to create gift');
+    // throw new Error('Failed to create gift');
   }
 };
 
@@ -43,7 +45,7 @@ export const getGift = async (giftId: string): Promise<GiftDataType | null> => {
 
 export const getAllGifts = async (
   ownerEmail: string
-): Promise<GiftDataType[]> => {
+): Promise<GiftDataType[] | undefined> => {
   try {
     const q = query(giftsCollection, where('ownerEmail', '==', ownerEmail));
     const snapshot = await getDocs(q);
@@ -52,30 +54,32 @@ export const getAllGifts = async (
     );
   } catch (error) {
     console.error('Error getting gifts:', error);
-    throw new Error('Failed to get gifts');
+    // throw new Error('Failed to get gifts');
   }
 };
 
 export const updateGift = async (
   giftId: string,
   giftData: Partial<GiftDataType>
-): Promise<string> => {
+): Promise<string | undefined> => {
   try {
     await updateDoc(doc(giftsCollection, giftId), giftData);
     return giftId;
   } catch (error) {
     console.error('Error updating gift:', error);
-    throw new Error('Failed to update gift');
+    // throw new Error('Failed to update gift');
   }
 };
 
-export const deleteGift = async (giftId: string): Promise<string> => {
+export const deleteGift = async (
+  giftId: string
+): Promise<string | undefined> => {
   try {
     await deleteDoc(doc(giftsCollection, giftId));
     return giftId;
   } catch (error) {
     console.error('Error deleting gift:', error);
-    throw new Error('Failed to delete gift');
+    // throw new Error('Failed to delete gift');
   }
 };
 
