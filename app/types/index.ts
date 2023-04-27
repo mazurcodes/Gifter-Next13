@@ -23,8 +23,6 @@ export type GiftDataType = {
   uid?: string;
 };
 
-//TODO: uid not conditional
-
 export type FormDataType = {
   status: Status;
   name: string;
