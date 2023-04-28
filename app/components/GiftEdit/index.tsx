@@ -16,7 +16,7 @@ import Image from 'next/image';
 type GiftEditProps = {
   newGift?: boolean;
   data?: GiftDataType;
-  id?: string;
+  id?: string | null;
 };
 
 const InputError = ({ fieldName }: { fieldName: string }) => {
