@@ -43,7 +43,9 @@ export const giftsData: GiftDataType[] = [
     notes: 'size M',
     price: '74,99zł',
     date: '04.04.2023',
-    links: [],
+    linkOne: '',
+    linkTwo: '',
+    linkThree: '',
   },
   {
     ownerEmail: 'some@example.com',
@@ -55,7 +57,9 @@ export const giftsData: GiftDataType[] = [
     notes: '',
     price: '16,90 eur',
     date: '01.01.2023',
-    links: [],
+    linkOne: '',
+    linkTwo: '',
+    linkThree: '',
   },
   {
     ownerEmail: 'some@example.com',
@@ -67,7 +71,9 @@ export const giftsData: GiftDataType[] = [
     notes: '',
     price: '16,90zł',
     date: '01.01.2023',
-    links: [],
+    linkOne: '',
+    linkTwo: '',
+    linkThree: '',
   },
   {
     ownerEmail: 'some@example.com',
@@ -79,6 +85,8 @@ export const giftsData: GiftDataType[] = [
     notes: '',
     price: '16.90 euro',
     date: '01.01.2023',
-    links: [],
+    linkOne: '',
+    linkTwo: '',
+    linkThree: '',
   },
 ];
