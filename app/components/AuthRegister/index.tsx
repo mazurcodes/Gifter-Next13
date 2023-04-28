@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { AuthError, UserCredential } from 'firebase/auth';
 
-type AuthFormSignupProps = {
+type AuthFormRegisterProps = {
   signupFn: (
     email: string,
     password: string
@@ -11,7 +11,11 @@ type AuthFormSignupProps = {
   error: AuthError | undefined;
 };
 
-const AuthFormSignup = ({ signupFn, loading, error }: AuthFormSignupProps) => {
+const AuthFormRegister = ({
+  signupFn,
+  loading,
+  error,
+}: AuthFormRegisterProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
@@ -84,4 +88,4 @@ const AuthFormSignup = ({ signupFn, loading, error }: AuthFormSignupProps) => {
   );
 };
 
-export default AuthFormSignup;
+export default AuthFormRegister;
