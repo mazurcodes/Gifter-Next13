@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { AuthError, UserCredential, User } from 'firebase/auth';
 import AuthFormLogin from '@/components/AuthFormLogin';
 import AuthFormCompleted from '@/components/AuthFormCompleted';
-import AuthFormSignup from '../AuthFormSignup';
+import AuthFormSignup from '@/components/AuthFormSignup';
 
 type AuthFormPresenterProps = {
   data: {
@@ -75,9 +75,9 @@ const AuthFormPresenter = ({ data }: AuthFormPresenterProps) => {
     return (
       <>
         <AuthFormSignup
-          signupFn={signupFn}
-          loading={loadingSignup}
-          error={errorSignup}
+        // signupFn={signupFn}
+        // loading={loadingSignup}
+        // error={errorSignup}
         />
         <button
           className="p-2 text-gray-500"
