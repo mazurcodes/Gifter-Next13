@@ -1,5 +1,8 @@
+'use client';
 import GiftList from '@/components/GiftList';
 import { getAllGifts } from '@/firebase/crudUtils';
+import { GiftDataType } from '@/types';
+import { useEffect, useState } from 'react';
 
 type ResultsPageProps = {
   searchParams: {
@@ -7,10 +10,19 @@ type ResultsPageProps = {
   };
 };
 
-const ResultsPage = async ({ searchParams }: ResultsPageProps) => {
+const SearchPage = ({ searchParams }: ResultsPageProps) => {
   const { email } = searchParams;
+  const [gifts, setGifts] = useState<GiftDataType[] | []>([]);
 
-  const gifts = email && (await getAllGifts(email));
+  useEffect(() => {
+    const fetchGifts = async () => {
+      if (email) {
+        const gifts = await getAllGifts(email);
+        setGifts(gifts);
+      }
+    };
+    fetchGifts();
+  }, [email]);
 
   return (
     <>
@@ -25,4 +37,4 @@ const ResultsPage = async ({ searchParams }: ResultsPageProps) => {
   );
 };
 
-export default ResultsPage;
+export default SearchPage;

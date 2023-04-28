@@ -7,7 +7,7 @@ import {
 } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import AuthFormSignup from '../index1';
+import AuthFormSignup from '..';
 import { AuthError } from 'firebase/auth';
 
 const signupMockFn = vi.fn();
