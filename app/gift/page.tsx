@@ -6,17 +6,14 @@ import GiftError from '@/components/GiftError';
 import { useGift } from '@/firebase/crudUtils';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '@/firebase/clientApp';
+import { useSearchParams } from 'next/navigation';
 
-type GiftPageProps = {
-  searchParams: {
-    [key: string]: string;
-  };
-};
+const GiftPage = () => {
+  const searchParams = useSearchParams();
+  const id = searchParams.get('id');
 
-const GiftPage = ({ searchParams }: GiftPageProps) => {
-  const { id } = searchParams;
   const [user] = useAuthState(auth);
-  const [gift, loading, error] = useGift(id);
+  const [gift, loading, error] = useGift(id || '');
 
   const isOwner = gift?.ownerEmail === user?.email;
 

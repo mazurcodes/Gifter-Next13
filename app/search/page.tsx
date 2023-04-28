@@ -2,25 +2,18 @@
 import GiftList from '@/components/GiftList';
 import { getAllGifts } from '@/firebase/crudUtils';
 import { GiftDataType } from '@/types';
+import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-type ResultsPageProps = {
-  searchParams: {
-    [key: string]: string;
-  };
-};
-
-const SearchPage = ({ searchParams }: ResultsPageProps) => {
-  const { email } = searchParams;
+const SearchPage = () => {
+  const searchParams = useSearchParams();
+  const email = searchParams.get('email');
   const [gifts, setGifts] = useState<GiftDataType[] | []>([]);
 
   useEffect(() => {
     const fetchGifts = async () => {
-      if (email) {
-        console.log('search page email: ', email);
-        const gifts = await getAllGifts(email);
-        setGifts(gifts);
-      }
+      const gifts = await getAllGifts(email);
+      setGifts(gifts);
     };
     fetchGifts();
   }, [email]);
