@@ -4,7 +4,7 @@ import Image from 'next/image';
 import searchIcon from '@/assets/SearchIcon.svg';
 import { useRef, useState } from 'react';
 import { useTriggerOnBlur } from '@/utils/client';
-import TopMenuSearch from '../TopMenuSearch';
+import TopMenuSearch from '@/components/TopMenuSearch';
 
 const SearchButton = () => {
   const [isOpen, setOpen] = useState(false);

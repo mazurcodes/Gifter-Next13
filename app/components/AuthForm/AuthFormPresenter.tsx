@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { AuthError, UserCredential, User } from 'firebase/auth';
-import AuthFormLogin from '../AuthFormLogin';
-import AuthFormSignup from '../AuthFormSignup';
-import AuthFormCompleted from '../AuthFormCompleted';
+import AuthFormLogin from '@/components/AuthFormLogin';
+import AuthFormSignup from '@/components/AuthFormSignup';
+import AuthFormCompleted from '@/components/AuthFormCompleted';
 
 type AuthFormPresenterProps = {
   data: {

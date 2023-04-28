@@ -6,7 +6,7 @@ import {
   useCreateUserWithEmailAndPassword,
   useSignInWithEmailAndPassword,
 } from 'react-firebase-hooks/auth';
-import AuthFormPresenter from './AuthFormPresenter';
+import AuthFormPresenter from '@/components/AuthForm/AuthFormPresenter';
 
 const AuthFormContainer = () => {
   const [user, loadingAuth, errorAuth] = useAuthState(auth);

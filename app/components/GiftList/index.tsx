@@ -1,8 +1,8 @@
 'use client';
 import { GiftDataType } from '@/types';
 import { useState } from 'react';
-import Gift from '../Gift';
-import GiftFilter from '../GiftFilter';
+import Gift from '@/components/Gift';
+import GiftFilter from '@/components/GiftFilter';
 
 type GiftListProps = {
   data: GiftDataType[];

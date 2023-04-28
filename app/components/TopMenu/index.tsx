@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import SearchButton from './SearchButton';
-import UserButton from './UserButton';
+import SearchButton from '@/components/TopMenu/SearchButton';
+import UserButton from '@/components/TopMenu/UserButton';
 
 type TopMenuProps = {
   extended?: boolean;

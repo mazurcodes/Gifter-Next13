@@ -8,8 +8,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import GiftDelete from '../GiftDelete';
-import Unauthenticated from '../Unautheticated';
+import GiftDelete from '@/components/GiftDelete';
+import Unauthenticated from '@/components/Unautheticated';
 import LinkIcon from '@/assets/LinkIcon.svg';
 import Image from 'next/image';
 
