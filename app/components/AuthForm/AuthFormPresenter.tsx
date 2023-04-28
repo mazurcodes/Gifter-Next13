@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { AuthError, UserCredential, User } from 'firebase/auth';
 import AuthFormLogin from '@/components/AuthFormLogin';
 import AuthFormCompleted from '@/components/AuthFormCompleted';
-import AuthFormSignup from '@/components/AuthFormSignup';
+import AuthFormSignup from '@/components/AuthFormSignup/';
 
 type AuthFormPresenterProps = {
   data: {
@@ -29,12 +29,12 @@ const AuthFormPresenter = ({ data }: AuthFormPresenterProps) => {
     user,
     loadingAuth,
     loadingLogin,
-    loadingSignup,
+    // loadingSignup,
     errorAuth,
     errorLogin,
-    errorSignup,
+    // errorSignup,
     loginFn,
-    signupFn,
+    // signupFn,
   } = data;
 
   const [isLoginUI, setLoginUI] = useState(false);
@@ -73,11 +73,12 @@ const AuthFormPresenter = ({ data }: AuthFormPresenterProps) => {
   if (!user && !isLoginUI)
     return (
       <>
-        <AuthFormSignup
+        <AuthFormSignup />
+        {/* <AuthFormSignup
           signupFn={signupFn}
           loading={loadingSignup}
           error={errorSignup}
-        />
+        /> */}
         <button
           className="p-2 text-gray-500"
           onClick={() => setLoginUI(!isLoginUI)}
