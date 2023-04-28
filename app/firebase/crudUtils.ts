@@ -89,7 +89,7 @@ export const deleteGift = async (giftId: string): Promise<string> => {
 };
 
 export const useGift = (
-  giftId: string
+  giftId = 'test'
 ): [GiftDataType | undefined, boolean, FirestoreError | undefined] => {
   const [value, loading, error] = useDocumentOnce(doc(giftsCollection, giftId));
   const gift = value?.data();

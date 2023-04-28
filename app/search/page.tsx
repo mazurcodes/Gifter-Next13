@@ -10,7 +10,7 @@ type ResultsPageProps = {
 const ResultsPage = async ({ searchParams }: ResultsPageProps) => {
   const { email } = searchParams;
 
-  const gifts = await getAllGifts(email);
+  const gifts = email && (await getAllGifts(email));
 
   return (
     <>
@@ -19,7 +19,7 @@ const ResultsPage = async ({ searchParams }: ResultsPageProps) => {
           Wishlist for:{' '}
           <span className="font-normal text-orange-500">{email}</span>
         </h2>
-        <GiftList data={gifts} />
+        {gifts && <GiftList data={gifts} />}
       </main>
     </>
   );
