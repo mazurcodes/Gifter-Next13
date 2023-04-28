@@ -17,6 +17,7 @@ const SearchPage = ({ searchParams }: ResultsPageProps) => {
   useEffect(() => {
     const fetchGifts = async () => {
       if (email) {
+        console.log('search page email: ', email);
         const gifts = await getAllGifts(email);
         setGifts(gifts);
       }
