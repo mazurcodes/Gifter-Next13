@@ -1,8 +1,9 @@
+'use client';
 import { useState } from 'react';
 import { AuthError, UserCredential, User } from 'firebase/auth';
 import AuthFormLogin from '@/components/AuthFormLogin';
 import AuthFormCompleted from '@/components/AuthFormCompleted';
-import AuthFormSignup from '@/components/AuthFormSignup';
+import AuthFormRegister from '@/components/AuthRegister';
 
 type AuthFormPresenterProps = {
   data: {
@@ -73,7 +74,7 @@ const AuthFormPresenter = ({ data }: AuthFormPresenterProps) => {
   if (!user && !isLoginUI)
     return (
       <>
-        <AuthFormSignup
+        <AuthFormRegister
           signupFn={signupFn}
           loading={loadingSignup}
           error={errorSignup}

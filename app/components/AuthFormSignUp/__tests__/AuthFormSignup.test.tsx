@@ -7,7 +7,7 @@ import {
 } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import AuthFormSignup from '..';
+import AuthFormRegister from '../../AuthRegister';
 import { AuthError } from 'firebase/auth';
 
 const signupMockFn = vi.fn();
@@ -17,7 +17,7 @@ const user = userEvent.setup();
 describe('AuthFormSignup component', () => {
   it('renders signup form ', () => {
     render(
-      <AuthFormSignup
+      <AuthFormRegister
         signupFn={signupMockFn}
         loading={false}
         error={undefined}
@@ -32,7 +32,7 @@ describe('AuthFormSignup component', () => {
 
   it('renders register form with loading button when firebase is creatin new user', () => {
     render(
-      <AuthFormSignup
+      <AuthFormRegister
         signupFn={signupMockFn}
         loading={true}
         error={undefined}
@@ -48,7 +48,7 @@ describe('AuthFormSignup component', () => {
   it('renders error message when user state has error', () => {
     const errorMsg = { message: 'sample error' } as AuthError;
     render(
-      <AuthFormSignup
+      <AuthFormRegister
         signupFn={signupMockFn}
         loading={false}
         error={errorMsg}
@@ -65,7 +65,7 @@ describe('AuthFormSignup component', () => {
     const confirmPassword = password;
 
     render(
-      <AuthFormSignup
+      <AuthFormRegister
         signupFn={signupMockFn}
         loading={false}
         error={undefined}
@@ -95,7 +95,7 @@ describe('AuthFormSignup component', () => {
     const confirmPassword = 'wrongPassword';
 
     render(
-      <AuthFormSignup
+      <AuthFormRegister
         signupFn={signupMockFn}
         loading={false}
         error={undefined}

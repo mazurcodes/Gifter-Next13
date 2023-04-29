@@ -46,11 +46,13 @@ export const getGift = async (giftId: string): Promise<GiftDataType | null> => {
 };
 
 export const getAllGifts = async (
-  ownerEmail: string
+  ownerEmail: string | null
 ): Promise<GiftDataType[]> => {
+  if (!ownerEmail) return [];
   try {
     const q = query(giftsCollection, where('ownerEmail', '==', ownerEmail));
     const snapshot = await getDocs(q);
+    console.log('get all gift fn email:', ownerEmail);
     return snapshot.docs.map(
       (doc) => ({ ...doc.data(), uid: doc.id } as GiftDataType)
     );
@@ -89,7 +91,7 @@ export const deleteGift = async (giftId: string): Promise<string> => {
 };
 
 export const useGift = (
-  giftId = 'test'
+  giftId = ''
 ): [GiftDataType | undefined, boolean, FirestoreError | undefined] => {
   const [value, loading, error] = useDocumentOnce(doc(giftsCollection, giftId));
   const gift = value?.data();
