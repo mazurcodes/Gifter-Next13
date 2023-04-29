@@ -32,7 +32,7 @@ export const convertISOToGiftDate = (isoDate: string) => {
 };
 
 export const getSearchByEmailHref = (email: string) => {
-  return '/search?email=' + encodeURIComponent(email);
+  return '/search/' + encodeURIComponent(email);
 };
 
 /**
