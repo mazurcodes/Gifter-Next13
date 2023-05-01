@@ -58,13 +58,13 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
 
     if (id && user?.email === data?.ownerEmail) {
       await updateGift(id, preparedData);
-      router.back();
+      router.push('/dashboard/wishlist');
     }
 
     if (newGift && user?.email) {
       const giftData = { ...preparedData, date, ownerEmail: user.email };
       await createGift(giftData);
-      router.back();
+      router.push('/dashboard/wishlist');
     }
   };
 
@@ -277,7 +277,7 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
         </label>
         <div className="btn-wrapper flex justify-between gap-10">
           <button
-            onClick={() => router.back()}
+            onClick={() => router.push('/dashboard/wishlist')}
             type="button"
             tabIndex={12}
             className=" p-2 px-5 text-center bg-orange-500 rounded-md text-white text-base  focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
