@@ -1,9 +1,15 @@
 'use client';
 import { useState } from 'react';
-import { AuthError, UserCredential, User } from 'firebase/auth';
+import {
+  AuthError,
+  UserCredential,
+  User,
+  ActionCodeSettings,
+} from 'firebase/auth';
 import AuthFormLogin from '@/components/AuthFormLogin';
 import AuthFormCompleted from '@/components/AuthFormCompleted';
 import AuthFormRegister from '@/components/AuthRegister';
+import AuthFormReset from '../AuthFormReset';
 
 type AuthFormPresenterProps = {
   data: {
@@ -11,9 +17,11 @@ type AuthFormPresenterProps = {
     loadingAuth: boolean;
     loadingLogin: boolean;
     loadingSignup: boolean;
+    sendingReset: boolean;
     errorAuth: Error | undefined;
     errorLogin: AuthError | undefined;
     errorSignup: AuthError | undefined;
+    errorReset: Error | AuthError | undefined;
     loginFn: (
       email: string,
       password: string
@@ -22,6 +30,10 @@ type AuthFormPresenterProps = {
       email: string,
       password: string
     ) => Promise<UserCredential | undefined>;
+    resetFn: (
+      email: string,
+      actionCodeSettings?: ActionCodeSettings | undefined
+    ) => Promise<boolean>;
   };
 };
 
@@ -31,14 +43,18 @@ const AuthFormPresenter = ({ data }: AuthFormPresenterProps) => {
     loadingAuth,
     loadingLogin,
     loadingSignup,
+    sendingReset,
     errorAuth,
     errorLogin,
     errorSignup,
+    errorReset,
     loginFn,
     signupFn,
+    resetFn,
   } = data;
 
   const [isLoginUI, setLoginUI] = useState(false);
+  const [isResetUI, setResetUI] = useState(false);
 
   if (loadingAuth) {
     return <p>Checking user...</p>;
@@ -55,13 +71,14 @@ const AuthFormPresenter = ({ data }: AuthFormPresenterProps) => {
 
   //TODO: move button login/signup UI to the AuthFormLogin/Signup components
 
-  if (!user && isLoginUI)
+  if (!user && isLoginUI && !isResetUI)
     return (
       <>
         <AuthFormLogin
           loginFn={loginFn}
           loading={loadingLogin}
           error={errorLogin}
+          reset={setResetUI}
         />
         <button
           className="p-2 text-gray-500"
@@ -71,13 +88,30 @@ const AuthFormPresenter = ({ data }: AuthFormPresenterProps) => {
         </button>
       </>
     );
-  if (!user && !isLoginUI)
+  if (!user && !isLoginUI && !isResetUI)
     return (
       <>
         <AuthFormRegister
           signupFn={signupFn}
           loading={loadingSignup}
           error={errorSignup}
+        />
+        <button
+          className="p-2 text-gray-500"
+          onClick={() => setLoginUI(!isLoginUI)}
+        >
+          Already a member? Click here to Login.
+        </button>
+      </>
+    );
+
+  if (isResetUI)
+    return (
+      <>
+        <AuthFormReset
+          resetFn={resetFn}
+          sending={sendingReset}
+          error={errorReset}
         />
         <button
           className="p-2 text-gray-500"

@@ -5,6 +5,7 @@ import {
   useAuthState,
   useCreateUserWithEmailAndPassword,
   useSignInWithEmailAndPassword,
+  useSendPasswordResetEmail,
 } from 'react-firebase-hooks/auth';
 import AuthFormPresenter from '@/components/AuthForm/AuthFormPresenter';
 
@@ -14,6 +15,8 @@ const AuthFormContainer = () => {
     useSignInWithEmailAndPassword(auth);
   const [createUserWithEmailAndPassword, , loadingSignup, errorSignup] =
     useCreateUserWithEmailAndPassword(auth);
+  const [sendPasswordResetEmail, sendingReset, errorReset] =
+    useSendPasswordResetEmail(auth);
 
   return (
     <AuthFormPresenter
@@ -22,11 +25,14 @@ const AuthFormContainer = () => {
         loadingAuth,
         loadingLogin,
         loadingSignup,
+        sendingReset,
         errorAuth,
         errorLogin,
         errorSignup,
+        errorReset,
         loginFn: signInWithEmailAndPassword,
         signupFn: createUserWithEmailAndPassword,
+        resetFn: sendPasswordResetEmail,
       }}
     />
   );

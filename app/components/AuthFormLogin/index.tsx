@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { AuthError, UserCredential } from 'firebase/auth';
 
 type AuthFormLoginProps = {
@@ -8,9 +8,15 @@ type AuthFormLoginProps = {
   ) => Promise<UserCredential | undefined>;
   loading: boolean;
   error: AuthError | undefined;
+  reset: Dispatch<SetStateAction<boolean>>;
 };
 
-const AuthFormLogin = ({ loginFn, loading, error }: AuthFormLoginProps) => {
+const AuthFormLogin = ({
+  loginFn,
+  loading,
+  error,
+  reset,
+}: AuthFormLoginProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -51,6 +57,11 @@ const AuthFormLogin = ({ loginFn, loading, error }: AuthFormLoginProps) => {
           />
           <span className="text-red-600">{error?.message}</span>
         </label>
+        <div className="flex justify-end">
+          <p className="p-1 cursor-pointer" onClick={() => reset(true)}>
+            Forgot password?
+          </p>
+        </div>
         <input
           className="bg-orange-500 rounded-md p-2 px-6 text-white outline-orange-500 focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
           type="submit"
