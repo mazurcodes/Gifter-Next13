@@ -39,6 +39,7 @@ const AuthFormRegister = ({
         <label className="flex flex-col mb-4" htmlFor="register-email">
           <p className="font-light pb-2 text-sm">Email:</p>
           <input
+            autoFocus
             type="email"
             name="register-email"
             id="register-email"

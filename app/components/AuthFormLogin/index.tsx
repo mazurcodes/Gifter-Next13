@@ -28,6 +28,7 @@ const AuthFormLogin = ({ loginFn, loading, error }: AuthFormLoginProps) => {
         <label className="flex flex-col mb-4" htmlFor="login-email">
           <p className="font-light pb-4">Email:</p>
           <input
+            autoFocus
             type="email"
             name="login-email"
             id="login-email"
