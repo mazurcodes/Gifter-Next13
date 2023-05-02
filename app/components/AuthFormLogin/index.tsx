@@ -1,28 +1,18 @@
-import { Dispatch, SetStateAction, useState } from 'react';
-import { AuthError, UserCredential } from 'firebase/auth';
+import { auth } from '@/firebase/clientApp';
+import Link from 'next/link';
+import { useState } from 'react';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 
-type AuthFormLoginProps = {
-  loginFn: (
-    email: string,
-    password: string
-  ) => Promise<UserCredential | undefined>;
-  loading: boolean;
-  error: AuthError | undefined;
-  reset: Dispatch<SetStateAction<boolean>>;
-};
-
-const AuthFormLogin = ({
-  loginFn,
-  loading,
-  error,
-  reset,
-}: AuthFormLoginProps) => {
+const AuthFormLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const [signInWithEmailAndPassword, , loading, error] =
+    useSignInWithEmailAndPassword(auth);
+
   const handleSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
-    loginFn(email, password);
+    signInWithEmailAndPassword(email, password);
   };
 
   return (
@@ -58,9 +48,9 @@ const AuthFormLogin = ({
           <span className="text-red-600">{error?.message}</span>
         </label>
         <div className="flex justify-end">
-          <p className="p-1 cursor-pointer" onClick={() => reset(true)}>
+          <Link href="/login/reset" className="p-1">
             Forgot password?
-          </p>
+          </Link>
         </div>
         <input
           className="bg-orange-500 rounded-md p-2 px-6 text-white outline-orange-500 focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
