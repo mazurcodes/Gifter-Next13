@@ -1,7 +1,5 @@
 import { FormDataType, GiftDataType } from '@/types';
 import { Priority, Status, Color } from '@/constants';
-import { FirebaseError } from 'firebase/app';
-import { AuthError } from 'firebase/auth';
 
 export const statusColor = (status: Status) => {
   if (status === Status.AVAILABLE) return Color.GREEN;
