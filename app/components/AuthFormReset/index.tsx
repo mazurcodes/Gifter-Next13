@@ -1,26 +1,20 @@
 'use client';
-import { ActionCodeSettings, AuthError } from 'firebase/auth';
+import { auth } from '@/firebase/clientApp';
 import { useState } from 'react';
+import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
 
 const actionCodeSettings = {
   url: 'http://localhost:3000/auth',
 };
 
-type AuthFormResetProps = {
-  resetFn: (
-    email: string,
-    actionCodeSettings?: ActionCodeSettings | undefined
-  ) => Promise<boolean>;
-  sending: boolean;
-  error: Error | AuthError | undefined;
-};
-
-const AuthFormReset = ({ resetFn, sending, error }: AuthFormResetProps) => {
+const AuthFormReset = () => {
   const [email, setEmail] = useState('');
+  const [sendPasswordResetEmail, sending, error] =
+    useSendPasswordResetEmail(auth);
 
   const handleSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
-    resetFn(email, actionCodeSettings);
+    sendPasswordResetEmail(email, actionCodeSettings);
   };
 
   return (
