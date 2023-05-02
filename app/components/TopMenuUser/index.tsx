@@ -7,15 +7,21 @@ const UserMenu = () => {
   const [user] = useAuthState(auth);
   const [signOut] = useSignOut(auth);
 
-  if(!user) return (
-    <div
-      role="menu"
-      className="wrapper absolute top-15 right-0 border rounded-md w-64 text-sm bg-white z-50"
-    >
-      <Link href='/auth' className='block m-6 p-2 text-center bg-orange-500 rounded-md text-white text-base'>Sign Up</Link>
-    </div>
-  )
-  
+  if (!user)
+    return (
+      <div
+        role="menu"
+        className="wrapper absolute top-15 right-0 border rounded-md w-64 text-sm bg-white z-50"
+      >
+        <Link
+          href="/signup"
+          className="block m-6 p-2 text-center bg-orange-500 rounded-md text-white text-base"
+        >
+          Sign Up
+        </Link>
+      </div>
+    );
+
   return (
     <div
       role="menu"
