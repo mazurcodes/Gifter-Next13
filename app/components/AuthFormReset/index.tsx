@@ -1,5 +1,6 @@
 'use client';
 import { auth } from '@/firebase/clientApp';
+import { extractErrorMessage } from '@/utils/server';
 import { useState } from 'react';
 import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
 
@@ -34,8 +35,10 @@ const AuthFormReset = () => {
             onChange={(e) => setEmail(e.target.value)}
             className="w-72 border rounded-md p-1 px-2 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
           />
+          <span className="text-red-600">
+            {error && extractErrorMessage(error.message)}
+          </span>
         </label>
-        <span className="text-red-600">{error?.message}</span>
         <input
           className="bg-orange-500 rounded-md p-2 px-6 text-white outline-orange-500 focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
           type="submit"

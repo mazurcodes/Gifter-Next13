@@ -1,4 +1,5 @@
 import { auth } from '@/firebase/clientApp';
+import { extractErrorMessage } from '@/utils/server';
 import Link from 'next/link';
 import { useState } from 'react';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
@@ -9,6 +10,8 @@ const AuthFormLogin = () => {
 
   const [signInWithEmailAndPassword, , loading, error] =
     useSignInWithEmailAndPassword(auth);
+
+  console.log();
 
   const handleSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
@@ -45,7 +48,9 @@ const AuthFormLogin = () => {
             }}
             className="w-72 border rounded-md p-1 px-2 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
           />
-          <span className="text-red-600">{error?.message}</span>
+          <span className="text-red-600">
+            {error && extractErrorMessage(error.message)}
+          </span>
         </label>
         <div className="flex justify-end">
           <Link href="/login/reset" className="p-1">

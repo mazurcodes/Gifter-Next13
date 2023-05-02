@@ -1,5 +1,7 @@
 import { FormDataType, GiftDataType } from '@/types';
 import { Priority, Status, Color } from '@/constants';
+import { FirebaseError } from 'firebase/app';
+import { AuthError } from 'firebase/auth';
 
 export const statusColor = (status: Status) => {
   if (status === Status.AVAILABLE) return Color.GREEN;
@@ -87,4 +89,16 @@ export const prepareFormData = (formData: FormDataType): FormDataType => {
   const linkTwo = sanitizeUrl(formData.linkTwo);
   const linkThree = sanitizeUrl(formData.linkThree);
   return { ...formData, linkOne, linkTwo, linkThree };
+};
+
+export const extractErrorMessage = (errorMessage: string) => {
+  return errorMessage
+    ? 'Error: ' +
+        errorMessage
+          .split('(')[1]
+          .split('/')[1]
+          .split(')')[0]
+          .split('-')
+          .join(' ')
+    : '';
 };
