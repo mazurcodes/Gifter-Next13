@@ -23,10 +23,10 @@ const LoginPage = () => {
 
   if (!user)
     return (
-      <main className="flex-auto flex flex-col justify-center items-center">
+      <>
         <AuthFormLogin />
         <Link href="/signup">Not a member? Click here to Sign up.</Link>
-      </main>
+      </>
     );
 
   return <AuthFormCompleted email={user?.email} />;

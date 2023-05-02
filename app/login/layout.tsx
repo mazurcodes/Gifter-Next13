@@ -13,7 +13,9 @@ export default function LoginLayout({
   return (
     <>
       <TopMenu extended />
-      {children}
+      <main className="flex-auto flex flex-col justify-center items-center">
+        {children}
+      </main>
     </>
   );
 }
