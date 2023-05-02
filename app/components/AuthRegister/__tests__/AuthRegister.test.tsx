@@ -7,22 +7,16 @@ import {
 } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import AuthFormRegister from '../../AuthRegister';
+import AuthFormRegister from '..';
 import { AuthError } from 'firebase/auth';
 
 const signupMockFn = vi.fn();
 
 const user = userEvent.setup();
 
-describe('AuthFormSignup component', () => {
+describe('AuthFormRegister component', () => {
   it('renders signup form ', () => {
-    render(
-      <AuthFormRegister
-        signupFn={signupMockFn}
-        loading={false}
-        error={undefined}
-      />
-    );
+    render(<AuthFormRegister />);
     expect(screen.getByLabelText(/email/i)).toBeDefined();
     expect(screen.getByLabelText('Password:')).toBeDefined();
     expect(screen.getByLabelText(/confirm password/i)).toBeDefined();
@@ -30,14 +24,8 @@ describe('AuthFormSignup component', () => {
     cleanup();
   });
 
-  it('renders register form with loading button when firebase is creatin new user', () => {
-    render(
-      <AuthFormRegister
-        signupFn={signupMockFn}
-        loading={true}
-        error={undefined}
-      />
-    );
+  it('renders register form with loading button when firebase is creating new user', () => {
+    render(<AuthFormRegister />);
     expect(screen.getByLabelText(/email/i)).toBeDefined();
     expect(screen.getByLabelText('Password:')).toBeDefined();
     expect(screen.getByLabelText(/confirm password/i)).toBeDefined();
@@ -47,13 +35,7 @@ describe('AuthFormSignup component', () => {
 
   it('renders error message when user state has error', () => {
     const errorMsg = { message: 'sample error' } as AuthError;
-    render(
-      <AuthFormRegister
-        signupFn={signupMockFn}
-        loading={false}
-        error={errorMsg}
-      />
-    );
+    render(<AuthFormRegister />);
 
     expect(screen.getByText(errorMsg.message)).toBeDefined();
     cleanup();
@@ -64,13 +46,7 @@ describe('AuthFormSignup component', () => {
     const password = 'password123';
     const confirmPassword = password;
 
-    render(
-      <AuthFormRegister
-        signupFn={signupMockFn}
-        loading={false}
-        error={undefined}
-      />
-    );
+    render(<AuthFormRegister />);
 
     const form = within(screen.getByRole('form'));
     const signupInput = form.getByLabelText(/email/i);
@@ -94,13 +70,7 @@ describe('AuthFormSignup component', () => {
     const password = 'password123';
     const confirmPassword = 'wrongPassword';
 
-    render(
-      <AuthFormRegister
-        signupFn={signupMockFn}
-        loading={false}
-        error={undefined}
-      />
-    );
+    render(<AuthFormRegister />);
 
     const form = within(screen.getByRole('form'));
     const signupInput = form.getByLabelText(/email/i);

@@ -88,3 +88,15 @@ export const prepareFormData = (formData: FormDataType): FormDataType => {
   const linkThree = sanitizeUrl(formData.linkThree);
   return { ...formData, linkOne, linkTwo, linkThree };
 };
+
+export const extractErrorMessage = (errorMessage: string) => {
+  return errorMessage
+    ? 'Error: ' +
+        errorMessage
+          .split('(')[1]
+          .split('/')[1]
+          .split(')')[0]
+          .split('-')
+          .join(' ')
+    : '';
+};

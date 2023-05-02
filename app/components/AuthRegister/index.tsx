@@ -1,30 +1,22 @@
 'use client';
+import { auth } from '@/firebase/clientApp';
+import { extractErrorMessage } from '@/utils/server';
 import { useState } from 'react';
-import { AuthError, UserCredential } from 'firebase/auth';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 
-type AuthFormRegisterProps = {
-  signupFn: (
-    email: string,
-    password: string
-  ) => Promise<UserCredential | undefined>;
-  loading: boolean;
-  error: AuthError | undefined;
-};
-
-const AuthFormRegister = ({
-  signupFn,
-  loading,
-  error,
-}: AuthFormRegisterProps) => {
+const AuthFormRegister = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [errorUI, setErrorUI] = useState('');
 
+  const [createUserWithEmailAndPassword, , loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+
   const handleSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     if (password === passwordConfirm) {
-      signupFn(email, password);
+      createUserWithEmailAndPassword(email, password);
     } else {
       setErrorUI("Passwords doesn't match");
     }
@@ -39,6 +31,7 @@ const AuthFormRegister = ({
         <label className="flex flex-col mb-4" htmlFor="register-email">
           <p className="font-light pb-2 text-sm">Email:</p>
           <input
+            autoFocus
             type="email"
             name="register-email"
             id="register-email"
@@ -76,7 +69,9 @@ const AuthFormRegister = ({
             className="w-72 border rounded-md p-1 px-2 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed sm:w-56"
           />
           <span className="text-red-600">{errorUI}</span>
-          <span className="text-red-600">{error?.message}</span>
+          <span className="text-red-600">
+            {error && extractErrorMessage(error.message)}
+          </span>
         </label>
         <input
           className="bg-orange-500 rounded-md p-2 px-6 text-white outline-orange-500 focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
