@@ -1,30 +1,21 @@
 'use client';
+import { auth } from '@/firebase/clientApp';
 import { useState } from 'react';
-import { AuthError, UserCredential } from 'firebase/auth';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 
-type AuthFormRegisterProps = {
-  signupFn: (
-    email: string,
-    password: string
-  ) => Promise<UserCredential | undefined>;
-  loading: boolean;
-  error: AuthError | undefined;
-};
-
-const AuthFormRegister = ({
-  signupFn,
-  loading,
-  error,
-}: AuthFormRegisterProps) => {
+const AuthFormRegister = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [errorUI, setErrorUI] = useState('');
 
+  const [createUserWithEmailAndPassword, , loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+
   const handleSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     if (password === passwordConfirm) {
-      signupFn(email, password);
+      createUserWithEmailAndPassword(email, password);
     } else {
       setErrorUI("Passwords doesn't match");
     }
