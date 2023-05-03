@@ -2,7 +2,9 @@ import {
   AuthError,
   EmailAuthProvider,
   reauthenticateWithCredential,
+  UserCredential,
 } from 'firebase/auth';
+import { useState } from 'react';
 import { useUpdatePassword } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
 import { auth } from './clientApp';
@@ -13,17 +15,38 @@ const getCredential = (userPassword: string) => {
   return null;
 };
 
-const reauthenticateUser = async (password: string) => {
-  const credential = getCredential(password);
-  try {
-    const authResult =
+export const useReauthenticateUser = (): [
+  (password: string) => void,
+  UserCredential | null,
+  boolean,
+  Error | AuthError | undefined
+] => {
+  const [userCredential, setUserCredential] = useState<UserCredential | null>(
+    null
+  );
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<AuthError | undefined>();
+
+  const reauthenticate = async (password: string) => {
+    const credential = getCredential(password);
+    setLoading(true);
+    try {
       auth.currentUser &&
-      credential &&
-      (await reauthenticateWithCredential(auth.currentUser, credential));
-    return authResult;
-  } catch (error) {
-    console.log('Error reauthenticatin user: ', error);
-  }
+        credential &&
+        setUserCredential(
+          await reauthenticateWithCredential(auth.currentUser, credential)
+        );
+      if (userCredential) {
+        setLoading(false);
+      }
+    } catch (err) {
+      setError(err as AuthError);
+      console.log('Error useReautherticate: ', err);
+      setLoading(false);
+    }
+  };
+
+  return [reauthenticate, userCredential, loading, error];
 };
 
 export const useChangePassword = (): [
@@ -32,15 +55,25 @@ export const useChangePassword = (): [
   boolean,
   AuthError | Error | undefined
 ] => {
-  let isUpdated = false;
-  const [updateUserPassword, updating, error] = useUpdatePassword(auth);
+  const [isUpdated, setIsUpdated] = useState(false);
+  const [error, setError] = useState<Error | AuthError | undefined>(undefined);
+  const [updateUserPassword, updating, errorUpdate] = useUpdatePassword(auth);
+  const [reauthenticateUser, userCredential, reauthenticating, errorReauth] =
+    useReauthenticateUser();
 
   const updatePassword = async (oldPassword: string, newPassword: string) => {
-    const userCredential = await reauthenticateUser(oldPassword);
+    reauthenticateUser(oldPassword);
 
-    if (userCredential) {
-      isUpdated = await updateUserPassword(newPassword);
-      isUpdated && toast('Password successfully updated');
+    if (userCredential && !reauthenticating) {
+      setIsUpdated(await updateUserPassword(newPassword));
+      isUpdated && toast.success('Password successfully updated');
+    }
+
+    if (errorReauth) {
+      setError(errorReauth);
+    }
+    if (errorUpdate) {
+      setError(errorUpdate);
     }
   };
 

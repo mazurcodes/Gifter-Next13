@@ -71,7 +71,11 @@ const DashboardPasswordPage = () => {
           {updating ? 'Updating' : 'Change'}
         </button>
         {isUpdated && <p>Password was changed</p>}
-        {errorPassword && <p>There was some error: {errorPassword.message}</p>}
+        {errorPassword && (
+          <p>
+            There was some error: {extractErrorMessage(errorPassword.message)}
+          </p>
+        )}
       </form>
     );
 
