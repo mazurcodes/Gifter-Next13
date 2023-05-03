@@ -52,7 +52,6 @@ export const getAllGifts = async (
   try {
     const q = query(giftsCollection, where('ownerEmail', '==', ownerEmail));
     const snapshot = await getDocs(q);
-    console.log('get all gift fn email:', ownerEmail);
     return snapshot.docs.map(
       (doc) => ({ ...doc.data(), uid: doc.id } as GiftDataType)
     );
