@@ -5,7 +5,7 @@ import {
   UserCredential,
 } from 'firebase/auth';
 import { useState } from 'react';
-import { useUpdatePassword } from 'react-firebase-hooks/auth';
+import { useDeleteUser, useUpdatePassword } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
 import { auth } from './clientApp';
 
@@ -49,6 +49,11 @@ export const useReauthenticateUser = (): [
   return [reauthenticate, userCredential, loading, error];
 };
 
+/**
+ * Change password for the current user.
+ *
+ * @return [updatePassword, isUpdated, updating, error]
+ */
 export const useChangePassword = (): [
   (oldPassword: string, newPassword: string) => Promise<void>,
   boolean,
@@ -56,7 +61,7 @@ export const useChangePassword = (): [
   AuthError | Error | undefined
 ] => {
   const [isUpdated, setIsUpdated] = useState(false);
-  const [error, setError] = useState<Error | AuthError | undefined>(undefined);
+  // const [error, setError] = useState<Error | AuthError | undefined>(undefined);
   const [updateUserPassword, updating, errorUpdate] = useUpdatePassword(auth);
   const [reauthenticateUser, userCredential, reauthenticating, errorReauth] =
     useReauthenticateUser();
@@ -69,15 +74,53 @@ export const useChangePassword = (): [
       isUpdated && toast.success('Password successfully updated');
     }
 
-    if (errorReauth) {
-      setError(errorReauth);
-    }
-    if (errorUpdate) {
-      setError(errorUpdate);
-    }
+    // if (errorReauth) {
+    //   setError(errorReauth);
+    // }
+    // if (errorUpdate) {
+    //   setError(errorUpdate);
+    // }
   };
 
-  return [updatePassword, isUpdated, updating, error];
+  return [
+    updatePassword,
+    isUpdated,
+    reauthenticating || updating,
+    errorReauth || errorUpdate,
+  ];
 };
 
-// const useChangeEmail = (newEmail, password) => {};
+export const useDeleteCurrentUser = (): [
+  (password: string) => Promise<void>,
+  boolean,
+  boolean,
+  AuthError | Error | undefined
+] => {
+  const [isDeleted, setIsDeleted] = useState(false);
+  // const [error, setError] = useState<Error | AuthError | undefined>(undefined);
+  const [reauthenticateUser, userCredential, reauthenticating, errorReauth] =
+    useReauthenticateUser();
+  const [deleteCurrentUser, loading, errorDelete] = useDeleteUser(auth);
+
+  const deleteUser = async (password: string) => {
+    reauthenticateUser(password);
+
+    if (userCredential && !reauthenticating) {
+      setIsDeleted(await deleteCurrentUser());
+      isDeleted && toast.success('User successfully deleted');
+    }
+    // if (errorReauth) {
+    //   setError(errorReauth);
+    // }
+    // if (errorDelete) {
+    //   setError(errorDelete);
+    // }
+  };
+
+  return [
+    deleteUser,
+    isDeleted,
+    reauthenticating || loading,
+    errorReauth || errorDelete,
+  ];
+};
