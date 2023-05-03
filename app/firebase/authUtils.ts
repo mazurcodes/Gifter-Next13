@@ -50,7 +50,7 @@ export const useReauthenticateUser = (): [
 };
 
 /**
- * Change password for the current user.
+ * Change password hook.
  *
  * @return [updatePassword, isUpdated, updating, error]
  */
@@ -90,6 +90,12 @@ export const useChangePassword = (): [
   ];
 };
 
+/**
+ * Delete current user hook.
+ *
+ * @return [deleteUser, isDeleted, loading, error]
+ *
+ */
 export const useDeleteCurrentUser = (): [
   (password: string) => Promise<void>,
   boolean,
@@ -124,3 +130,7 @@ export const useDeleteCurrentUser = (): [
     errorReauth || errorDelete,
   ];
 };
+
+//TODO: after deleting user delete all user gifts
+
+//TODO: useChangeEmail hook
