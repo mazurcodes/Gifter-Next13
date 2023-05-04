@@ -142,6 +142,7 @@ export const useDeleteCurrentUser = (): [
 /**
  * Change email hook.
  *
+ *
  * @return [changeEmail, isChanged, working, error]
  *
  */
