@@ -5,7 +5,11 @@ import {
   UserCredential,
 } from 'firebase/auth';
 import { useState } from 'react';
-import { useDeleteUser, useUpdatePassword } from 'react-firebase-hooks/auth';
+import {
+  useDeleteUser,
+  useUpdatePassword,
+  useUpdateEmail,
+} from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
 import { auth } from './clientApp';
 
@@ -134,3 +138,37 @@ export const useDeleteCurrentUser = (): [
 //TODO: after deleting user delete all user gifts
 
 //TODO: useChangeEmail hook
+
+/**
+ * Change email hook.
+ *
+ * @return [changeEmail, isChanged, working, error]
+ *
+ */
+export const useChangeEmail = (): [
+  (newPassword: string, password: string) => Promise<void>,
+  boolean,
+  boolean,
+  AuthError | Error | undefined
+] => {
+  const [isChanged, setIsChanged] = useState(false);
+  const [reauthenticateUser, userCredential, reauthenticating, errorReauth] =
+    useReauthenticateUser();
+  const [updateEmail, changing, errorEmail] = useUpdateEmail(auth);
+
+  const changeEmail = async (newEmail: string, password: string) => {
+    reauthenticateUser(password);
+
+    if (userCredential && !reauthenticating) {
+      setIsChanged(await updateEmail(newEmail));
+      isChanged && toast.success('Email successfully changed');
+    }
+  };
+
+  return [
+    changeEmail,
+    isChanged,
+    reauthenticating || changing,
+    errorReauth || errorEmail,
+  ];
+};
