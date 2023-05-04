@@ -9,6 +9,7 @@ import {
   deleteDoc,
   query,
   where,
+  writeBatch,
 } from 'firebase/firestore';
 import { useDocumentOnce } from 'react-firebase-hooks/firestore';
 import type { FirestoreError } from 'firebase/firestore';
@@ -95,4 +96,16 @@ export const useGift = (
   const [value, loading, error] = useDocumentOnce(doc(giftsCollection, giftId));
   const gift = value?.data();
   return [gift as GiftDataType, loading, error];
+};
+
+export const deleteUsersGifts = async (ownerEmail: string) => {
+  const batch = writeBatch(db);
+  const gifts = await getAllGifts(ownerEmail);
+
+  gifts.forEach((gift) => {
+    const docRef = doc(giftsCollection, gift.uid);
+    batch.delete(docRef);
+  });
+
+  batch.commit();
 };
