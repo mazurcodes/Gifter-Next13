@@ -99,23 +99,20 @@ export const useDeleteCurrentUser = (): [
   AuthError | Error | undefined
 ] => {
   const [isDeleted, setIsDeleted] = useState(false);
-  const [reauthenticateUser, userCredential, reauthenticating, errorReauth] =
-    useReauthenticateUser();
   const [deleteCurrentUser, loading, errorDelete] = useDeleteUser(auth);
+  const [reauthenticateUser, reauthenticating, errorReauth] =
+    useReauthenticateUser();
+
+  useEffect(() => {
+    isDeleted && toast.success('User successfully deleted');
+  }, [isDeleted]);
 
   const deleteUser = async (password: string) => {
-    reauthenticateUser(password);
+    const userCredential = await reauthenticateUser(password);
 
-    if (userCredential && !reauthenticating) {
+    if (userCredential) {
       setIsDeleted(await deleteCurrentUser());
-      isDeleted && toast.success('User successfully deleted');
     }
-    // if (errorReauth) {
-    //   setError(errorReauth);
-    // }
-    // if (errorDelete) {
-    //   setError(errorDelete);
-    // }
   };
 
   return [
