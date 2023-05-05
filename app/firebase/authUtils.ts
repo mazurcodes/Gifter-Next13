@@ -141,16 +141,19 @@ export const useChangeEmail = (): [
   AuthError | Error | undefined
 ] => {
   const [isChanged, setIsChanged] = useState(false);
-  const [reauthenticateUser, userCredential, reauthenticating, errorReauth] =
-    useReauthenticateUser();
   const [updateEmail, changing, errorEmail] = useUpdateEmail(auth);
+  const [reauthenticateUser, reauthenticating, errorReauth] =
+    useReauthenticateUser();
+
+  useEffect(() => {
+    isChanged && toast.success('Email successfully changed');
+  }, [isChanged]);
 
   const changeEmail = async (newEmail: string, password: string) => {
-    reauthenticateUser(password);
+    const userCredential = await reauthenticateUser(password);
 
-    if (userCredential && !reauthenticating) {
+    if (userCredential) {
       setIsChanged(await updateEmail(newEmail));
-      isChanged && toast.success('Email successfully changed');
     }
   };
 
