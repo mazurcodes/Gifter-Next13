@@ -4,7 +4,7 @@ import {
   reauthenticateWithCredential,
   UserCredential,
 } from 'firebase/auth';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   useDeleteUser,
   useUpdatePassword,
@@ -20,43 +20,40 @@ const getCredential = (userPassword: string) => {
 };
 
 export const useReauthenticateUser = (): [
-  (password: string) => void,
-  UserCredential | null,
+  (password: string) => Promise<UserCredential | undefined>,
   boolean,
   Error | AuthError | undefined
 ] => {
-  const [userCredential, setUserCredential] = useState<UserCredential | null>(
-    null
-  );
-  const [loading, setLoading] = useState(false);
+  const [working, setWorking] = useState(false);
   const [error, setError] = useState<AuthError | undefined>();
 
   const reauthenticate = async (password: string) => {
     const credential = getCredential(password);
-    setLoading(true);
+    setWorking(true);
     try {
-      auth.currentUser &&
+      const authResult =
+        auth.currentUser &&
         credential &&
-        setUserCredential(
-          await reauthenticateWithCredential(auth.currentUser, credential)
-        );
-      if (userCredential) {
-        setLoading(false);
+        (await reauthenticateWithCredential(auth.currentUser, credential));
+
+      if (authResult) {
+        setWorking(false);
+        return authResult;
       }
     } catch (err) {
       setError(err as AuthError);
       console.log('Error useReautherticate: ', err);
-      setLoading(false);
+      setWorking(false);
     }
   };
 
-  return [reauthenticate, userCredential, loading, error];
+  return [reauthenticate, working, error];
 };
 
 /**
  * Change password hook.
  *
- * @return [updatePassword, isUpdated, updating, error]
+ * @return [updatePassword, isUpdated, working, error]
  */
 export const useChangePassword = (): [
   (oldPassword: string, newPassword: string) => Promise<void>,
@@ -65,25 +62,20 @@ export const useChangePassword = (): [
   AuthError | Error | undefined
 ] => {
   const [isUpdated, setIsUpdated] = useState(false);
-  // const [error, setError] = useState<Error | AuthError | undefined>(undefined);
   const [updateUserPassword, updating, errorUpdate] = useUpdatePassword(auth);
-  const [reauthenticateUser, userCredential, reauthenticating, errorReauth] =
+  const [reauthenticateUser, reauthenticating, errorReauth] =
     useReauthenticateUser();
 
+  useEffect(() => {
+    isUpdated && toast.success('Password successfully updated');
+  }, [isUpdated]);
+
   const updatePassword = async (oldPassword: string, newPassword: string) => {
-    reauthenticateUser(oldPassword);
+    const userCredential = await reauthenticateUser(oldPassword);
 
-    if (userCredential && !reauthenticating) {
+    if (userCredential) {
       setIsUpdated(await updateUserPassword(newPassword));
-      isUpdated && toast.success('Password successfully updated');
     }
-
-    // if (errorReauth) {
-    //   setError(errorReauth);
-    // }
-    // if (errorUpdate) {
-    //   setError(errorUpdate);
-    // }
   };
 
   return [
@@ -107,7 +99,6 @@ export const useDeleteCurrentUser = (): [
   AuthError | Error | undefined
 ] => {
   const [isDeleted, setIsDeleted] = useState(false);
-  // const [error, setError] = useState<Error | AuthError | undefined>(undefined);
   const [reauthenticateUser, userCredential, reauthenticating, errorReauth] =
     useReauthenticateUser();
   const [deleteCurrentUser, loading, errorDelete] = useDeleteUser(auth);
