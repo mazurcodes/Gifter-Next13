@@ -109,3 +109,18 @@ export const deleteUsersGifts = async (ownerEmail: string) => {
 
   batch.commit();
 };
+
+export const changeGiftsOwnerEmail = async (
+  ownerEmail: string,
+  newOwnerEmail: string
+) => {
+  const batch = writeBatch(db);
+  const gifts = await getAllGifts(ownerEmail);
+
+  gifts.forEach((gift) => {
+    const docRef = doc(giftsCollection, gift.uid);
+    batch.update(docRef, { ownerEmail: newOwnerEmail });
+  });
+
+  batch.commit();
+};
