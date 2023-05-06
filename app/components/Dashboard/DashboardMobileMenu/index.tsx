@@ -2,11 +2,11 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-const DashboardMenu = () => {
+const DashboardMobileMenu = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="dashboard-nav w-60 sm:hidden">
+    <nav className="dashboard-mobile-nav absolute top-10 left-0 w-full border rounded-md text-sm bg-white z-50">
       <ul className="flex flex-col gap-3 items-start">
         <Link
           href={'/dashboard'}
@@ -54,4 +54,4 @@ const DashboardMenu = () => {
   );
 };
 
-export default DashboardMenu;
+export default DashboardMobileMenu;
