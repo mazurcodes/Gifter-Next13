@@ -45,11 +45,14 @@ const DashboardPage = () => {
 
   if (user) {
     return (
-      <form className="dashboard-email" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className="dashboard-email-form w-full max-w-xl"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <label className="dashboard-email font-semibold text-lg flex flex-col pb-10">
           Email{' '}
           <input
-            className="p-2 border rounded-md font-normal text-sm mt-3"
+            className="p-2 px-4 border rounded-md font-normal text-sm mt-3 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
             type="email"
             {...register('email')}
           />
@@ -59,13 +62,13 @@ const DashboardPage = () => {
           <label className="dashboard-email-pwrd font-semibold text-lg flex flex-col pb-10">
             Password to change your email{' '}
             <input
-              className="p-2 border rounded-md font-normal text-sm mt-3"
+              className="p-2 border rounded-md font-normal text-sm mt-3 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
               type="password"
               {...register('password')}
             />
           </label>
         )}
-        <div>
+        <div className="text-right">
           <button
             className="bg-orange-500 py-2 px-4 text-white rounded-md"
             type="submit"
@@ -76,7 +79,9 @@ const DashboardPage = () => {
         {errorEmail && (
           <p>There was some error: {extractErrorMessage(errorEmail.message)}</p>
         )}
-        <p className="pt-10">your email is not verified.</p>
+        {!user.emailVerified && (
+          <p className="pt-10 text-slate-300">Your email is not verified.</p>
+        )}
       </form>
     );
   }

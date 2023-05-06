@@ -38,30 +38,39 @@ const DashboardDeletePage = () => {
 
   if (user)
     return (
-      <form className="dashboard-delete-form" onSubmit={handleSubmit(onSubmit)}>
-        <label className="dashboard-username-pwrd font-semibold flex flex-col pb-5">
-          Confirm your password:{' '}
+      <form
+        className="dashboard-delete-form  w-full max-w-xl"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <h2 className="text-lg font-bold">We are sorry to see you go :(</h2>
+        <p className="text-sm text-slate-500">
+          Be advised, account deletion is final. There will be no way to restore
+          your account.
+        </p>
+        <label className="dashboard-delete-password font-semibold flex flex-col py-10">
+          To delete, confirm your password:{' '}
           <input
             id="newPassword"
-            className="p-2 border"
+            className="p-2 px-4 border rounded-md font-normal text-sm mt-3 w-full focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
             type="password"
             minLength={6}
             {...register('password', { required: true })}
           />
         </label>
-
-        <Link
-          href={'/dashboard'}
-          className="bg-orange-500 py-2 px-4 text-white rounded-md "
-        >
-          Nevermind
-        </Link>
-        <button
-          type="submit"
-          className="border py-2 px-4 text-red-600 rounded-md ml-2"
-        >
-          {working ? 'Deleting' : 'Delete'}
-        </button>
+        <div className="flex justify-between">
+          <Link
+            href={'/dashboard'}
+            className="bg-orange-500 py-2 px-4 text-white rounded-md "
+          >
+            Nevermind
+          </Link>
+          <button
+            type="submit"
+            className="border py-2 px-4 text-red-600 rounded-md ml-2"
+          >
+            {working ? 'Deleting' : 'Delete'}
+          </button>
+        </div>
         {isDeleted && <p>User successfully deleted</p>}
         {errorDelete && (
           <p>
