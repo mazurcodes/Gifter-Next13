@@ -24,16 +24,16 @@ const SearchForm = () => {
   return (
     <form
       role="form"
-      className="flex flex-col items-center"
+      className="flex flex-col items-center sm:px-3"
       onSubmit={handleSubmit}
     >
-      <h1 className="logo font-black text-9xl text-center text-orange-500">
+      <h1 className="logo font-black text-9xl sm:text-7xl text-center text-orange-500">
         Gifter
       </h1>
       <p className="p-4 font-light">Search for a wishlist by email</p>
-      <div className="relative flex">
+      <div className="relative flex gap-3 sm:flex-col sm:w-full">
         <Image
-          className="absolute top-2 left-2 z-10 opacity-50"
+          className="absolute top-3 left-3 z-10 opacity-50"
           src={searchMiniIcon}
           alt="magnifying glass incon"
           width={18}
@@ -42,7 +42,7 @@ const SearchForm = () => {
         <input
           id="search"
           name="search"
-          className=" w-96 border rounded-md p-1 pl-10 relative focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
+          className="w-96 sm:w-full border rounded-md p-2 pl-10 relative focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
           type="email"
           value={search}
           onChange={handleChange}
@@ -52,7 +52,7 @@ const SearchForm = () => {
         />
         <button
           type="submit"
-          className="ml-3 px-3 text-center bg-orange-500 rounded-md text-white text-base"
+          className="p-2 px-3 text-center bg-orange-500 rounded-md text-white text-base"
         >
           Search
         </button>
