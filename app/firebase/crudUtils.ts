@@ -9,6 +9,7 @@ import {
   deleteDoc,
   query,
   where,
+  writeBatch,
 } from 'firebase/firestore';
 import { useDocumentOnce } from 'react-firebase-hooks/firestore';
 import type { FirestoreError } from 'firebase/firestore';
@@ -52,7 +53,6 @@ export const getAllGifts = async (
   try {
     const q = query(giftsCollection, where('ownerEmail', '==', ownerEmail));
     const snapshot = await getDocs(q);
-    console.log('get all gift fn email:', ownerEmail);
     return snapshot.docs.map(
       (doc) => ({ ...doc.data(), uid: doc.id } as GiftDataType)
     );
@@ -96,4 +96,31 @@ export const useGift = (
   const [value, loading, error] = useDocumentOnce(doc(giftsCollection, giftId));
   const gift = value?.data();
   return [gift as GiftDataType, loading, error];
+};
+
+export const deleteUsersGifts = async (ownerEmail: string) => {
+  const batch = writeBatch(db);
+  const gifts = await getAllGifts(ownerEmail);
+
+  gifts.forEach((gift) => {
+    const docRef = doc(giftsCollection, gift.uid);
+    batch.delete(docRef);
+  });
+
+  batch.commit();
+};
+
+export const changeGiftsOwnerEmail = async (
+  ownerEmail: string,
+  newOwnerEmail: string
+) => {
+  const batch = writeBatch(db);
+  const gifts = await getAllGifts(ownerEmail);
+
+  gifts.forEach((gift) => {
+    const docRef = doc(giftsCollection, gift.uid);
+    batch.update(docRef, { ownerEmail: newOwnerEmail });
+  });
+
+  batch.commit();
 };

@@ -91,12 +91,11 @@ export const prepareFormData = (formData: FormDataType): FormDataType => {
 
 export const extractErrorMessage = (errorMessage: string) => {
   return errorMessage
-    ? 'Error: ' +
-        errorMessage
-          .split('(')[1]
-          .split('/')[1]
-          .split(')')[0]
-          .split('-')
-          .join(' ')
+    ? errorMessage
+        .split('(')[1]
+        .split('/')[1]
+        .split(')')[0]
+        .split('-')
+        .join(' ')
     : '';
 };

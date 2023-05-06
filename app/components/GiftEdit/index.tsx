@@ -12,15 +12,12 @@ import GiftDelete from '@/components/GiftDelete';
 import Unauthenticated from '@/components/Unautheticated';
 import LinkIcon from '@/assets/LinkIcon.svg';
 import Image from 'next/image';
+import InputError from '../InputError';
 
 type GiftEditProps = {
   newGift?: boolean;
   data?: GiftDataType;
   id?: string | null;
-};
-
-const InputError = ({ fieldName }: { fieldName: string }) => {
-  return <p className="text-red-600">{fieldName} is required.</p>;
 };
 
 const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
