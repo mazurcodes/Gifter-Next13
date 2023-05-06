@@ -5,7 +5,7 @@ const Unauthenticated = () => {
     <>
       <h2>Oh, hello stranger...</h2>
       <p>
-        Please <Link href={'/auth'}>Login or Signup</Link>
+        Please <Link href={'/signup'}>Login or Signup</Link>
       </p>
     </>
   );

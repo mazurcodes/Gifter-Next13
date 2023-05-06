@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
 
 const actionCodeSettings = {
-  url: 'http://localhost:3000/auth',
+  url: 'http://localhost:3000/login',
 };
 
 const AuthFormReset = () => {
