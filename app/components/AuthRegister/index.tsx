@@ -69,9 +69,11 @@ const AuthFormRegister = () => {
             className="w-72 border rounded-md p-1 px-2 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed sm:w-56"
           />
           <span className="text-red-600">{errorUI}</span>
-          <span className="text-red-600">
-            {error && extractErrorMessage(error.message)}
-          </span>
+          {error && (
+            <span className="text-red-600">
+              Error: {extractErrorMessage(error.message)}
+            </span>
+          )}
         </label>
         <input
           className="bg-orange-500 rounded-md p-2 px-6 text-white outline-orange-500 focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"

@@ -48,9 +48,11 @@ const AuthFormLogin = () => {
             }}
             className="w-72 sm:w-56 border rounded-md p-1 px-2 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
           />
-          <span className="text-red-600">
-            {error && extractErrorMessage(error.message)}
-          </span>
+          {error && (
+            <span className="text-red-600">
+              Error: {extractErrorMessage(error.message)}
+            </span>
+          )}
         </label>
         <div className="flex justify-end">
           <Link href="/login/reset" className="p-1">
