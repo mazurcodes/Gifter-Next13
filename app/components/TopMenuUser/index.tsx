@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { auth } from '@/firebase/clientApp';
 import { useAuthState, useSignOut } from 'react-firebase-hooks/auth';
 import { Dispatch, SetStateAction } from 'react';
+import { shortEmailAddress } from '@/utils/server';
 
 type UserMenuProps = {
   close: Dispatch<SetStateAction<boolean>>;
@@ -21,6 +22,7 @@ const UserMenu = ({ close }: UserMenuProps) => {
       >
         <Link
           href="/signup"
+          onClick={() => close(false)}
           className="block m-6 p-2 text-center bg-orange-500 rounded-md text-white text-base"
         >
           Sign Up
@@ -37,7 +39,9 @@ const UserMenu = ({ close }: UserMenuProps) => {
         <h3 className="capitalize font-bold text-orange-500 text-xs pb-3 px-6">
           Account
         </h3>
-        <p className="user-email py-2 px-6 my-3 text-gray-400">{user?.email}</p>
+        <p className="user-email py-2 px-6 my-3 text-gray-400">
+          {user?.email && shortEmailAddress(user.email, 30)}
+        </p>
         <Link
           href="/dashboard"
           className="py-2 px-6 block hover:bg-slate-50"

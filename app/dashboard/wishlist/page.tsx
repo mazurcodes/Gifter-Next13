@@ -3,6 +3,7 @@ import GiftList from '@/components/GiftList';
 import { auth } from '@/firebase/clientApp';
 import { getAllGifts } from '@/firebase/crudUtils';
 import { GiftDataType } from '@/types';
+import { shortEmailAddress } from '@/utils/server';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -25,7 +26,9 @@ const WishlistPage = () => {
     <div className="wrapper-whislist-page pl-10 pt-1 flex-1 sm:pl-0">
       <h2 className="top-menu-header font-semibold text-lg">
         Wishlist for:{' '}
-        <span className="font-normal text-orange-500">{user?.email}</span>
+        <span className="font-normal text-orange-500">
+          {user?.email && shortEmailAddress(user.email, 29)}
+        </span>
       </h2>
       <GiftList data={gifts} />
       <div className="table-add my-3">

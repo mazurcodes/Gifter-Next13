@@ -1,5 +1,10 @@
 import { GiftDataType } from '@/types';
-import { priorityColor, shortNotes, statusColor } from '@/utils/server';
+import {
+  priorityColor,
+  shortEmailAddress,
+  shortNotes,
+  statusColor,
+} from '@/utils/server';
 
 const GiftLink = ({ link }: { link: string }) => {
   return (
@@ -34,7 +39,10 @@ const GiftDetails = ({ data }: GiftDetailsProps) => {
 
   return (
     <div className="gift-wrapper flex flex-col gap-3">
-      <p className="text-orange-500 col-span-2">{`${ownerEmail} want's this:`}</p>
+      <p className="text-orange-500 col-span-2">{`${shortEmailAddress(
+        ownerEmail,
+        30
+      )} want's this:`}</p>
       <p className="text-slate-400 text-sm pt-2">Gift name:</p>
       <p
         className={`gift-name text-sm text-gray-70 border rounded-md col-span-2 p-4`}
