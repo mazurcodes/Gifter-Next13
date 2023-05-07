@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 const AuthFormCompleted = ({ email }: { email: string | null | undefined }) => {
   return (
-    <div className="wrapper-auth-completed">
+    <div className="wrapper-auth-completed p-2">
       <h3 className="text-center text-xl">
         Welcome <span className="text-orange-500">{email}</span>
       </h3>

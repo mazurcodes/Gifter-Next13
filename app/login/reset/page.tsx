@@ -25,7 +25,9 @@ const ResetPasswordPage = () => {
     return (
       <>
         <AuthFormReset />
-        <Link href="/login">I remember! Let&apos;s login.</Link>
+        <Link href="/login" className="p-4">
+          Nevermind! Click here to login.
+        </Link>
       </>
     );
 

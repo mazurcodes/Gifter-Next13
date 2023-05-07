@@ -28,7 +28,7 @@ const AuthFormRegister = () => {
         Sign up
       </h1>
       <div className="wrapper-register border rounded-md mt-3 p-8 sm:p-4">
-        <label className="flex flex-col mb-4" htmlFor="register-email">
+        <label className="flex flex-col mb-6" htmlFor="register-email">
           <p className="font-light pb-2 text-sm">Email:</p>
           <input
             autoFocus
@@ -37,7 +37,7 @@ const AuthFormRegister = () => {
             id="register-email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-72 border rounded-md p-1 px-2 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed sm:w-56"
+            className="w-72 sm:w-56 border rounded-md p-1 px-2 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
           />
         </label>
         <label className="flex flex-col mb-4" htmlFor="register-password">
@@ -50,11 +50,11 @@ const AuthFormRegister = () => {
             onChange={(e) => {
               setPassword(e.target.value);
             }}
-            className="w-72 border rounded-md p-1 px-2 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed sm:w-56"
+            className="w-72 sm:w-56 border rounded-md p-1 px-2 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
           />
         </label>
         <label
-          className="flex flex-col mb-4"
+          className="flex flex-col mb-6"
           htmlFor="register-confirm-password"
         >
           <p className="font-light pb-2 text-sm">Confirm password:</p>

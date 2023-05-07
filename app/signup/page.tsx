@@ -25,7 +25,9 @@ const SignupPage = () => {
     return (
       <>
         <AuthFormRegister />
-        <Link href="/login">Already a member? Click here to Login.</Link>
+        <Link href="/login" className="p-4">
+          Already a member? Click here to Login.
+        </Link>
       </>
     );
 
