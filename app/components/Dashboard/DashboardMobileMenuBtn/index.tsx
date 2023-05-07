@@ -33,8 +33,8 @@ const DashboardMobileMenuBtn = () => {
       <Image
         src={DropdownIcon}
         alt="dropdown icon"
-        className={`absolute top-2 right-3 ${isOpen && 'rotate-180'}`}
-        width={26}
+        className={`absolute top-3 right-3 ${isOpen && 'rotate-180'}`}
+        width={21}
       />
       {isOpen && <DashboardMobileMenu />}
     </div>
