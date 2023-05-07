@@ -24,35 +24,36 @@ const GiftFilter = ({ statusFn, data }: GiftFilterProps) => {
       role="toolbar"
     >
       <button
-        className={`filter-button border rounded-lg px-3 mr-2 mb-3 ${
+        className={`filter-button border-4 border-transparent rounded-lg px-4 h-8 mr-2 mb-2 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.2)] ${
           filter === '' &&
-          'border-4 border-dashed border-l-orange-400 border-b-blue-400 border-r-red-500 border-t-green-500 text-gray-700'
+          'border-4 border-dashed border-l-orange-400 border-b-blue-400 border-r-red-500 border-t-green-500 text-gray-700 shadow-none'
         }`}
         onClick={() => setFilter('')}
       >
         All
       </button>
       <button
-        className={`filter-button border rounded-md px-3 mr-2 mb-3 ${
+        className={`filter-button border-4 border-transparent rounded-lg px-4 h-8 mr-2 mb-2 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.2)] ${
           filter === Status.AVAILABLE &&
-          'border-4 border-dashed border-green-500'
+          'border-4 border-dashed border-l-green-500 border-t-green-500 border-r-green-500 border-b-green-500 shadow-none'
         }`}
         onClick={() => setFilter(Status.AVAILABLE)}
       >
         {Status.AVAILABLE}
       </button>
       <button
-        className={`filter-button border rounded-md px-3 mr-2 mb-3 ${
+        className={`filter-button border-4 border-transparent rounded-lg px-4 h-8 mr-2 mb-2 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.2)] ${
           filter === Status.RESERVED &&
-          'border-4 border-dashed border-orange-300'
+          'border-4 border-dashed border-l-orange-300 border-t-orange-300 border-r-orange-300 border-b-orange-300 shadow-none'
         }`}
         onClick={() => setFilter(Status.RESERVED)}
       >
         {Status.RESERVED}
       </button>
       <button
-        className={`filter-button border rounded-md px-3 mr-2 mb-3 ${
-          filter === Status.BOUGHT && 'border-4 border-dashed border-red-500'
+        className={`filter-button border-4 border-transparent rounded-lg px-4 h-8 mr-2 mb-2 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.2)] ${
+          filter === Status.BOUGHT &&
+          'border-4 border-dashed border-l-red-500 border-t-red-500 border-r-red-500 border-b-red-500 shadow-none'
         }`}
         onClick={() => setFilter(Status.BOUGHT)}
       >
