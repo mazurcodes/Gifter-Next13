@@ -22,7 +22,7 @@ const WishlistPage = () => {
   }, [user?.email]);
 
   return (
-    <div className="wrapper-whislist-page pl-10 pt-1 flex-1">
+    <div className="wrapper-whislist-page pl-10 pt-1 flex-1 sm:pl-0">
       <h2 className="top-menu-header font-semibold text-lg">
         Wishlist for:{' '}
         <span className="font-normal text-orange-500">{user?.email}</span>
