@@ -15,7 +15,7 @@ export default function DashboardLayout({
   return (
     <>
       <TopMenu extended />
-      <main className="flex-1 p-8 gap-8 flex mt-24 sm:flex-col sm:mt-0">
+      <main className="flex-1 p-8 gap-8 flex mt-24 sm:flex-col sm:mt-0 sm:p-5">
         <DashboardMobileMenuBtn />
         <DashboardMenu />
         {children}

@@ -7,7 +7,7 @@ const DashboardMobileMenu = () => {
 
   return (
     <nav className="dashboard-mobile-nav absolute top-10 left-0 w-full border rounded-md text-sm bg-white z-50">
-      <ul className="flex flex-col gap-3 items-start">
+      <ul className="flex flex-col gap-3 items-start py-3">
         <Link
           href={'/dashboard'}
           className={`${
