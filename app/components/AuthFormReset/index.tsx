@@ -20,8 +20,8 @@ const AuthFormReset = () => {
 
   return (
     <form role="form" className="flex flex-col" onSubmit={handleSubmit}>
-      <h1 className="logo font-black text-3xl text-center text-orange-500">
-        Reset Password
+      <h1 className="logo font-black text-6xl sm:text-4xl text-center text-orange-500">
+        Reset <br /> Password
       </h1>
       <div className="border rounded-md mt-3 p-8 sm:p-4">
         <label className="flex flex-col mb-6" htmlFor="login-email">
