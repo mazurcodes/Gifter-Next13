@@ -8,7 +8,10 @@ type TopMenuProps = {
 
 const TopMenuPimary = () => {
   return (
-    <div className="flex justify-end items-center py-6 px-10" role="menubar">
+    <div
+      className="flex justify-end items-center py-6 px-10 sm:px-3"
+      role="menubar"
+    >
       <UserButton />
     </div>
   );
@@ -17,7 +20,7 @@ const TopMenuPimary = () => {
 const TopMenuExtended = () => {
   return (
     <div
-      className="flex justify-between items-center py-6 px-10"
+      className="flex justify-between items-center py-6 px-10 sm:px-3"
       role="menubar"
     >
       <Link

@@ -3,8 +3,11 @@ import { Category, Occasion, Priority, Status } from '@/constants';
 import { auth } from '@/firebase/clientApp';
 import { createGift, updateGift } from '@/firebase/crudUtils';
 import { FormDataType, GiftDataType } from '@/types';
-import { convertISOToGiftDate, prepareFormData } from '@/utils/server';
-import Link from 'next/link';
+import {
+  convertISOToGiftDate,
+  createExternalLink,
+  prepareFormData,
+} from '@/utils/server';
 import { useRouter } from 'next/navigation';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
@@ -213,17 +216,21 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
           <div className="link-wrapper flex items-center">
             <input
               tabIndex={7}
-              className="gift-link flex-1 text-xs border-y border-l rounded-l-md p-3 text-black w-full mt-3 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
+              className={`gift-link flex-1 text-xs border-y border-l rounded-l-md p-3 text-black w-full mt-3 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed ${
+                !watch('linkOne') && 'border-r rounded-r-md'
+              }`}
               {...register('linkOne')}
               id="linkOne"
             />
-            <Link
-              href={watch('linkOne')}
-              target="_blank"
-              className="mt-3 p-3 border rounded-r-md"
-            >
-              <Image src={LinkIcon} alt="link icon" width={16} height={16} />
-            </Link>
+            {watch('linkOne') && (
+              <a
+                href={createExternalLink(watch('linkOne'))}
+                target="_blank"
+                className="mt-3 p-3 border rounded-r-md"
+              >
+                <Image src={LinkIcon} alt="link icon" width={16} height={16} />
+              </a>
+            )}
           </div>
         </label>
         <label htmlFor="linkTwo" className="text-sm text-gray-400">
@@ -231,17 +238,21 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
           <div className="link-wrapper flex items-center">
             <input
               tabIndex={8}
-              className="gift-link flex-1 text-xs border-y border-l rounded-l-md p-3 text-black w-full mt-3 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
+              className={`gift-link flex-1 text-xs border-y border-l rounded-l-md p-3 text-black w-full mt-3 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed ${
+                !watch('linkTwo') && 'border-r rounded-r-md'
+              }`}
               {...register('linkTwo')}
               id="linkTwo"
             />
-            <Link
-              href={watch('linkTwo')}
-              target="_blank"
-              className="mt-3 p-3 border rounded-r-md"
-            >
-              <Image src={LinkIcon} alt="link icon" width={16} height={16} />
-            </Link>
+            {watch('linkTwo') && (
+              <a
+                href={createExternalLink(watch('linkTwo'))}
+                target="_blank"
+                className="mt-3 p-3 border rounded-r-md"
+              >
+                <Image src={LinkIcon} alt="link icon" width={16} height={16} />
+              </a>
+            )}
           </div>
         </label>
         <label htmlFor="linkThree" className="text-sm text-gray-400">
@@ -249,17 +260,21 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
           <div className="link-wrapper flex items-center">
             <input
               tabIndex={9}
-              className="gift-link flex-1 text-xs border-y border-l rounded-l-md p-3 text-black w-full mt-3 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
+              className={`gift-link flex-1 text-xs border-y border-l rounded-l-md p-3 text-black w-full mt-3 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed ${
+                !watch('linkThree') && 'border-r rounded-r-md'
+              }`}
               {...register('linkThree')}
               id="linkThree"
             />
-            <Link
-              href={watch('linkThree')}
-              target="_blank"
-              className="mt-3 p-3 border rounded-r-md"
-            >
-              <Image src={LinkIcon} alt="link icon" width={16} height={16} />
-            </Link>
+            {watch('linkThree') && (
+              <a
+                href={createExternalLink(watch('linkThree'))}
+                target="_blank"
+                className="mt-3 p-3 border rounded-r-md"
+              >
+                <Image src={LinkIcon} alt="link icon" width={16} height={16} />
+              </a>
+            )}
           </div>
         </label>
         <label htmlFor="notes" className="text-sm text-gray-400">

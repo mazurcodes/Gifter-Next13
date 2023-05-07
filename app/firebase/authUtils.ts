@@ -43,7 +43,6 @@ export const useReauthenticateUser = (): [
       }
     } catch (err) {
       setError(err as AuthError);
-      console.log('Error useReautherticate: ', err);
       setWorking(false);
     }
   };

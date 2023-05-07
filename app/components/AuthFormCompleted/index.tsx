@@ -1,10 +1,14 @@
+import { shortEmailAddress } from '@/utils/server';
 import Link from 'next/link';
 
 const AuthFormCompleted = ({ email }: { email: string | null | undefined }) => {
   return (
-    <div className="wrapper-auth-completed">
+    <div className="wrapper-auth-completed p-2">
       <h3 className="text-center text-xl">
-        Welcome <span className="text-orange-500">{email}</span>
+        Welcome{' '}
+        <span className="text-orange-500">
+          {email && shortEmailAddress(email, 28)}
+        </span>
       </h3>
       <div className="flex gap-7 mt-7">
         <Link

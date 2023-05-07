@@ -20,6 +20,33 @@ export const shortNotes = (note = '', maxChars = 20) => {
   return note;
 };
 
+export const shortEmailAddress = (email = '', maxChars = 50) => {
+  let beforeAt = email.split('@')[0];
+  let afterAt = email.split('@')[1];
+  const calcAdditionalSpaceBefore = maxChars / 2 - beforeAt.length;
+  const calcAdditionalSpaceAfter = maxChars / 2 - afterAt.length;
+  const additionalSpaceBefore =
+    calcAdditionalSpaceBefore > 0 ? calcAdditionalSpaceBefore : 0;
+  const additionalSpaceAfter =
+    calcAdditionalSpaceAfter > 0 ? calcAdditionalSpaceAfter : 0;
+
+  if (email.length > maxChars) {
+    if (beforeAt.length > maxChars / 2) {
+      beforeAt =
+        beforeAt.substring(0, maxChars / 2 - 4 + additionalSpaceAfter) + '...';
+    }
+    if (afterAt.length > maxChars / 2) {
+      afterAt =
+        '...' +
+        afterAt.substring(
+          afterAt.length - maxChars / 2 + 4 - additionalSpaceBefore
+        );
+    }
+    return beforeAt + '@' + afterAt;
+  }
+  return email;
+};
+
 export const filterGiftsByStatus = (
   data: GiftDataType[],
   status: Status | '' = ''
@@ -98,4 +125,11 @@ export const extractErrorMessage = (errorMessage: string) => {
         .split('-')
         .join(' ')
     : '';
+};
+
+export const createExternalLink = (link: string) => {
+  if (link.startsWith('http://') || link.startsWith('https://')) {
+    return link;
+  }
+  return 'http://' + link.trim();
 };

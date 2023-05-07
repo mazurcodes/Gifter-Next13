@@ -43,7 +43,7 @@ const DashboardDeletePage = () => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <h2 className="text-lg font-bold">We are sorry to see you go :(</h2>
-        <p className="text-sm text-slate-500">
+        <p className=" text-slate-500 pt-3">
           Be advised, account deletion is final. There will be no way to restore
           your account.
         </p>
@@ -56,6 +56,11 @@ const DashboardDeletePage = () => {
             minLength={6}
             {...register('password', { required: true })}
           />
+          {errorDelete && (
+            <p className="text-red-600 pt-5 font-normal">
+              Error: {extractErrorMessage(errorDelete.message)}
+            </p>
+          )}
         </label>
         <div className="flex justify-between">
           <Link
@@ -72,11 +77,6 @@ const DashboardDeletePage = () => {
           </button>
         </div>
         {isDeleted && <p>User successfully deleted</p>}
-        {errorDelete && (
-          <p>
-            There was some error: {extractErrorMessage(errorDelete.message)}
-          </p>
-        )}
       </form>
     );
 

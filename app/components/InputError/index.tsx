@@ -8,7 +8,7 @@ type InputErrorProps = {
 const InputError = ({ fieldName }: InputErrorProps) => {
   return (
     <>
-      <p className="text-red-600 font-normal text-xs">
+      <p className="text-red-600 font-normal text-xs mt-2">
         {fieldName} is required
       </p>
     </>
