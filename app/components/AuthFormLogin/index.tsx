@@ -53,7 +53,7 @@ const AuthFormLogin = () => {
           )}
         </label>
         <div className="flex justify-end">
-          <Link href="/login/reset" className="p-1">
+          <Link href="/login/reset" className="p-1 mb-4 text-slate-500">
             Forgot password?
           </Link>
         </div>
