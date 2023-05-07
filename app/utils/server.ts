@@ -126,3 +126,10 @@ export const extractErrorMessage = (errorMessage: string) => {
         .join(' ')
     : '';
 };
+
+export const createExternalLink = (link: string) => {
+  if (link.startsWith('http://') || link.startsWith('https://')) {
+    return link;
+  }
+  return 'http://' + link.trim();
+};
