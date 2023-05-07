@@ -24,7 +24,7 @@ const GiftFilter = ({ statusFn, data }: GiftFilterProps) => {
       role="toolbar"
     >
       <button
-        className={`filter-button border rounded-lg w-24 mr-2 mb-3 ${
+        className={`filter-button border rounded-lg px-3 mr-2 mb-3 ${
           filter === '' &&
           'border-4 border-dashed border-l-orange-400 border-b-blue-400 border-r-red-500 border-t-green-500 text-gray-700'
         }`}
@@ -33,7 +33,7 @@ const GiftFilter = ({ statusFn, data }: GiftFilterProps) => {
         All
       </button>
       <button
-        className={`filter-button border rounded-md w-24 mr-2 mb-3 ${
+        className={`filter-button border rounded-md px-3 mr-2 mb-3 ${
           filter === Status.AVAILABLE &&
           'border-4 border-dashed border-green-500'
         }`}
@@ -42,7 +42,7 @@ const GiftFilter = ({ statusFn, data }: GiftFilterProps) => {
         {Status.AVAILABLE}
       </button>
       <button
-        className={`filter-button border rounded-md w-24 mr-2 mb-3 ${
+        className={`filter-button border rounded-md px-3 mr-2 mb-3 ${
           filter === Status.RESERVED &&
           'border-4 border-dashed border-orange-300'
         }`}
@@ -51,7 +51,7 @@ const GiftFilter = ({ statusFn, data }: GiftFilterProps) => {
         {Status.RESERVED}
       </button>
       <button
-        className={`filter-button border rounded-md w-24 mr-2 mb-3 ${
+        className={`filter-button border rounded-md px-3 mr-2 mb-3 ${
           filter === Status.BOUGHT && 'border-4 border-dashed border-red-500'
         }`}
         onClick={() => setFilter(Status.BOUGHT)}
