@@ -30,7 +30,7 @@ const DashboardPasswordPage = () => {
   if (error) {
     return (
       <div className="dashboard-error">
-        <p>There was some error: {extractErrorMessage(error.message)}</p>
+        <p>Error: {extractErrorMessage(error.message)}</p>
       </div>
     );
   }
@@ -51,7 +51,7 @@ const DashboardPasswordPage = () => {
             {...register('oldPassword', { required: true, minLength: 6 })}
           />
         </label>
-        <label className="dashboard-username-pwrd font-semibold flex flex-col pb-10">
+        <label className="dashboard-username-pwrd font-semibold flex flex-col pb-5">
           New password:{' '}
           <input
             id="newPassword"
@@ -64,6 +64,11 @@ const DashboardPasswordPage = () => {
             Minimum 6 characters.
           </p>
         </label>
+        {errorPassword && (
+          <p className="text-red-600 pb-5">
+            Error: {extractErrorMessage(errorPassword.message)}
+          </p>
+        )}
         <div className="text-right">
           <button
             type="submit"
@@ -74,11 +79,6 @@ const DashboardPasswordPage = () => {
         </div>
 
         {isUpdated && <p>Password was changed</p>}
-        {errorPassword && (
-          <p>
-            There was some error: {extractErrorMessage(errorPassword.message)}
-          </p>
-        )}
       </form>
     );
 

@@ -77,7 +77,9 @@ const DashboardPage = () => {
           </button>
         </div>
         {errorEmail && (
-          <p>There was some error: {extractErrorMessage(errorEmail.message)}</p>
+          <p className="text-red-600">
+            Error: {extractErrorMessage(errorEmail.message)}
+          </p>
         )}
         {!user.emailVerified && (
           <p className="pt-10 text-slate-300">Your email is not verified.</p>

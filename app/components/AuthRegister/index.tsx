@@ -68,6 +68,9 @@ const AuthFormRegister = () => {
             }}
             className="w-72 border rounded-md p-1 px-2 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed sm:w-56"
           />
+          <p className="text-slate-300 font-normal text-sm pb-4 pt-1">
+            Minimum 6 characters.
+          </p>
           <span className="text-red-600">{errorUI}</span>
           {error && (
             <span className="text-red-600">
