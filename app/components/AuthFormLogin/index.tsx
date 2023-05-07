@@ -11,8 +11,6 @@ const AuthFormLogin = () => {
   const [signInWithEmailAndPassword, , loading, error] =
     useSignInWithEmailAndPassword(auth);
 
-  console.log();
-
   const handleSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     signInWithEmailAndPassword(email, password);
