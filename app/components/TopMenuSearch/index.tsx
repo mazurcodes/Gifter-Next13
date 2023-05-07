@@ -25,7 +25,7 @@ const TopMenuSearch = ({ close }: TopMenuSearchProps) => {
   return (
     <div
       role="searchbox"
-      className="wrapper absolute top-15 right-0 border rounded-md w-64 text-sm bg-white z-50"
+      className="wrapper absolute top-15 right-0 border rounded-md w-64 text-sm bg-white z-50 sm:-right-11"
     >
       <div className="topmenu-search-wrapper p-6">
         <label
