@@ -35,6 +35,7 @@ const GiftDetails = ({ data }: GiftDetailsProps) => {
   return (
     <div className="gift-wrapper flex flex-col gap-3">
       <p className="text-orange-500 col-span-2">{`${ownerEmail} want's this:`}</p>
+      <p className="text-slate-400 text-sm pt-2">Gift name:</p>
       <p
         className={`gift-name text-sm text-gray-70 border rounded-md col-span-2 p-4`}
       >
@@ -60,10 +61,12 @@ const GiftDetails = ({ data }: GiftDetailsProps) => {
         <p className="gift-status text-xs font-semibold border rounded-md p-3">
           Date: <span>{date}</span>
         </p>
+        {linkOne && <p className="text-slate-400 text-sm pt-2">Links: </p>}
         {linkOne && <GiftLink link={linkOne} />}
         {linkTwo && <GiftLink link={linkTwo} />}
         {linkThree && <GiftLink link={linkThree} />}
       </div>
+      <p className="text-slate-400 text-sm pt-2">Notes: </p>
       <p
         className={`gift-status col-span-2 text-xs font-semibold border rounded-md p-4`}
       >
