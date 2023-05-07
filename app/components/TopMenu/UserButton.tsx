@@ -31,7 +31,7 @@ const UserButton = () => {
           width={30}
         />
       </button>
-      {isOpen && <TopMenuUser />}
+      {isOpen && <TopMenuUser close={setOpen} />}
     </div>
   );
 };
