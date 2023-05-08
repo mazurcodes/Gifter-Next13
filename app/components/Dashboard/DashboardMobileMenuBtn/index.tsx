@@ -35,6 +35,7 @@ const DashboardMobileMenuBtn = () => {
         alt="dropdown icon"
         className={`absolute top-3 right-3 ${isOpen && 'rotate-180'}`}
         width={21}
+        height={21}
       />
       {isOpen && <DashboardMobileMenu />}
     </div>
