@@ -28,6 +28,7 @@ const AuthFormLogin = () => {
             autoCorrect="off"
             autoCapitalize="off"
             tabIndex={1}
+            required
             type="email"
             name="login-email"
             id="login-email"
@@ -40,6 +41,7 @@ const AuthFormLogin = () => {
           <p className="font-light pb-2 text-sm">Password:</p>
           <input
             tabIndex={2}
+            required
             type="password"
             name="login-password"
             id="login-password"
@@ -61,7 +63,7 @@ const AuthFormLogin = () => {
           </Link>
         </div>
         <input
-          className="bg-orange-500 rounded-md p-2 px-6 text-white outline-orange-500 focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
+          className="bg-orange-500 rounded-md p-2 px-6 sm:w-full text-white outline-orange-500 focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
           tabIndex={3}
           type="submit"
           value={loading ? 'Loading' : 'Login'}

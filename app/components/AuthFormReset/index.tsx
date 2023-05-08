@@ -30,6 +30,7 @@ const AuthFormReset = () => {
             autoCorrect="off"
             autoCapitalize="off"
             tabIndex={1}
+            required
             type="email"
             name="login-email"
             id="login-email"
@@ -44,7 +45,7 @@ const AuthFormReset = () => {
           )}
         </label>
         <input
-          className="bg-orange-500 rounded-md p-2 px-6 text-white outline-orange-500 focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
+          className="bg-orange-500 rounded-md p-2 px-6 sm:w-full text-white outline-orange-500 focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
           tabIndex={2}
           type="submit"
           value={sending ? 'Reseting' : 'Reset'}
