@@ -27,7 +27,9 @@ const AuthFormReset = () => {
         <label className="flex flex-col mb-6" htmlFor="login-email">
           <p className="font-light pb-2 text-sm">Email:</p>
           <input
-            autoFocus
+            autoCorrect="off"
+            autoCapitalize="off"
+            tabIndex={1}
             type="email"
             name="login-email"
             id="login-email"
@@ -43,6 +45,7 @@ const AuthFormReset = () => {
         </label>
         <input
           className="bg-orange-500 rounded-md p-2 px-6 text-white outline-orange-500 focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
+          tabIndex={2}
           type="submit"
           value={sending ? 'Reseting' : 'Reset'}
         />

@@ -33,10 +33,6 @@ describe('SearchForm component', () => {
     expect(searchBtn).toBeDefined();
   });
 
-  it('should have autofocused main input element', () => {
-    expect(input).toBe(document.activeElement);
-  });
-
   it('should show error when nothing is typed in the input element', async () => {
     await user.keyboard('{enter}');
     await waitFor(() => {

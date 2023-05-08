@@ -101,7 +101,6 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
         <label htmlFor="name" className="text-sm text-gray-400">
           Gift name:
           <input
-            autoFocus
             tabIndex={1}
             className={`gift-name text-sm text-gray-700 border rounded-md col-span-2 p-4 w-full mt-3 mb-1 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed ${
               errors.name && 'bg-red-200'

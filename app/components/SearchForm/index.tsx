@@ -47,7 +47,6 @@ const SearchForm = () => {
           value={search}
           onChange={handleChange}
           placeholder="Email"
-          autoFocus
           required
         />
         <button

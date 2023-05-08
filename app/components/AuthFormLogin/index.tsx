@@ -25,7 +25,9 @@ const AuthFormLogin = () => {
         <label className="flex flex-col mb-6" htmlFor="login-email">
           <p className="font-light pb-2 text-sm">Email:</p>
           <input
-            autoFocus
+            autoCorrect="off"
+            autoCapitalize="off"
+            tabIndex={1}
             type="email"
             name="login-email"
             id="login-email"
@@ -37,6 +39,7 @@ const AuthFormLogin = () => {
         <label className="flex flex-col mb-6" htmlFor="login-password">
           <p className="font-light pb-2 text-sm">Password:</p>
           <input
+            tabIndex={2}
             type="password"
             name="login-password"
             id="login-password"
@@ -59,6 +62,7 @@ const AuthFormLogin = () => {
         </div>
         <input
           className="bg-orange-500 rounded-md p-2 px-6 text-white outline-orange-500 focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
+          tabIndex={3}
           type="submit"
           value={loading ? 'Loading' : 'Login'}
         />

@@ -31,7 +31,9 @@ const AuthFormRegister = () => {
         <label className="flex flex-col mb-6" htmlFor="register-email">
           <p className="font-light pb-2 text-sm">Email:</p>
           <input
-            autoFocus
+            autoCorrect="off"
+            autoCapitalize="off"
+            tabIndex={1}
             type="email"
             name="register-email"
             id="register-email"
@@ -43,6 +45,7 @@ const AuthFormRegister = () => {
         <label className="flex flex-col mb-4" htmlFor="register-password">
           <p className="font-light pb-2 text-sm">Password:</p>
           <input
+            tabIndex={2}
             type="password"
             name="register-password"
             id="register-password"
@@ -59,6 +62,7 @@ const AuthFormRegister = () => {
         >
           <p className="font-light pb-2 text-sm">Confirm password:</p>
           <input
+            tabIndex={3}
             type="password"
             name="register-confirm-password"
             id="register-confirm-password"
@@ -80,6 +84,7 @@ const AuthFormRegister = () => {
         </label>
         <input
           className="bg-orange-500 rounded-md p-2 px-6 text-white outline-orange-500 focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
+          tabIndex={4}
           type="submit"
           value={loading ? 'Signing...' : 'Sign up'}
         />
