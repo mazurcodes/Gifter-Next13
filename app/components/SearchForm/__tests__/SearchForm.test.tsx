@@ -51,9 +51,8 @@ describe('SearchForm component', () => {
     await user.keyboard('{enter}');
     await waitFor(() => {
       expect(mockRouter).toMatchObject({
-        asPath: `/search?email=${encodeURIComponent(text)}`,
-        pathname: '/search',
-        query: { email: text },
+        asPath: `/search/${encodeURIComponent(text)}`,
+        pathname: `/search/${encodeURIComponent(text)}`,
       });
     });
   });
@@ -63,9 +62,8 @@ describe('SearchForm component', () => {
     await user.click(searchBtn);
     await waitFor(() => {
       expect(mockRouter).toMatchObject({
-        asPath: `/search?email=${encodeURIComponent(text)}`,
-        pathname: '/search',
-        query: { email: text },
+        asPath: `/search/${encodeURIComponent(text)}`,
+        pathname: `/search/${encodeURIComponent(text)}`,
       });
     });
   });
