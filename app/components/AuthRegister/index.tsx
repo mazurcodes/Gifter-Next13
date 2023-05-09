@@ -16,6 +16,7 @@ const AuthFormRegister = () => {
   const handleSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     if (password === passwordConfirm) {
+      console.log(password, passwordConfirm);
       createUserWithEmailAndPassword(email, password);
     } else {
       setErrorUI("Passwords doesn't match");
@@ -78,7 +79,7 @@ const AuthFormRegister = () => {
           <p className="text-slate-300 font-normal text-sm pb-4 pt-1">
             Minimum 6 characters.
           </p>
-          <span className="text-red-600">{errorUI}</span>
+          {errorUI && <span className="text-red-600">{errorUI}</span>}
           {error && (
             <span className="text-red-600">
               Error: {extractErrorMessage(error.message)}
