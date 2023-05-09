@@ -1,8 +1,10 @@
-import { expect, describe, it } from 'vitest';
-import { render, screen} from '@testing-library/react';
+import { expect, describe, it, vi } from 'vitest';
+import { render, screen } from '@testing-library/react';
 import GiftList from '@/components/GiftList';
 import { giftsData } from '@/data/giftsData';
 import { Category, Occasion, Priority, Status } from '@/constants';
+
+vi.mock('next/navigation', () => require('next-router-mock'));
 
 const dummyName = 'The Dummy Name';
 const dummyNotes = 'dummy note';
@@ -23,18 +25,18 @@ const dummyGift = {
   links: [],
 };
 
-const dummyGifts = [...giftsData, dummyGift]
+const dummyGifts = [...giftsData, dummyGift];
 
 describe('GiftList component', () => {
   render(<GiftList data={dummyGifts} />);
 
-  const giftFilterToolbar = screen.getByRole('toolbar')
+  const giftFilterToolbar = screen.getByRole('toolbar');
 
-  it('should render GiftFilter component', () => {
+  it('should be rendered on screen', () => {
     expect(giftFilterToolbar).toBeDefined();
   });
 
-  it('should render pseudo table head with column labels', () => {
+  it('should have pseudo table head with column labels', () => {
     expect(screen.getByText(/status/i)).toBeDefined();
     expect(screen.getByText(/gift name/i)).toBeDefined();
     expect(screen.getByText(/priority/i)).toBeDefined();
@@ -44,10 +46,10 @@ describe('GiftList component', () => {
     expect(screen.getByText(/date/i)).toBeDefined();
     expect(screen.getByText(/notes/i)).toBeDefined();
   });
-  it('should render list with multiple gifts including special dummy gift', () => {
+  it('should have list with multiple gifts including special dummy gift', () => {
     expect(screen.getByText(dummyName)).toBeDefined();
     expect(screen.getByText(dummyNotes)).toBeDefined();
     expect(screen.getByText(dummyPrice)).toBeDefined();
     expect(screen.getByText(dummyDate)).toBeDefined();
-  })
+  });
 });

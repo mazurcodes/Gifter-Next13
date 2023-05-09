@@ -74,7 +74,7 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
     return (
       <>
         <div>There was same error with your credentials...</div>
-        <div>Try to login again...</div>)
+        <div>Try to login again...</div>
       </>
     );
 

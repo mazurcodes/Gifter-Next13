@@ -27,16 +27,16 @@ const GiftDelete = ({ id }: { id: string }) => {
         >
           {isDelete ? 'No!' : 'Delete'}
         </button>
-        <button
-          type="button"
-          tabIndex={14}
-          onClick={handleDelete}
-          className={`p-1 px-3 text-center bg-red-500 rounded-md text-white text-base  focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed ${
-            !isDelete && 'hidden'
-          }`}
-        >
-          I&apos;m sure. Delete!
-        </button>
+        {isDelete && (
+          <button
+            type="button"
+            tabIndex={14}
+            onClick={handleDelete}
+            className={`p-1 px-3 text-center bg-red-500 rounded-md text-white text-base  focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed`}
+          >
+            I&apos;m sure. Delete!
+          </button>
+        )}
       </div>
     </div>
   );
