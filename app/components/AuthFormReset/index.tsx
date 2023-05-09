@@ -48,7 +48,7 @@ const AuthFormReset = () => {
           className="bg-orange-500 rounded-md p-2 px-6 sm:w-full text-white outline-orange-500 focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"
           tabIndex={2}
           type="submit"
-          value={sending ? 'Reseting' : 'Reset'}
+          value={sending ? 'Resetting' : 'Reset'}
         />
       </div>
     </form>
