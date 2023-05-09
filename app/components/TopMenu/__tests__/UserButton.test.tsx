@@ -2,13 +2,8 @@ import { expect, describe, it } from 'vitest';
 import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import UserButton from '@/components/TopMenu/UserButton';
-import { auth } from '@/firebase/clientApp';
-import { connectAuthEmulator, signInAnonymously } from 'firebase/auth';
-
-connectAuthEmulator(auth, 'http://localhost:9099');
 
 describe('UserButton component', async () => {
-  await signInAnonymously(auth);
   render(<UserButton />);
   const wrapper = within(screen.getByRole('presentation'));
   const button = within(wrapper.getByRole('menuitem'));
@@ -22,23 +17,18 @@ describe('UserButton component', async () => {
     expect(button.getByAltText(/user account icon/i)).toBeDefined();
   });
 
-  it('should show the UserMenu component after click ', async () => {
+  it('should show the UserMenu component after click', async () => {
     await user.click(wrapper.getByRole('menuitem'));
     await waitFor(() => {
       const menu = within(wrapper.getByRole('menu'));
-      expect(
-        menu.getByRole('heading', { level: 3, name: /account/i })
-      ).toBeDefined();
-      expect(
-        menu.getByRole('heading', { level: 3, name: /gifter/i })
-      ).toBeDefined();
+      expect(menu).toBeDefined();
     });
   });
 
   it('should hide the UserMenu component after second click', async () => {
     await user.click(wrapper.getByRole('menuitem'));
     await waitFor(() => {
-      expect(screen.queryByRole('heading')).toBeNull();
+      expect(wrapper.queryByRole('menu')).toBeNull();
     });
   });
 
@@ -47,16 +37,13 @@ describe('UserButton component', async () => {
     await user.click(wrapper.getByRole('menuitem'));
     //check if the UserMenu is already visible
     await waitFor(() => {
-      const menu = within(wrapper.getByRole('menu'));
-      expect(
-        menu.getByRole('heading', { level: 3, name: /account/i })
-      ).toBeDefined();
+      expect(wrapper.getByRole('menu')).toBeDefined();
     });
+  });
 
-    // now click away from the UserMenu
-    await user.click(document.body);
-    await waitFor(() => {
-      expect(screen.queryByRole('heading')).toBeNull();
-    });
+  // now click away from the UserMenu
+  await user.click(document.body);
+  await waitFor(() => {
+    expect(wrapper.queryByRole('menu')).toBeNull();
   });
 });

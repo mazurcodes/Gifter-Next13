@@ -1,17 +1,23 @@
-import { expect, describe, it } from 'vitest';
+import { expect, describe, it, vi } from 'vitest';
 import { render, screen, within } from '@testing-library/react';
 import TopMenuUser from '@/components/TopMenuUser';
-import {
-  signInAnonymously,
-  connectAuthEmulator,
-} from 'firebase/auth';
-import { auth } from '@/firebase/clientApp';
 
-connectAuthEmulator(auth, 'http://localhost:9099');
+const dummyEmail = 'example@example.com';
+const closeFn = vi.fn();
+const signOutFn = vi.fn();
 
-describe('SearchForm component', async () => {
-  await signInAnonymously(auth);
-  render(<TopMenuUser />);
+vi.mock('next/navigation', () => require('next-router-mock'));
+vi.mock('react-firebase-hooks/auth', () => ({
+  useAuthState() {
+    return [{ email: dummyEmail }, false, undefined];
+  },
+  useSignOut() {
+    return [signOutFn];
+  },
+}));
+
+describe('TopMenuUser component', async () => {
+  render(<TopMenuUser close={closeFn} />);
   const menu = within(screen.getByRole('menu'));
 
   it('should render menu', () => {
@@ -26,6 +32,7 @@ describe('SearchForm component', async () => {
       menu.getByRole('heading', { level: 3, name: /gifter/i })
     ).toBeDefined();
   });
+
   it('should have 4 links within the menu', () => {
     expect(menu.queryAllByRole('link').length === 4).toBeTruthy();
   });

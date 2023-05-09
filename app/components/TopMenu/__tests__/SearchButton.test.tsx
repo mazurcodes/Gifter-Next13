@@ -1,7 +1,9 @@
-import { expect, describe, it } from 'vitest';
+import { expect, describe, it, vi } from 'vitest';
 import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import SearchButton from '@/components/TopMenu/SearchButton';
+
+vi.mock('next/navigation', () => require('next-router-mock'));
 
 describe('SearchButton component', () => {
   render(<SearchButton />);
