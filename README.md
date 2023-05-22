@@ -37,7 +37,7 @@ Check my trello agile board that I use for managing tasks:
 Gifter incorporates a variety of technologies and testing libraries to provide a dynamic and efficient gift-sharing platform. The key technologies and testing libraries used in this project include:
 
 - [Next.js](https://nextjs.org/)
-- [React](https://react.dev/)
+- [Typescript](https://www.typescriptlang.org/)
 - [Firebase Authentication and Firestore](https://firebase.google.com/)
 - [React-firebase-hooks](https://github.com/CSFrequency/react-firebase-hooks)
 - [React Hook Form](https://react-hook-form.com/)
