@@ -16,7 +16,6 @@ const AuthFormRegister = () => {
   const handleSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     if (password === passwordConfirm) {
-      console.log(password, passwordConfirm);
       createUserWithEmailAndPassword(email, password);
     } else {
       setErrorUI("Passwords doesn't match");
