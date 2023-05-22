@@ -20,17 +20,29 @@ The key features of Gifter include:
 - Adding gifts to the wishlist with details such as status, priority, category, occasion, price, and links
 - Managing and updating the wishlist
 
+## Demo
+
+Gifter is currently in version 0.9:
+
+- [Demo on Vercel](https://gifter-next13.vercel.app/)
+
+## Agile Board
+
+Check my trello agile board that I use for managing tasks:
+
+- [Trello Gifter Board](https://trello.com/b/9Cu5EkjO/gifter-app)
+
 ## Technologies Used
 
 Gifter incorporates a variety of technologies and testing libraries to provide a dynamic and efficient gift-sharing platform. The key technologies and testing libraries used in this project include:
 
-- Next.js
-- React
-- Firebase Authentication and Firestore
-- React-firebase-hooks
-- React Hook Form
-- TailwindCSS
-- Vite
+- [Next.js](https://nextjs.org/)
+- [React](https://react.dev/)
+- [Firebase Authentication and Firestore](https://firebase.google.com/)
+- [React-firebase-hooks](https://github.com/CSFrequency/react-firebase-hooks)
+- [React Hook Form](https://react-hook-form.com/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [Vitest](https://vitest.dev/)
 
 These technologies, along with the testing libraries, collectively contribute to Gifter's functionality, security, real-time updates, and user-friendly interface. By leveraging these tools, I've managed to ensure the reliability and quality of this application.
 
@@ -88,26 +100,37 @@ To run Gifter locally, follow these steps:
 In the project directory, you can run the following scripts:
 
 1. Runs the development server, allowing you to preview the app in development mode.
+
    ```shell
        npm run dev
    ```
+
 2. Builds the app for production, creating an optimized bundle.
+
    ```shell
        npm run build
    ```
+
 3. Starts the production server to serve the built app.
+
    ```shell
        npm start
    ```
+
 4. Runs the linter to check for code style and formatting issues.
+
    ```shell
        npm run lint
    ```
+
 5. Runs the tests using the vitest testing library.
+
    ```shell
        npm test
    ```
+
 6. Runs the tests and generates a coverage report using vitest.
+
    ```shell
        npm run coverage
    ```
