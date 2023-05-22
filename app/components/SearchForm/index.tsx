@@ -40,6 +40,7 @@ const SearchForm = () => {
           height={18}
         />
         <input
+          autoComplete="off"
           id="search"
           name="search"
           className="w-96 sm:w-full border rounded-md p-2 pl-10 relative focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed"

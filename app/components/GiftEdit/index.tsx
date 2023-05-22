@@ -102,6 +102,7 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
           Gift name:
           <input
             tabIndex={1}
+            autoComplete="off"
             className={`gift-name text-sm text-gray-700 border rounded-md col-span-2 p-4 w-full mt-3 mb-1 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed ${
               errors.name && 'bg-red-200'
             }`}
@@ -194,6 +195,7 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
             Price:{' '}
             <input
               tabIndex={6}
+              autoComplete="off"
               id="price"
               className={`gift-price text-xs font-semibold border rounded-md p-3 text-gray-700 w-full mt-3 mb-1 text-right focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed ${
                 errors.price && 'bg-red-200'
@@ -214,6 +216,7 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
           Link 1:
           <div className="link-wrapper flex items-center">
             <input
+              autoComplete="off"
               tabIndex={7}
               className={`gift-link flex-1 text-xs border-y border-l rounded-l-md p-3 text-black w-full mt-3 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed ${
                 !watch('linkOne') && 'border-r rounded-r-md'
@@ -236,6 +239,7 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
           Link 2:
           <div className="link-wrapper flex items-center">
             <input
+              autoComplete="off"
               tabIndex={8}
               className={`gift-link flex-1 text-xs border-y border-l rounded-l-md p-3 text-black w-full mt-3 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed ${
                 !watch('linkTwo') && 'border-r rounded-r-md'
@@ -258,6 +262,7 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
           Link 3:
           <div className="link-wrapper flex items-center">
             <input
+              autoComplete="off"
               tabIndex={9}
               className={`gift-link flex-1 text-xs border-y border-l rounded-l-md p-3 text-black w-full mt-3 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed ${
                 !watch('linkThree') && 'border-r rounded-r-md'
@@ -279,6 +284,7 @@ const GiftEdit = ({ newGift, data, id }: GiftEditProps) => {
         <label htmlFor="notes" className="text-sm text-gray-400">
           Notes:
           <textarea
+            autoComplete="off"
             tabIndex={10}
             className={`gift-notes border rounded-md p-3 text-black w-full mt-3 focus-visible:shadow outline-orange-500  focus-visible:outline-offset-4 focus-visible:outline-4 focus-visible:outline-dashed`}
             {...register('notes')}
