@@ -75,7 +75,7 @@ To run Gifter locally, follow these steps:
    Create a .env file in the root of the project.
    Add the necessary environment variables, such as Firebase API keys and configuration details:
 
-   ```shell
+   ```env
     NEXT_PUBLIC_FIREBASE_API_KEY=Here_Goes_Your_Public_FIREBASE_API_KEY
     NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=Here_Goes_Your_Public_FIREBASE_AUTH_DOMAIN
     NEXT_PUBLIC_FIREBASE_PROJECT_ID=Here_Goes_Your_Public_FIREBASE_PROJECT_ID
